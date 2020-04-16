@@ -1,0 +1,14 @@
+# Last Modified: Sun Mar 22 11:14:35 2020
+#include <tunables/global>
+
+/usr/lib64/libexec/kf5/kconf_update flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/smar_kde>
+
+  /usr/lib64/libexec/kf5/kconf_update mr,
+  /usr/share/kconf_update/ r,
+  /usr/share/kconf_update/* r,
+  owner /home/*/.config/kconf_updaterc r,
+  owner /home/*/.config/kdeglobals r,
+
+}

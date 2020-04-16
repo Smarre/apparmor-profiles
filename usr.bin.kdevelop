@@ -1,0 +1,69 @@
+# Last Modified: Sun Apr 12 09:09:47 2020
+#include <tunables/global>
+
+/usr/bin/kdevelop flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/freedesktop.org>
+  #include <abstractions/nameservice>
+  #include <abstractions/qt5>
+  #include <abstractions/smar_kde>
+
+  capability sys_ptrace,
+
+  signal send set=hup,
+  signal send set=kill peer=/usr/bin/cmake,
+  signal send set=term peer=/usr/bin/kdeinit5,
+
+  ptrace read,
+
+  /** r,
+  /bin/bash ix,
+  /bin/bash mrix,
+  /dev/ptmx rw,
+  /usr/bin/basename mrix,
+  /usr/bin/bzr Px,
+  /usr/bin/cat mrix,
+  /usr/bin/clang-* Px,
+  /usr/bin/cmake Px,
+  /usr/bin/dirname mrix,
+  /usr/bin/fish mrix,
+  /usr/bin/hostname mrix,
+  /usr/bin/kdevelop mr,
+  /usr/bin/kdevelop mrix,
+  /usr/bin/kdevelop\! mrix,
+  /usr/bin/make Px,
+  /usr/bin/mktemp mrix,
+  /usr/bin/net mrix,
+  /usr/bin/qdbus-qt5 Px,
+  /usr/bin/qmake-qt5 Px,
+  /usr/bin/readlink mrix,
+  /usr/bin/rm mrix,
+  /usr/bin/sed mrix,
+  /usr/bin/svn Px,
+  /usr/bin/testparm mrix,
+  /usr/bin/tput mrix,
+  /usr/bin/tty mrix,
+  /usr/bin/uname mrix,
+  /usr/bin/wc mrix,
+  /usr/bin/which mrix,
+  /usr/lib/git/git Px,
+  /usr/lib/utempter/utempter Px,
+  owner /** rw,
+  owner /home/*/.cache/kdevelop/qmlcache/*.jsc mr,
+  owner /home/*/.cache/kdevelop/qmlcache/*.qmlc mr,
+  owner /home/*/.config/.* rk,
+  owner /home/*/.config/kdeveloprc w,
+  owner /home/*/.config/kdeveloprc.* rk,
+  owner /home/*/.config/kdeveloprc.* rw,
+  owner /home/*/.config/session/.* rk,
+  owner /home/*/.config/session/kdevelop_*.lock rk,
+  owner /home/*/.local/share/fish/fish_history rk,
+  owner /home/*/.local/share/kdevelop/QML/OfflineStorage/Databases/*.sqlite rk,
+  owner /home/*/.local/share/kdevelop/qthelpcollection.qhc rk,
+  owner /home/*/.local/share/kdevelop/sessions/*/.* rwk,
+  owner /home/*/.local/share/kdevelop/sessions/*/lock rwk,
+  owner /home/*/.local/share/kdevelop/sessions/*/lock.rmlock rk,
+  owner /home/*/.local/share/kdevelop/sessions/*/sessionrc.lock rk,
+
+}

@@ -1,0 +1,30 @@
+# Last Modified: Sat Apr 11 13:04:03 2020
+#include <tunables/global>
+
+/usr/bin/kmod flags=(complain) {
+  #include <abstractions/cli>
+  #include <abstractions/nameservice>
+  #include <abstractions/user-tmp>
+
+  capability dac_override,
+  capability sys_module,
+  capability syslog,
+
+  /proc/cmdline r,
+  /proc/modules r,
+  /sbin/sysctl mrix,
+  /sys/module/** r,
+  /usr/bin/kmod mrix,
+  owner /boot/System.map-* r,
+  owner /boot/sysctl.conf-* r,
+  owner /etc/depmod.d/ r,
+  owner /etc/depmod.d/* r,
+  owner /etc/modprobe.d/ r,
+  owner /etc/modprobe.d/* r,
+  owner /etc/sysctl.conf r,
+  owner /etc/sysctl.d/ r,
+  owner /etc/sysctl.d/* r,
+  owner /proc/*/fd/1 w,
+  owner /{usr/,}lib{,32,64}/** rw,
+
+}

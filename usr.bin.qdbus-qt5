@@ -1,0 +1,11 @@
+# Last Modified: Sun Apr 12 08:55:13 2020
+#include <tunables/global>
+
+/usr/bin/qdbus-qt5 flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+  #include <abstractions/smar_kde>
+
+  /usr/bin/qdbus-qt5 mr,
+
+}

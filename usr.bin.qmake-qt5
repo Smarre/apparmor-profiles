@@ -1,0 +1,9 @@
+# Last Modified: Sun Apr 12 08:38:03 2020
+#include <tunables/global>
+
+/usr/bin/qmake-qt5 flags=(complain) {
+  #include <abstractions/base>
+
+  /usr/bin/qmake-qt5 mr,
+
+}

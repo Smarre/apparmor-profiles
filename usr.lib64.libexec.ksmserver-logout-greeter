@@ -1,0 +1,22 @@
+# Last Modified: Sat Apr 11 13:09:36 2020
+#include <tunables/global>
+
+/usr/lib64/libexec/ksmserver-logout-greeter flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/fonts>
+  #include <abstractions/nameservice>
+  #include <abstractions/smar_kde>
+
+  /usr/lib64/libexec/ksmserver-logout-greeter mr,
+  /usr/share/plasma/desktoptheme/** r,
+  owner /home/*/#* mrw,
+  owner /home/*/.cache/ r,
+  owner /home/*/.cache/ksmserver-logout-greeter/qmlcache/* mr,
+  owner /home/*/.cache/mesa_shader_cache/** wk,
+  owner /home/*/.cache/plasma-svgelements-default_* r,
+  owner /home/*/.cache/plasma_theme_default_*.kcache rw,
+  owner /home/*/.cache/qtshadercache/* r,
+  owner /home/*/.cache/qtshadercache/* w,
+  owner /home/*/.config/plasmarc r,
+
+}

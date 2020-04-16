@@ -1,0 +1,53 @@
+# Last Modified: Fri Jan 31 08:22:47 2020
+#include <tunables/global>
+
+/usr/bin/kompare flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/nameservice>
+  #include <abstractions/qt5>
+  #include <abstractions/smar_kde>
+
+  /etc/ssl/openssl.cnf r,
+  /etc/xdg/menus/ r,
+  /etc/xdg/menus/applications-merged/ r,
+  /etc/xdg/ui/ui_standards.rc r,
+  /proc/sys/kernel/core_pattern r,
+  /usr/bin/kompare mr,
+  /usr/share/icu/** r,
+  /usr/share/kservices5/*/ r,
+  /usr/share/kservices5/akonadi/*/ r,
+  /usr/share/kxmlgui5/kompare/kompareui.rc r,
+  /usr/share/kxmlgui5/komparepart/* r,
+  /usr/share/mime/ r,
+  /usr/share/qt5/resources/* r,
+  /usr/share/qt5/translations/qtwebengine_locales/* r,
+  owner "@{HOME}/.local/share/kmail2/QtWebEngine/Default/Visited Links" rw,
+  owner /dev/shm/.org.chromium.Chromium.* ra,
+  owner @{HOME}/.ICEauthority r,
+  owner @{HOME}/.Xauthority r,
+  owner @{HOME}/.cache/fontconfig/* r,
+  owner @{HOME}/.cache/ksycoca5_fi_ADcXsb5UkzpGQg2wrcLemXWkbZQ= r,
+  owner @{HOME}/.cache/mesa_shader_cache/index rw,
+  owner @{HOME}/.config/.* rwk,
+  owner @{HOME}/.config/ibus/bus/* r,
+  owner @{HOME}/.config/kdeglobals r,
+  owner @{HOME}/.config/komparerc r,
+  owner @{HOME}/.config/komparerc w,
+  owner @{HOME}/.config/komparerc.* rw,
+  owner @{HOME}/.config/komparerc.lock wk,
+  owner @{HOME}/.config/menus/ r,
+  owner @{HOME}/.config/menus/applications-merged/ r,
+  owner @{HOME}/.config/session/.* rwk,
+  owner @{HOME}/.config/session/kompare_* rw,
+  owner @{HOME}/.config/session/kompare_*.lock wk,
+  owner @{HOME}/.fonts.conf r,
+  owner @{HOME}/.fonts/ r,
+  owner @{HOME}/.local/share/mime/ r,
+  owner @{HOME}/.local/share/mime/*/ r,
+  owner @{HOME}/.local/share/mime/application/ r,
+  owner @{HOME}/.local/share/mime/generic-icons r,
+  owner @{HOME}/.local/share/mime/mime.cache r,
+  owner @{HOME}/.local/share/mime/packages/ r,
+  owner @{HOME}/.local/share/mime/types r,
+
+}

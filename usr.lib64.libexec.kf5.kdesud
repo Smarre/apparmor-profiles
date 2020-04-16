@@ -1,0 +1,12 @@
+# Last Modified: Mon Mar 23 07:17:38 2020
+#include <tunables/global>
+
+/usr/lib64/libexec/kf5/kdesud flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/smar_kde>
+
+  /proc/sys/crypto/fips_enabled r,
+  /usr/lib64/libexec/kf5/kdesud mr,
+  owner /run/user/*/kdesud_:* w,
+
+}

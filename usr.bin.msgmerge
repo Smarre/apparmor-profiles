@@ -1,0 +1,9 @@
+# Last Modified: Sun Apr 12 08:59:28 2020
+#include <tunables/global>
+
+/usr/bin/msgmerge flags=(complain) {
+  #include <abstractions/base>
+
+  /usr/bin/msgmerge mr,
+
+}

@@ -1,0 +1,11 @@
+# Last Modified: Tue Aug 27 15:58:26 2019
+#include <tunables/global>
+
+/usr/bin/mosh-client {
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/nameservice>
+
+  /usr/bin/mosh-client mr,
+
+}

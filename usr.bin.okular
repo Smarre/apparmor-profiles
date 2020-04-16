@@ -1,0 +1,65 @@
+# Last Modified: Tue Jan 21 09:19:11 2020
+#include <tunables/global>
+
+/usr/bin/okular flags=(complain) {
+  #include <abstractions/audio>
+  #include <abstractions/base>
+  #include <abstractions/nameservice>
+  #include <abstractions/openssl>
+  #include <abstractions/smar_kde>
+  #include <abstractions/ubuntu-browsers.d/user-files>
+
+  signal send set=term peer=unconfined,
+
+  /** rw,
+  /etc/xdg/menus/*/ r,
+  /run/udev/data/* r,
+  /sys/bus/**/ r,
+  /usr/bin/net Cx,
+  /usr/bin/net mrw,
+  /usr/bin/okular mr,
+  /usr/bin/testparm mrix,
+  /usr/share/icu/** r,
+  /usr/share/kpackage/Purpose/** r,
+  /usr/share/kservices5/*/ r,
+  /usr/share/kxmlgui5/okular/* r,
+  /usr/share/okular/* r,
+  /usr/share/okular/** r,
+  /usr/share/poppler/** r,
+  /usr/share/poppler/*/ r,
+  /usr/share/qt5/resources/* r,
+  /usr/share/qt5/translations/** r,
+  owner "@{HOME}/.local/share/kmail2/QtWebEngine/Default/Visited Links" w,
+  owner /dev/shm/.org.chromium.Chromium.* ra,
+  owner @{HOME}/.config/QtProject.conf.lock k,
+  owner @{HOME}/.config/kdeglobals.lock k,
+  owner @{HOME}/.config/okularpartrc w,
+  owner @{HOME}/.config/okularpartrc.* w,
+  owner @{HOME}/.config/okularpartrc.lock wk,
+  owner @{HOME}/.local/share/RecentDocuments/* k,
+  owner /proc/*/mounts r,
+  owner /run/user/**/ r,
+  owner /run/user/1000/* rw,
+  owner @{HOME}/.config/.* rwk,
+  owner @{HOME}/.config/okularrc rw,
+  owner @{HOME}/.config/okularrc.* rw,
+  owner @{HOME}/.config/okularrc.lock wk,
+  owner @{HOME}/.config/session/* rwk,
+  owner @{HOME}/.local/share/okular/** rw,
+
+
+  profile /usr/bin/net flags=(complain) {
+    #include <abstractions/base>
+    #include <abstractions/nameservice>
+    #include <abstractions/samba>
+    #include <abstractions/user-tmp>
+
+    /proc/sys/crypto/fips_enabled r,
+    /usr/bin/net mr,
+    /usr/share/qt5/resources/* r,
+    /usr/share/qt5/translations/qtwebengine_locales/* r,
+    owner /** r,
+    owner /dev/shm/.org.chromium.Chromium.* ra,
+
+  }
+}

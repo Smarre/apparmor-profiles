@@ -1,0 +1,22 @@
+# Last Modified: Fri Mar 20 09:51:22 2020
+#include <tunables/global>
+
+/usr/bin/plasma-browser-integration-host flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/qt5>
+  #include <abstractions/smar_kde>
+
+  /proc/sys/crypto/fips_enabled r,
+  /proc/sys/kernel/core_pattern r,
+  /usr/bin/plasma-browser-integration-host mr,
+  /usr/share/icu/** r,
+  owner /dev/shm/org.chromium.* r,
+  owner /home/*/.Xauthority r,
+  owner /home/*/.cache/mozilla/firefox/rnt2rlel.default/startupCache/* r,
+  owner /home/*/.config/ibus/bus/* r,
+  owner /home/*/.config/kdeglobals r,
+  owner /home/*/.local/share/mime/generic-icons r,
+  owner /home/*/.mozilla/firefox/rnt2rlel.default/.parentlock w,
+  owner /home/*/.mozilla/firefox/rnt2rlel.default/extensions/* r,
+
+}

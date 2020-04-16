@@ -1,0 +1,12 @@
+# Last Modified: Sun Apr  5 07:56:46 2020
+#include <tunables/global>
+
+/usr/lib64/libexec/kf5/kio_http_cache_cleaner flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/smar_kde>
+
+  /usr/lib64/libexec/kf5/kio_http_cache_cleaner mr,
+  owner /home/*/.cache/kio_http/* r,
+  owner /run/user/*/kio_http_cache_cleaner w,
+
+}

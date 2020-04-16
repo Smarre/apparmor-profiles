@@ -1,0 +1,22 @@
+# Last Modified: Sun Apr  5 07:56:47 2020
+#include <tunables/global>
+
+/usr/lib64/libexec/org_kde_powerdevil flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/nameservice>
+  #include <abstractions/smar_kde>
+
+  /dev/rfkill r,
+  /etc/fstab r,
+  /etc/xdg/menus/ r,
+  /etc/xdg/menus/applications-merged/ r,
+  /usr/lib64/libexec/org_kde_powerdevil mr,
+  /usr/share/hwdata/* r,
+  /usr/share/kservices5/*/ r,
+  owner /home/*/.cache/ksycoca5_* r,
+  owner /home/*/.config/menus/ r,
+  owner /home/*/.config/menus/applications-merged/ r,
+  owner /home/*/.config/powermanagementprofilesrc r,
+  owner /proc/*/mounts r,
+
+}
