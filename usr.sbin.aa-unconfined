@@ -1,0 +1,32 @@
+# Last Modified: Wed Apr  1 16:57:15 2020
+#include <tunables/global>
+
+/usr/sbin/aa-unconfined flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/consoles>
+  #include <abstractions/python>
+
+  capability dac_read_search,
+  capability net_admin,
+  capability sys_ptrace,
+
+  ptrace read,
+
+  /proc/*/attr/current r,
+  /proc/*/cmdline r,
+  /proc/*/fd/ r,
+  /proc/*/stat r,
+  /usr/bin/python3.6 ix,
+  /usr/sbin/aa-unconfined r,
+  /usr/sbin/ss mrix,
+  owner /etc/apparmor/logprof.conf r,
+  owner /etc/inputrc.keys r,
+  owner /proc/ r,
+  owner /proc/*/mounts r,
+  owner /proc/filesystems r,
+  owner /proc/sys/crypto/fips_enabled r,
+  owner /usr/bin/python3.6 mr,
+  owner /usr/sbin/ r,
+
+}

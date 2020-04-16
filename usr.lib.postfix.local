@@ -1,0 +1,45 @@
+# Last Modified: Wed Apr  8 15:41:09 2020
+#include <tunables/global>
+
+# ------------------------------------------------------------------
+#
+#    Copyright (C) 2002-2006 Novell/SUSE
+#
+#    This program is free software; you can redistribute it and/or
+#    modify it under the terms of version 2 of the GNU General Public
+#    License published by the Free Software Foundation.
+#
+# ------------------------------------------------------------------
+
+
+/usr/lib/postfix/bin/local {
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/nameservice>
+  #include <abstractions/postfix-common>
+  #include <abstractions/user-mail>
+
+  signal receive set=term peer=/usr/lib/postfix/bin/master,
+
+  /dev/tty rw,
+  /etc/postfix/lists.db r,
+  /etc/postfix/virtual.db r,
+  /etc/{postfix/,}aliases.db rk,
+  /usr/bin/mlmmj-recieve Px,
+  /usr/bin/procmail Px,
+  /usr/lib/mailman/mail/mailman Px,
+  /usr/lib/postfix/bin/local mrix,
+  /var/lib/mailman/data/aliases.db r,
+  /var/mailman/mail/wrapper Px,
+  /{usr/,}bin/bash mrix,
+  /{usr/,}bin/date mrix,
+  /{var/spool/postfix/,}active/[0-9A-F]/ rw,
+  /{var/spool/postfix/,}active/[0-9A-F]/[0-9A-F]/ rw,
+  /{var/spool/postfix/,}active/[0-9A-F]/[0-9A-F]/* rw,
+  /{var/spool/postfix/,}pid/unix.local rwk,
+  /{var/spool/postfix/,}private/{bounce,defer,flush,lmtp,rewrite} rw,
+  /{var/spool/postfix/,}public/{cleanup,flush} rw,
+  owner /var/spool/postfix/active/* rwk,
+  owner /var/{,spool/}mail/* k,
+
+}

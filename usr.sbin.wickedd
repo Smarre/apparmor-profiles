@@ -1,0 +1,150 @@
+# Last Modified: Sun Apr  5 07:51:54 2020
+#include <tunables/global>
+
+/usr/sbin/wickedd flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+  #include <abstractions/nameservice>
+  #include <abstractions/user-tmp>
+
+  capability net_admin,
+  capability net_raw,
+  capability sys_module,
+  capability sys_ptrace,
+
+  network packet dgram,
+
+  /etc/wicked/extensions/firewall Cx,
+  /etc/wicked/extensions/netconfig Cx,
+  /usr/bin/kmod mrix,
+  /usr/bin/udevadm Cx,
+  /usr/sbin/wickedd mr,
+  owner /bin/bash mr,
+  owner /dev/rfkill r,
+  owner /etc/libnl/classid r,
+  owner /etc/modprobe.d/ r,
+  owner /etc/modprobe.d/* r,
+  owner /etc/udev/udev.conf r,
+  owner /etc/wicked/* r,
+  owner /etc/wicked/extensions/firewall r,
+  owner /etc/wicked/extensions/netconfig r,
+  owner /proc/*/environ r,
+  owner /proc/*/sched r,
+  owner /proc/*/stat r,
+  owner /proc/cmdline r,
+  owner /proc/sys/net/** w,
+  owner /run/wicked/ r,
+  owner /run/wicked/* rw,
+  owner /run/wicked/** rw,
+  owner /sys/devices/** r,
+  owner /sys/module/** r,
+  owner /usr/bin/udevadm mr,
+  owner /usr/share/wicked/** r,
+
+
+  profile /etc/wicked/extensions/firewall flags=(complain) {
+    #include <abstractions/base>
+    #include <abstractions/bash>
+    #include <abstractions/consoles>
+    #include <abstractions/nameservice>
+    #include <abstractions/python>
+    #include <abstractions/user-tmp>
+
+    capability sys_ptrace,
+
+    ptrace read peer=unconfined,
+
+    /bin/bash ix,
+    /etc/wicked/extensions/firewall r,
+    /usr/bin/ r,
+    /usr/bin/firewall-cmd mrix,
+    /usr/bin/python3.6 ix,
+    /usr/bin/systemctl mrix,
+    /usr/sbin/wicked mrix,
+    owner /bin/bash mr,
+    owner /etc/libnl/classid r,
+    owner /etc/wicked/client.xml r,
+    owner /etc/wicked/common.xml r,
+    owner /proc/*/environ r,
+    owner /proc/*/sched r,
+    owner /proc/*/stat r,
+    owner /proc/cmdline r,
+    owner /proc/sys/crypto/fips_enabled r,
+    owner /usr/bin/python3.6 mr,
+
+  }
+
+  profile /etc/wicked/extensions/netconfig flags=(complain) {
+    #include <abstractions/base>
+    #include <abstractions/bash>
+    #include <abstractions/consoles>
+    #include <abstractions/nameservice>
+    #include <abstractions/user-tmp>
+
+    capability sys_admin,
+    capability sys_ptrace,
+
+    ptrace read peer=unconfined,
+
+    /bin/bash ix,
+    /etc/netconfig.d/dns-bind mrix,
+    /etc/netconfig.d/dns-dnsmasq mrix,
+    /etc/netconfig.d/dns-resolver mrix,
+    /etc/netconfig.d/nis mrix,
+    /etc/netconfig.d/ntp-runtime mrix,
+    /etc/wicked/extensions/netconfig r,
+    /sbin/netconfig mrix,
+    /usr/bin/basename mrix,
+    /usr/bin/cat mrix,
+    /usr/bin/chmod mrix,
+    /usr/bin/cmp mrix,
+    /usr/bin/dirname mrix,
+    /usr/bin/gawk mrix,
+    /usr/bin/grep mrix,
+    /usr/bin/hostname mrix,
+    /usr/bin/mkdir mrix,
+    /usr/bin/mktemp mrix,
+    /usr/bin/mv mrix,
+    /usr/bin/readlink mrix,
+    /usr/bin/realpath mrix,
+    /usr/bin/rm mrix,
+    /usr/bin/sed mrix,
+    /usr/bin/systemctl mrix,
+    /usr/bin/touch mrix,
+    owner /bin/bash mr,
+    owner /etc/sysconfig/network/config r,
+    owner /etc/sysconfig/network/scripts/functions.netconfig r,
+    owner /proc/*/environ r,
+    owner /proc/*/sched r,
+    owner /proc/*/stat r,
+    owner /proc/cmdline r,
+    owner /proc/uptime r,
+    owner /run/netconfig.pid rw,
+    owner /run/netconfig/ r,
+    owner /run/netconfig/ w,
+    owner /run/netconfig/** rw,
+    owner /run/ntp/ rw,
+    owner /run/ntp/* rw,
+    owner /run/wicked/* r,
+    owner /run/wicked/extension/generic/* r,
+
+  }
+
+  profile /usr/bin/udevadm flags=(complain) {
+    #include <abstractions/base>
+
+    capability sys_ptrace,
+
+    ptrace read peer=unconfined,
+
+    /usr/bin/udevadm mr,
+    owner /etc/udev/udev.conf r,
+    owner /proc/*/environ r,
+    owner /proc/*/sched r,
+    owner /proc/*/stat r,
+    owner /proc/cmdline r,
+    owner /run/udev/data/* r,
+    owner /sys/devices/** r,
+
+  }
+}

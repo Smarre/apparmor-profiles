@@ -1,0 +1,29 @@
+# Last Modified: Wed Apr  8 15:17:38 2020
+#include <tunables/global>
+
+/usr/sbin/aa-logprof flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/consoles>
+  #include <abstractions/perl>
+  #include <abstractions/python>
+
+  capability dac_read_search,
+
+  /** mr,
+  /bin/bash mrix,
+  /lib/ld-2.26.so mrix,
+  /lib64/ld-2.26.so mrix,
+  /sbin/apparmor_parser Px,
+  /usr/bin/cat mrix,
+  /usr/bin/ldd mrix,
+  /usr/bin/python3.6 ix,
+  owner /**/ r,
+  owner /etc/apparmor.d/** r,
+  owner /etc/apparmor.d/** w,
+  owner /etc/apparmor/* r,
+  owner /proc/*/mounts r,
+  owner /usr/share/apparmor/** r,
+  owner /var/log/audit/* r,
+
+}

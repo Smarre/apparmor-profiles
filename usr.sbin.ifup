@@ -1,0 +1,18 @@
+# Last Modified: Wed Apr  8 07:03:40 2020
+#include <tunables/global>
+
+/usr/sbin/ifup flags=(complain) {
+  #include <abstractions/bash>
+  #include <abstractions/cli>
+  #include <abstractions/consoles>
+
+  capability sys_ptrace,
+
+  ptrace read,
+
+  /usr/bin/systemctl mrix,
+  /usr/sbin/ifup r,
+  /usr/sbin/wicked Px,
+  owner /etc/sysconfig/network/config r,
+
+}

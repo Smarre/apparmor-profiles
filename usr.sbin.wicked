@@ -1,0 +1,30 @@
+# Last Modified: Wed Apr  8 07:08:16 2020
+#include <tunables/global>
+
+/usr/sbin/wicked flags=(complain) {
+  #include <abstractions/cli>
+  #include <abstractions/consoles>
+  #include <abstractions/nameservice>
+
+  /etc/wicked/extensions/ibft mrix,
+  /lib64/ld-*.so mr,
+  /lib64/libc-*.so mr,
+  /lib64/libdl-*.so mr,
+  /lib64/libreadline.so.* mr,
+  /lib64/libtinfo.so.* mr,
+  /usr/bin/kmod Px,
+  /usr/sbin/wicked mr,
+  owner /bin/bash mr,
+  owner /boot/sysctl.conf-* r,
+  owner /etc/hostname r,
+  owner /etc/libnl/classid r,
+  owner /etc/sysconfig/network/ r,
+  owner /etc/sysconfig/network/* r,
+  owner /etc/sysctl.conf r,
+  owner /etc/sysctl.d/ r,
+  owner /etc/sysctl.d/* r,
+  owner /etc/wicked/* r,
+  owner /etc/wicked/*/ r,
+  owner /usr/share/wicked/** r,
+
+}

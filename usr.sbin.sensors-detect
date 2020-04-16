@@ -1,0 +1,11 @@
+# Last Modified: Thu Apr  2 15:44:42 2020
+#include <tunables/global>
+
+/usr/sbin/sensors-detect flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/perl>
+
+  /usr/bin/perl ix,
+  /usr/sbin/sensors-detect r,
+
+}

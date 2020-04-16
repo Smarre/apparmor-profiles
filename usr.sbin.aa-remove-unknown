@@ -1,0 +1,27 @@
+# Last Modified: Tue Mar 31 08:03:09 2020
+#include <tunables/global>
+
+/usr/sbin/aa-remove-unknown flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/consoles>
+
+  capability mac_admin,
+
+  /bin/bash ix,
+  /sbin/apparmor_parser Px,
+  /usr/bin/basename mrix,
+  /usr/bin/gawk mrix,
+  /usr/bin/grep mrix,
+  /usr/bin/sed mrix,
+  /usr/bin/sort mrix,
+  /usr/sbin/aa-remove-unknown r,
+  owner /bin/bash r,
+  owner /etc/apparmor.d/ r,
+  owner /etc/apparmor/* r,
+  owner /etc/fstab r,
+  owner /proc/filesystems r,
+  owner /sys/kernel/security/apparmor/* r,
+  owner /sys/kernel/security/apparmor/* w,
+
+}

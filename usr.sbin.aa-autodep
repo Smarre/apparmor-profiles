@@ -1,0 +1,27 @@
+# Last Modified: Fri Apr 10 08:36:46 2020
+#include <tunables/global>
+
+/usr/sbin/aa-autodep flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/consoles>
+  #include <abstractions/python>
+
+  /bin/bash ix,
+  /lib/ld-2.26.so mrix,
+  /lib64/ld-2.26.so mrix,
+  /opt/TeamSpeak3-Client-linux_amd64/* r,
+  /sbin/apparmor_parser Px,
+  /usr/bin/cat mrix,
+  /usr/bin/ldd mrix,
+  /usr/bin/python3.6 ix,
+  /usr/sbin/aa-autodep r,
+  owner /** mr,
+  owner /etc/apparmor.d/* rw,
+  owner /etc/apparmor.d/** r,
+  owner /proc/*/fd/ r,
+  owner /proc/*/mounts r,
+  owner /usr/share/apparmor/** r,
+  owner /usr/share/apparmor/**/ r,
+
+}

@@ -1,0 +1,22 @@
+# Last Modified: Tue Aug 27 17:27:32 2019
+#include <tunables/global>
+
+/usr/sbin/chronyd flags=(attach_disconnected) {
+  #include <abstractions/base>
+  #include <abstractions/nameservice>
+
+  capability chown,
+  capability net_bind_service,
+  capability setgid,
+  capability setuid,
+  capability sys_time,
+
+  /run/chronyd.pid w,
+  /usr/sbin/chronyd mr,
+  owner /etc/chrony.conf r,
+  owner /etc/chrony.d/ r,
+  owner /run/chrony/ w,
+  owner /run/chrony/chronyd.sock w,
+  owner /var/lib/chrony/* rw,
+
+}

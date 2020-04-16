@@ -1,0 +1,89 @@
+# Last Modified: Wed Apr 15 07:15:04 2020
+#include <tunables/global>
+
+# attach_disconnected is necessary since this script wants to kill bs_worker
+# type=AVC msg=audit(1586924404.039:2911619): apparmor="ALLOWED" operation="getattr" info="Failed name lookup - disconnected path" error=-13 profile="/usr/sbin/obsworker" name="" pid=26342 comm="killall" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+/usr/sbin/obsworker flags=(complain, attach_disconnected) {
+  #include <abstractions/authentication>
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/consoles>
+  #include <abstractions/nameservice>
+  #include <abstractions/openssl>
+  #include <abstractions/perl>
+  #include <extra/bs_worker>
+
+  capability chown,
+  capability dac_override,
+  capability fsetid,
+  capability setgid,
+  capability setuid,
+  capability sys_ptrace,
+  capability sys_tty_config,
+
+  signal send set=term peer=unconfined,
+
+  ptrace read,
+
+  /bin/bash ix,
+  /bin/bash ix,
+  /proc/*/cmdline r,
+  /proc/*/stat r,
+  /proc/*/statm r,
+  /run/obs/ w,
+  /run/obs/worker/*/worker.new/bs_worker Cx -> bs_worker,
+  /run/obs/worker/*/worker/bs_worker Cx -> bs_worker,
+  /run/obs/worker/boot/bs_worker mrix,
+  /sbin/checkproc mrix,
+  /sbin/showconsole mrix,
+  /srv/obs/configuration.xml r,
+  /usr/bin/chmod mrix,
+  /usr/bin/chown mrix,
+  /usr/bin/cpio mrix,
+  /usr/bin/curl mrix,
+  /usr/bin/killall mrix,
+  /usr/bin/ln mrix,
+  /usr/bin/mkdir mrix,
+  /usr/bin/mountpoint mrix,
+  /usr/bin/nice ix,
+  /usr/bin/perl ix,
+  /usr/bin/rm mrix,
+  /usr/bin/screen mrix,
+  /usr/bin/sed mrix,
+  /usr/bin/sleep mrix,
+  /usr/bin/slptool mrix,
+  /usr/bin/stty mrix,
+  /usr/bin/systemctl Px,
+  /usr/bin/uname mrix,
+  /usr/sbin/obsworker mrix,
+  /usr/sbin/obsworker r,
+  /usr/sbin/obsworker r,
+  owner /bin/bash mr,
+  owner /dev/ptmx rw,
+  owner /dev/tty7 r,
+  owner /etc/rc.status r,
+  owner /etc/screenrc r,
+  owner /etc/slp.conf r,
+  owner /etc/slp.spi r,
+  owner /etc/sysconfig/obs-server r,
+  owner /etc/sysconfig/proxy r,
+  owner /mnt/misc/worker/root_*/ w,
+  owner /proc/ r,
+  owner /proc/*/loginuid r,
+  owner /proc/*/mountinfo r,
+  owner /proc/consoles r,
+  owner /proc/cpuinfo r,
+  owner /proc/filesystems r,
+  owner /proc/sys/crypto/fips_enabled r,
+  owner /proc/version r,
+  owner /run/obs/worker/ rw,
+  owner /run/obs/worker/** rw,
+  owner /run/obs/worker/*/lock wk,
+  owner /run/obs/worker/*/state rwk,
+  owner /run/obs/worker/boot/* rw,
+  owner /run/obs/worker/boot/bs_worker mrw,
+  owner /run/screens/S-root/ r,
+  owner /run/screens/S-root/ w,
+  owner /run/screens/S-root/*.obsworker w,
+
+}

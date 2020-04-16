@@ -1,0 +1,14 @@
+# Last Modified: Tue Mar 31 08:25:54 2020
+#include <tunables/global>
+
+/usr/sbin/ausearch flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+  #include <abstractions/nameservice>
+
+  /usr/sbin/ausearch mr,
+  owner /etc/audit/auditd.conf r,
+  owner /var/log/audit/ r,
+  owner /var/log/audit/* r,
+
+}

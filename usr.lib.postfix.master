@@ -1,0 +1,60 @@
+# Last Modified: Wed Apr  8 15:41:09 2020
+#include <tunables/global>
+
+# ------------------------------------------------------------------
+#
+#    Copyright (C) 2002-2006 Novell/SUSE
+#
+#    This program is free software; you can redistribute it and/or
+#    modify it under the terms of version 2 of the GNU General Public
+#    License published by the Free Software Foundation.
+#
+# ------------------------------------------------------------------
+
+
+/usr/lib/postfix/bin/master {
+  #include <abstractions/base>
+  #include <abstractions/nameservice>
+  #include <abstractions/postfix-common>
+
+  capability dac_override,
+  capability dac_read_search,
+  capability kill,
+  capability net_bind_service,
+
+  signal send set=term peer=/usr/lib/postfix/bin/cleanup,
+  signal send set=term peer=/usr/lib/postfix/bin/local,
+  signal send set=term peer=/usr/lib/postfix/bin/pickup,
+  signal send set=term peer=/usr/lib/postfix/bin/qmgr,
+  signal send set=term peer=/usr/lib/postfix/bin/trivial-rewrite,
+
+  /etc/postfix/master.cf r,
+  /usr/lib/postfix/bin/anvil Px,
+  /usr/lib/postfix/bin/bounce Px,
+  /usr/lib/postfix/bin/cleanup Px,
+  /usr/lib/postfix/bin/error mrix,
+  /usr/lib/postfix/bin/flush Px,
+  /usr/lib/postfix/bin/local Px,
+  /usr/lib/postfix/bin/master mrix,
+  /usr/lib/postfix/bin/master mrix,
+  /usr/lib/postfix/bin/nqmgr Px,
+  /usr/lib/postfix/bin/pickup Px,
+  /usr/lib/postfix/bin/pipe Px,
+  /usr/lib/postfix/bin/proxymap Px,
+  /usr/lib/postfix/bin/qmgr Px,
+  /usr/lib/postfix/bin/scache Px,
+  /usr/lib/postfix/bin/showq Px,
+  /usr/lib/postfix/bin/smtp Px,
+  /usr/lib/postfix/bin/smtpd Px,
+  /usr/lib/postfix/bin/tlsmgr Px,
+  /usr/lib/postfix/bin/trivial-rewrite Px,
+  /var/spool/postfix/pid/unix.retry wk,
+  /{var/spool/postfix/,}pid/master.pid rwk,
+  /{var/spool/postfix/,}private/* wl,
+  /{var/spool/postfix/,}private/tlsmgr rwl,
+  /{var/spool/postfix/,}public/{cleanup,flush,pickup,qmgr,showq,tlsmgr} rwl,
+  owner /var/lib/postfix/master.lock rwk,
+  owner /var/spool/postfix/active/* rwk,
+  owner /var/spool/postfix/pid/unix.retry rw,
+
+}

@@ -1,0 +1,77 @@
+# Last Modified: Fri Mar 20 11:40:08 2020
+#include <tunables/global>
+
+# vim:syntax=apparmor
+# ------------------------------------------------------------------
+#
+#    Copyright (C) 2002-2005 Novell/SUSE
+#
+#    This program is free software; you can redistribute it and/or
+#    modify it under the terms of version 2 of the GNU General Public
+#    License published by the Free Software Foundation.
+#
+# ------------------------------------------------------------------
+
+
+/usr/sbin/useradd {
+  #include <abstractions/authentication>
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/consoles>
+  #include <abstractions/nameservice>
+  #include <abstractions/perl>
+  #include <abstractions/wutmp>
+
+  capability audit_write,
+  capability chown,
+  capability dac_override,
+  capability fowner,
+  capability fsetid,
+  capability sys_resource,
+
+  /etc/.pwd.lock rwk,
+  /etc/default/useradd r,
+  /etc/group* rwl,
+  /etc/gshadow* rwl,
+  /etc/login.defs r,
+  /etc/passwd* rwl,
+  /etc/pwdutils/logging r,
+  /etc/shadow* rwl,
+  /etc/skel r,
+  /etc/skel/** r,
+  /etc/subgid rw,
+  /etc/subgid+ rw,
+  /etc/subgid- rw,
+  /etc/subgid.* rwl,
+  /etc/subuid rw,
+  /etc/subuid+ rw,
+  /etc/subuid- rw,
+  /etc/subuid.* rwl,
+  /usr/lib*/pwdutils/*so* mr,
+  /usr/sbin/adduser mrix,
+  /usr/sbin/nscd rPix,
+  /usr/sbin/useradd mrix,
+  /usr/sbin/useradd.local mrix,
+  /var/log/faillog rw,
+  /var/spool/mail/* rw,
+  /{,usr/}sbin/pam_tally2 Cx -> pam_tally2,
+  /{,var/}run/nscd.pid rw,
+  /{usr/,}bin/bash mrix,
+  @{HOMEDIRS}** rw,
+  @{PROC}/@{pid}/mounts r,
+  @{PROC}/filesystems r,
+  owner /etc/skel/ r,
+
+
+  profile pam_tally2 {
+    #include <abstractions/base>
+    #include <abstractions/consoles>
+    #include <abstractions/nameservice>
+
+    capability audit_write,
+
+    /sbin/pam_tally2 mr,
+    /var/log/tallylog rw,
+
+  }
+}
