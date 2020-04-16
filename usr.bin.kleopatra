@@ -1,0 +1,51 @@
+# Last Modified: Tue Apr 14 07:38:37 2020
+#include <tunables/global>
+
+/usr/bin/kleopatra flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/nameservice>
+  #include <abstractions/smar_kde>
+
+  signal send set=term peer=/usr/bin/kdeinit5,
+
+  /etc/exports r,
+  /etc/fstab r,
+  /etc/xdg/libkleopatrarc r,
+  /etc/xdg/menus/ r,
+  /etc/xdg/menus/applications-merged/ r,
+  /etc/xdg/ui/* r,
+  /run/udev/data/* r,
+  /sys/bus/ r,
+  /sys/bus/usb/devices/ r,
+  /sys/class/ r,
+  /usr/bin/gpg2 Px,
+  /usr/bin/gpgconf Px,
+  /usr/bin/gpgsm Px,
+  /usr/bin/kleopatra mr,
+  /usr/bin/net Cx,
+  /usr/bin/testparm mrix,
+  owner /home/*/ r,
+  owner /home/*/** rwk,
+  owner /home/*/.config/.* rwk,
+  owner /home/*/.config/kleopatrarc rw,
+  owner /home/*/.config/kleopatrarc.* rw,
+  owner /home/*/.config/kleopatrarc.lock wk,
+  owner /home/*/.config/knfsshare r,
+  owner /home/*/.config/menus/ r,
+  owner /home/*/.config/menus/applications-merged/ r,
+  owner /home/*/.gnupg/ r,
+  owner /home/*/.gnupg/S.uiserver w,
+  owner /home/*/.local/share/user-places.xbel r,
+  owner /proc/*/fd/ r,
+  owner /proc/*/mounts r,
+  owner /run/user/*/kleopatra*.slave-socket rw,
+
+
+  profile /usr/bin/net flags=(complain) {
+    #include <abstractions/base>
+    #include <abstractions/samba>
+
+    /usr/bin/net mr,
+
+  }
+}

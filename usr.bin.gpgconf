@@ -1,0 +1,19 @@
+# Last Modified: Thu Apr 16 07:12:15 2020
+#include <tunables/global>
+
+/usr/bin/gpgconf flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/nameservice>
+
+  /etc/gnupg/* r,
+  /proc/sys/crypto/fips_enabled r,
+  /usr/bin/dirmngr Px,
+  /usr/bin/gpg-agent Px,
+  /usr/bin/gpg2 Px,
+  /usr/bin/gpgconf mr,
+  /usr/bin/gpgsm Px,
+  /usr/bin/scdaemon Px,
+  owner /home/*/.gnupg/* r,
+  owner /proc/*/fd/ r,
+
+}

@@ -1,0 +1,10 @@
+# Last Modified: Tue Apr 14 07:34:58 2020
+#include <tunables/global>
+
+/usr/bin/scdaemon flags=(complain) {
+  #include <abstractions/base>
+
+  /usr/bin/scdaemon mr,
+  owner /home/*/.gnupg/scdaemon.conf r,
+
+}

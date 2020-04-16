@@ -1,0 +1,16 @@
+# Last Modified: Wed Apr 15 06:25:32 2020
+#include <tunables/global>
+
+/usr/bin/gpg-agent flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/nameservice>
+  #include <abstractions/user-tmp>
+
+  /proc/sys/crypto/fips_enabled r,
+  /usr/bin/gpg-agent mr,
+  owner /home/*/.gnupg/* r,
+  owner /home/*/.gnupg/*/ w,
+  owner /proc/*/fd/ r,
+  owner /run/user/*/gnupg/** w,
+
+}

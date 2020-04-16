@@ -1,0 +1,11 @@
+# Last Modified: Mon Apr 13 20:42:48 2020
+#include <tunables/global>
+
+/usr/bin/setxkbmap flags=(complain) {
+  #include <abstractions/X>
+  #include <abstractions/base>
+
+  /usr/bin/setxkbmap mr,
+  owner /home/*/.Xauthority r,
+
+}

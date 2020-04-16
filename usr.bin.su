@@ -1,0 +1,27 @@
+# Last Modified: Thu Apr 16 08:56:52 2020
+#include <tunables/global>
+
+/usr/bin/su flags=(complain) {
+  #include <abstractions/authentication>
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+  #include <abstractions/nameservice>
+  #include <abstractions/wutmp>
+
+  capability audit_write,
+  capability net_admin,
+  capability setgid,
+  capability setuid,
+  capability sys_module,
+
+  /etc/default/su r,
+  /usr/bin/fish Px,
+  /usr/bin/su mr,
+  owner /etc/environment r,
+  owner /etc/security/limits.d/ r,
+  owner /proc/*/loginuid r,
+  owner /proc/filesystems r,
+  owner /proc/sys/crypto/fips_enabled r,
+  owner /proc/sys/kernel/ngroups_max r,
+
+}

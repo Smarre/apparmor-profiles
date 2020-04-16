@@ -1,0 +1,10 @@
+# Last Modified: Tue Apr 14 07:34:04 2020
+#include <tunables/global>
+
+/usr/bin/dirmngr flags=(complain) {
+  #include <abstractions/base>
+
+  /proc/sys/crypto/fips_enabled r,
+  /usr/bin/dirmngr mr,
+
+}
