@@ -1,0 +1,11 @@
+# Last Modified: Fri Apr  3 07:06:53 2020
+#include <tunables/global>
+
+/usr/lib/gvfs/gvfsd-metadata flags=(complain) {
+  #include <abstractions/base>
+
+  /usr/lib/gvfs/gvfsd-metadata mr,
+  owner /home/*/.local/share/gvfs-metadata/ r,
+  owner /home/*/.local/share/gvfs-metadata/* rw,
+
+}

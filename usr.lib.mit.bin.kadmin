@@ -1,0 +1,18 @@
+# Last Modified: Wed Apr  1 10:36:31 2020
+#include <tunables/global>
+
+/usr/lib/mit/bin/kadmin flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/consoles>
+  #include <abstractions/kerberosclient>
+  #include <abstractions/nameservice>
+  #include <abstractions/user-tmp>
+
+  /etc/inputrc.keys r,
+  /usr/lib/mit/bin/kadmin mr,
+  /var/lib/sss/pubconf/kdcinfo.* r,
+  owner /** rwk,
+  owner /home/*/.inputrc r,
+
+}

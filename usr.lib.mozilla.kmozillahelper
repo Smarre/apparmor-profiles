@@ -1,0 +1,57 @@
+# Last Modified: Thu Apr 16 08:52:51 2020
+#include <tunables/global>
+
+/usr/lib/mozilla/kmozillahelper flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/dbus-session-strict>
+  #include <abstractions/nameservice>
+  #include <abstractions/samba>
+  #include <abstractions/smar_kde>
+  #include <abstractions/ubuntu-browsers.d/user-files>
+  #include <abstractions/ubuntu-konsole>
+
+  signal send set=term peer=/usr/bin/kdeinit5,
+
+  ptrace read peer=/usr/lib64/firefox/firefox,
+
+  /etc/exports r,
+  /etc/fstab r,
+  /etc/xdg/menus/ r,
+  /etc/xdg/menus/applications-merged/ r,
+  /proc/filesystems r,
+  /proc/sys/crypto/fips_enabled r,
+  /run/udev/data/* r,
+  /sys/bus/ r,
+  /sys/bus/usb/devices/ r,
+  /sys/class/ r,
+  /usr/bin/ktorrent Px,
+  /usr/bin/net mrix,
+  /usr/bin/steam Px,
+  /usr/bin/testparm mrix,
+  /usr/lib/mozilla/kmozillahelper mr,
+  /usr/share/kservices5/* r,
+  /usr/share/kservices5/*/ r,
+  owner /home/** r,
+  owner /home/** wk,
+  owner /home/*/.ICEauthority r,
+  owner /home/*/.Xauthority r,
+  owner /home/*/.cache/icon-cache.kcache w,
+  owner /home/*/.cache/ksycoca5_* r,
+  owner /home/*/.config/ibus/bus/* r,
+  owner /home/*/.config/kdeglobals r,
+  owner /home/*/.config/kmozillahelperrc r,
+  owner /home/*/.config/menus/ r,
+  owner /home/*/.config/menus/applications-merged/ r,
+  owner /home/*/.local/share/mime/ r,
+  owner /home/*/.local/share/mime/*/ r,
+  owner /home/*/.local/share/mime/application/ r,
+  owner /home/*/.local/share/mime/generic-icons r,
+  owner /home/*/.local/share/mime/mime.cache r,
+  owner /home/*/.local/share/mime/packages/ r,
+  owner /home/*/.local/share/mime/types r,
+  owner /home/smar/.local/share/RecentDocuments/* rwk,
+  owner /proc/*/mounts r,
+  owner /run/user/*/gvfs/ r,
+  owner /run/user/*/kmozillahelper*.slave-socket rw,
+
+}

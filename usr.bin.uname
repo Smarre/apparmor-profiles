@@ -1,0 +1,15 @@
+# Last Modified: Fri Apr  3 17:14:23 2020
+#include <tunables/global>
+
+/usr/bin/uname flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+
+  /usr/bin/uname mr,
+  owner /dev/shm/u*-Shm_* rw,
+  owner /dev/shm/u*-ValveIPCSharedObj-Steam rwk,
+  owner /home/*/.local/share/Steam/ubuntu12_32/gameoverlayrenderer.so r,
+  owner /home/*/.local/share/Steam/ubuntu12_64/gameoverlayrenderer.so mr,
+  owner /home/*/.steam/steam.pipe r,
+
+}

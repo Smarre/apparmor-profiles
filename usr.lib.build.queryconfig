@@ -1,0 +1,14 @@
+# Last Modified: Wed Apr 15 11:02:38 2020
+#include <tunables/global>
+
+/usr/lib/build/queryconfig flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+  #include <abstractions/nameservice>
+  #include <abstractions/perl>
+
+  /usr/bin/perl ix,
+  /usr/lib/build/queryconfig r,
+  owner /** r,
+
+}

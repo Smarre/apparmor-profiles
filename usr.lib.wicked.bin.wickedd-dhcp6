@@ -1,0 +1,20 @@
+# Last Modified: Fri Oct  4 14:15:49 2019
+#include <tunables/global>
+
+/usr/lib/wicked/bin/wickedd-dhcp6 flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/nameservice>
+
+  capability net_admin,
+  capability sys_module,
+
+  /usr/lib/wicked/bin/wickedd-dhcp6 mr,
+  owner /etc/libnl/classid r,
+  owner /etc/wicked/* r,
+  owner /run/wicked/ r,
+  owner /run/wicked/ w,
+  owner /sys/devices/** r,
+  owner /usr/share/wicked/** r,
+  owner /var/lib/wicked/* rwk,
+
+}

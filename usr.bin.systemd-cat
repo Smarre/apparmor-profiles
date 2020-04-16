@@ -1,0 +1,23 @@
+# Last Modified: Thu Feb 13 14:13:41 2020
+#include <tunables/global>
+
+/usr/bin/systemd-cat flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/nameservice>
+
+  capability net_admin,
+  capability sys_module,
+  capability sys_ptrace,
+
+  ptrace read peer=unconfined,
+
+  /** r,
+  /usr/bin/systemd-cat mr,
+  /usr/local/bin/auto_kinit.fish Px,
+  owner /proc/*/environ r,
+  owner /proc/*/sched r,
+  owner /proc/*/stat r,
+  owner /usr/bin/fish mr,
+
+}

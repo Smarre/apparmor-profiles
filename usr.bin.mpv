@@ -1,0 +1,46 @@
+# Last Modified: Wed Nov 27 12:38:04 2019
+#include <tunables/global>
+
+/usr/bin/mpv flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+  #include <abstractions/fonts>
+  #include <abstractions/openssl>
+
+  audit network inet stream,
+
+  /** mr,
+  /etc/mpv/* r,
+  /etc/mpv/*/ r,
+  /sys/devices/system/** r,
+  /usr/bin/xdg-screensaver Cx,
+  /usr/share/lua/** r,
+  /usr/share/mpv-plugin-mpris/* r,
+  /{usr/,}lib{,32,64}/** mr,
+  owner /**/ r,
+  owner @{HOME}/.cache/fontconfig/* r,
+  owner @{HOME}/.cache/mesa_shader_cache/** mrwk,
+  owner @{HOME}/.cache/mesa_shader_cache/index rw,
+  owner @{HOME}/.fonts.conf r,
+  owner @{HOME}/.fonts/ r,
+
+
+  profile /usr/bin/xdg-screensaver flags=(complain) {
+    #include <abstractions/base>
+    #include <abstractions/bash>
+    #include <abstractions/consoles>
+
+    /bin/bash ix,
+    /bin/bash mr,
+    /usr/bin/dbus-send mrix,
+    /usr/bin/grep mrix,
+    /usr/bin/mv mrix,
+    /usr/bin/sed mrix,
+    /usr/bin/which mrix,
+    /usr/bin/xdg-screensaver r,
+    /usr/bin/xscreensaver-command mrix,
+    /usr/bin/xset mrix,
+    owner @{HOME}/.Xauthority r,
+
+  }
+}

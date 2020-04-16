@@ -1,0 +1,25 @@
+# Last Modified: Sun Apr 12 09:03:23 2020
+#include <tunables/global>
+
+/usr/lib/git/git flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/consoles>
+
+  /** r,
+  /bin/bash ix,
+  /bin/bash mr,
+  /usr/bin/basename mrix,
+  /usr/bin/envsubst Px,
+  /usr/bin/gettext Px,
+  /usr/bin/less mrix,
+  /usr/bin/rm mrix,
+  /usr/bin/sed mrix,
+  /usr/bin/uname mrix,
+  /usr/lib/git/git mrix,
+  /usr/lib/git/git-remote-http Px,
+  /usr/lib/git/git-stash mrix,
+  owner /** rw,
+  owner /home/*/.gitconfig r,
+
+}

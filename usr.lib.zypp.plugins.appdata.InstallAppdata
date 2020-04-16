@@ -1,0 +1,37 @@
+# Last Modified: Mon Apr 13 11:07:51 2020
+#include <tunables/global>
+
+/usr/lib/zypp/plugins/appdata/InstallAppdata flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+  #include <abstractions/nameservice>
+  #include <abstractions/python>
+
+  /bin/bash mrix,
+  /usr/bin/appstream-util Px,
+  /usr/bin/appstreamcli Cx,
+  /usr/bin/python3.6 ix,
+  /usr/lib/AsHelper Px,
+  /usr/lib/zypp/plugins/appdata/InstallAppdata r,
+  owner /proc/filesystems r,
+  owner /proc/sys/crypto/fips_enabled r,
+  owner /usr/bin/appstream-util mr,
+  owner /usr/bin/python* r,
+  owner /var/cache/app-info/**/ w,
+  owner /var/cache/app-info/icons/ r,
+  owner /var/cache/app-info/xmls/ r,
+
+
+  profile /usr/bin/appstreamcli flags=(complain) {
+    #include <abstractions/base>
+    #include <abstractions/freedesktop.org>
+    #include <abstractions/nameservice>
+
+    /usr/bin/appstreamcli mr,
+    owner /etc/appstream.conf r,
+    owner /etc/os-release r,
+    owner /var/cache/app-info/** rw,
+    owner /var/cache/app-info/xmls/* r,
+
+  }
+}

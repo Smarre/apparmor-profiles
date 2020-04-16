@@ -1,0 +1,26 @@
+# Last Modified: Sun Mar 22 19:33:39 2020
+#include <tunables/global>
+
+/usr/lib64/libexec/drkonqi flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/nameservice>
+  #include <abstractions/smar_kde>
+
+  signal send set=cont,
+  signal send set=stop,
+
+  ptrace read,
+
+  /etc/os-release r,
+  /etc/xdg/menus/ r,
+  /etc/xdg/menus/applications-merged/ r,
+  /usr/lib64/libexec/drkonqi mr,
+  /usr/share/drkonqi/** r,
+  /usr/share/drkonqi/**/ r,
+  /usr/share/kservices5/*/ r,
+  /usr/share/mime/ r,
+  owner /home/*/.config/drkonqirc r,
+  owner /home/*/.config/menus/ r,
+  owner /home/*/.config/menus/applications-merged/ r,
+
+}

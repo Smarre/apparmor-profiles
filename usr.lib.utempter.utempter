@@ -1,0 +1,13 @@
+# Last Modified: Sun Apr 12 08:45:15 2020
+#include <tunables/global>
+
+/usr/lib/utempter/utempter flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+  #include <abstractions/nameservice>
+  #include <abstractions/wutmp>
+
+  /dev/ptmx rw,
+  /usr/lib/utempter/utempter mr,
+
+}

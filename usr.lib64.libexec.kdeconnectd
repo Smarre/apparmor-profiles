@@ -1,0 +1,33 @@
+# Last Modified: Tue Mar 31 07:58:38 2020
+#include <tunables/global>
+
+/usr/lib64/libexec/kdeconnectd {
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+  #include <abstractions/dbus-session-strict>
+  #include <abstractions/kde>
+  #include <abstractions/nameservice>
+  #include <abstractions/openssl>
+  #include <abstractions/qt5>
+  #include <abstractions/ssl_certs>
+
+  audit deny capability sys_tty_config,
+  deny capability setuid,
+
+  /proc/sys/kernel/core_pattern r,
+  /usr/lib64/libexec/kdeconnectd mr,
+  /usr/share/icu/** r,
+  /usr/share/plasma/look-and-feel/** r,
+  owner /home/*/.cache/icon-cache.kcache rw,
+  owner /root/.config/kdeconnect/ w,
+  owner /run/user/0/kcrash_* w,
+  owner /usr/share/color-schemes/* r,
+  owner @{HOME}/.ICEauthority r,
+  owner @{HOME}/.Xauthority r,
+  owner @{HOME}/.config/ibus/bus/* r,
+  owner @{HOME}/.config/kcminputrc r,
+  owner @{HOME}/.config/kdeconnect/* r,
+  owner @{HOME}/.config/kdeglobals r,
+  owner @{HOME}/.local/share/mime/generic-icons r,
+
+}

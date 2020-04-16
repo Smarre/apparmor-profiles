@@ -1,0 +1,28 @@
+# Last Modified: Thu Apr  2 11:29:27 2020
+#include <tunables/global>
+
+/usr/lib/AsHelper flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+  #include <abstractions/freedesktop.org>
+  #include <abstractions/nameservice>
+  #include <abstractions/openssl>
+  #include <abstractions/python>
+
+  /bin/bash mrix,
+  /usr/bin/appstream-util Px,
+  /usr/bin/python3.6 ix,
+  /usr/lib/AsHelper r,
+  owner /etc/rpm/ r,
+  owner /etc/rpm/macros.* r,
+  owner /proc/filesystems r,
+  owner /proc/sys/crypto/fips_enabled r,
+  owner /usr/bin/appstream-util mr,
+  owner /usr/bin/python3.6 r,
+  owner /usr/lib/ r,
+  owner /var/cache/app-info/icons/** w,
+  owner /var/cache/app-info/xmls/* rw,
+  owner /var/cache/zypp/raw/** r,
+  owner /var/cache/zypp/raw/*/repodata/repomd.xml r,
+
+}

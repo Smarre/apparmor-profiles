@@ -1,0 +1,13 @@
+# Last Modified: Wed Apr 15 11:02:38 2020
+#include <tunables/global>
+
+/usr/lib/build/runservices flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+  #include <abstractions/perl>
+
+  /** r,
+  /usr/bin/perl ix,
+  owner /** rw,
+
+}

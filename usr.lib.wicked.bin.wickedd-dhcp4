@@ -1,0 +1,29 @@
+# Last Modified: Wed Sep  4 13:41:03 2019
+#include <tunables/global>
+
+/usr/lib/wicked/bin/wickedd-dhcp4 flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/nameservice>
+  #include <abstractions/nis>
+
+  capability net_admin,
+  capability net_raw,
+  capability sys_module,
+
+  network packet dgram,
+
+  /usr/bin/kmod mrix,
+  /usr/lib/wicked/bin/wickedd-dhcp4 mr,
+  owner /etc/libnl/classid r,
+  owner /etc/modprobe.d/ r,
+  owner /etc/modprobe.d/* r,
+  owner /etc/wicked/common.xml r,
+  owner /proc/cmdline r,
+  owner /run/wicked/ r,
+  owner /run/wicked/ w,
+  owner /sys/devices/** r,
+  owner /sys/module/af_packet/initstate r,
+  owner /usr/share/wicked/** r,
+  owner /var/lib/wicked/* rwk,
+
+}

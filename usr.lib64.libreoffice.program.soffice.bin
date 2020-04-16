@@ -1,0 +1,49 @@
+# Last Modified: Sat Feb  8 12:34:51 2020
+#include <tunables/global>
+
+/usr/lib64/libreoffice/program/soffice.bin flags=(complain) {
+  #include <abstractions/audio>
+  #include <abstractions/base>
+  #include <abstractions/cups-client>
+  #include <abstractions/enchant>
+  #include <abstractions/fonts>
+  #include <abstractions/freedesktop.org>
+  #include <abstractions/gnome>
+  #include <abstractions/nameservice>
+  #include <abstractions/openssl>
+  #include <abstractions/python>
+  #include <abstractions/smar_kde>
+  #include <abstractions/user-tmp>
+
+  /** r,
+  /**/ r,
+  /bin/bash mrix,
+  /sys/fs/cgroup/cpu,cpuacct/* r,
+  /sys/fs/cgroup/cpu,cpuacct/cpu.cfs_quota_us r,
+  /usr/bin/file mrix,
+  /usr/bin/uname mrix,
+  /usr/lib64/libreoffice/program/soffice.bin mr,
+  /usr/share/libreoffice/** r,
+  /usr/share/qt5/resources/* r,
+  /usr/share/qt5/translations/qtwebengine_locales/* r,
+  /usr/share/voikko/** r,
+  /usr/share/voikko/*/ r,
+  /var/cache/fontconfig/ rw,
+  owner "@{HOME}/.local/share/kmail2/QtWebEngine/Default/Visited Links" rw,
+  owner /** rwk,
+  owner /dev/shm/.org.chromium.Chromium.* ra,
+  owner /proc/*/cgroup r,
+  owner /proc/*/coredump_filter rw,
+  owner /proc/*/mountinfo r,
+  owner /proc/*/mounts r,
+  owner /{usr/,}lib{,32,64}/** rw,
+  owner @{HOME}/.ICEauthority r,
+  owner @{HOME}/.Xauthority r,
+  owner @{HOME}/.cache/fontconfig/* r,
+  owner @{HOME}/.config/libreoffice/** rwk,
+  owner @{HOME}/.config/user-dirs.dirs r,
+  owner @{HOME}/.fonts.conf r,
+  owner @{HOME}/.local/lib/python*/** r,
+  owner @{HOME}/.recently-used rwk,
+
+}
