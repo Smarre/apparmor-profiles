@@ -1,0 +1,65 @@
+# Last Modified: Tue Mar 31 08:08:42 2020
+#include <tunables/global>
+
+# ------------------------------------------------------------------
+#
+#    Copyright (C) 2002-2005 Novell/SUSE
+#
+#    This program is free software; you can redistribute it and/or
+#    modify it under the terms of version 2 of the GNU General Public
+#    License published by the Free Software Foundation.
+#
+# ------------------------------------------------------------------
+# vim:syntax=apparmor
+#
+
+
+/usr/bin/man {
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/consoles>
+  #include <abstractions/nameservice>
+  #include <abstractions/user-manpages>
+
+  capability setgid,
+  capability setuid,
+
+  /**/ r,
+  /bin/bash ix,
+  /bin/bash ix,
+  /etc/manpath.config r,
+  /usr/bin/eqn mrix,
+  /usr/bin/groff mrix,
+  /usr/bin/grotty mrix,
+  /usr/bin/less mrix,
+  /usr/bin/lessecho Cx,
+  /usr/bin/locale mrix,
+  /usr/bin/man mr,
+  /usr/bin/neqn mrix,
+  /usr/bin/neqn r,
+  /usr/bin/nroff mrix,
+  /usr/bin/preconv mrix,
+  /usr/bin/tbl mrix,
+  /usr/bin/troff mrix,
+  /usr/lib/man-db/man Px,
+  /usr/share/fish/man/** r,
+  /usr/share/groff/** r,
+  /var/cache/man/*/index.db rk,
+  /var/cache/man/index.db rk,
+  owner /**/.lesshsQ r,
+  owner /**/.lesshsQ w,
+  owner /**/.lesshst r,
+  owner /**/.lesshst w,
+  owner /etc/sensors.d/e w,
+  owner /usr/bin/lessecho r,
+  owner @{HOME}/.lesshsQ r,
+  owner @{HOME}/.lesshsQ w,
+
+
+  profile /usr/bin/lessecho flags=(complain) {
+    #include <abstractions/base>
+
+    /usr/bin/lessecho mr,
+
+  }
+}

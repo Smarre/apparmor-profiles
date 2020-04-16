@@ -1,0 +1,32 @@
+# Last Modified: Mon Apr 13 20:50:39 2020
+#include <tunables/global>
+
+/bin/ps flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+  #include <abstractions/nameservice>
+
+  capability dac_read_search,
+  capability sys_ptrace,
+
+  ptrace read,
+
+  /bin/ps mr,
+  /proc/ r,
+  /proc/*/cmdline r,
+  /proc/*/environ r,
+  /proc/*/stat r,
+  /proc/*/status r,
+  /proc/sys/kernel/osrelease r,
+  /proc/sys/kernel/pid_max r,
+  /proc/tty/drivers r,
+  /proc/uptime r,
+  owner /proc/*/auxv r,
+  owner /proc/*/wchan r,
+  owner /proc/filesystems r,
+  owner /proc/meminfo r,
+  owner /proc/stat r,
+  owner /proc/sys/crypto/fips_enabled r,
+  owner /sys/devices/system/cpu/online r,
+
+}
