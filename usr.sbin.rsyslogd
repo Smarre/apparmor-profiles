@@ -1,6 +1,3 @@
-# Last Modified: Wed Aug 28 09:47:37 2019
-#include <tunables/global>
-
 # ------------------------------------------------------------------
 #
 #    Copyright (C) 2014 Novell/SUSE
@@ -11,11 +8,12 @@
 #
 # ------------------------------------------------------------------
 
+#include <tunables/global>
 
 /usr/sbin/rsyslogd {
-  #include "/usr/share/apparmor/extra-profiles/rsyslog.d"
   #include <abstractions/base>
   #include <abstractions/consoles>
+  # general networking is allowed here
   #include <abstractions/nameservice>
   #include <abstractions/openssl>
 
@@ -26,10 +24,9 @@
   capability sys_tty_config,
   capability syslog,
 
-  deny /etc/rsyslog.d/* w,
-
   /dev/tty* w,
   /dev/xconsole rw,
+
   /etc/rsyslog.conf r,
   /etc/rsyslog.d/ r,
   /etc/rsyslog.d/* r,
@@ -41,5 +38,13 @@
   /{var/,}run/rsyslog/* r,
   /{var/,}run/rsyslogd.pid rwk,
   /{var/,}run/systemd/journal/syslog w,
+
+  # include rules for rsyslog-module-* packages
+  #include "/usr/share/apparmor/extra-profiles/rsyslog.d"
+
+  # for logging via TLS (rsyslog-module-gtls)
+  # keys/certificates need to be located under /etc/rsyslog.d or permissions need to be adjusted here
+  # rsyslog tries to write to the certificates for no reason, so deny this quietly
+  deny /etc/rsyslog.d/* w,
 
 }
