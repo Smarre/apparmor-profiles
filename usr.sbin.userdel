@@ -5,6 +5,7 @@
 # ------------------------------------------------------------------
 #
 #    Copyright (C) 2002-2005 Novell/SUSE
+#    Copyright (C) 2020 Samu Voutilainen
 #
 #    This program is free software; you can redistribute it and/or
 #    modify it under the terms of version 2 of the GNU General Public
@@ -12,14 +13,16 @@
 #
 # ------------------------------------------------------------------
 
+# Extended from apparmor-profiles.
 
-/usr/sbin/userdel {
+# TODO: I haven’t check why this alert is raised.
+/usr/sbin/userdel flags=(attach_disconnected) {
   #include <abstractions/authentication>
   #include <abstractions/base>
   #include <abstractions/bash>
   #include <abstractions/consoles>
-  #include <abstractions/nameservice>
   #include <abstractions/perl>
+  #include <abstractions/nameservice>
   #include <abstractions/wutmp>
 
   capability audit_write,
@@ -32,6 +35,9 @@
 
   ptrace read,
 
+  /{usr/,}bin/cat rmix,
+  /{usr/,}bin/bash rmix,
+
   /dev/log w,
   /etc/.pwd.lock rwk,
   /etc/cron.deny r,
@@ -40,28 +46,30 @@
   /etc/gshadow* rwl,
   /etc/login.defs r,
   /etc/passwd* rwl,
-  /etc/pwdutils/logging r,
   /etc/shadow* rwl,
+  /etc/pwdutils/logging r,
+  @{HOMEDIRS}**  rwl,
+  @{PROC}/@{pid}/mounts r,
+  /usr/bin/crontab rmix,
+  /usr/lib*/pwdutils/*.so.* mr,
+  /usr/sbin/userdel rmix,
+  /usr/sbin/userdel-post.local rmix,
+  /usr/sbin/userdel-pre.local rmix,
+  # XXX
+  /{,var/}run/nscd.pid r,
   /proc/*/task/ r,
-  /usr/bin/crontab mrix,
   /usr/bin/id mrix,
   /usr/bin/systemctl mrix,
-  /usr/lib*/pwdutils/*.so.* mr,
   /usr/sbin/nscd Px,
-  /usr/sbin/userdel mrix,
-  /usr/sbin/userdel-post.local mrix,
-  /usr/sbin/userdel-pre.local mrix,
   /var/spool/mail/* wl,
-  /{,var/}run/nscd.pid r,
-  /{usr/,}bin/bash mrix,
-  /{usr/,}bin/cat mrix,
-  @{HOMEDIRS}** rwl,
-  @{PROC}/@{pid}/mounts r,
   owner /etc/subgid rw,
+  owner /etc/subgid- rw,
+  owner /etc/subgid+ rw,
   owner /etc/subgid.* w,
   owner /etc/subgid.lock l,
   owner /etc/subuid rw,
   owner /etc/subuid- w,
+  owner /etc/subuid+ rw,
   owner /etc/subuid.* w,
   owner /etc/subuid.lock l,
   owner /proc/ r,
