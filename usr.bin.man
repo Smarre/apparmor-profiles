@@ -1,9 +1,9 @@
-# Last Modified: Tue Mar 31 08:08:42 2020
 #include <tunables/global>
 
 # ------------------------------------------------------------------
 #
 #    Copyright (C) 2002-2005 Novell/SUSE
+#    Copyright (C) 2020 Samu Voutilainen
 #
 #    This program is free software; you can redistribute it and/or
 #    modify it under the terms of version 2 of the GNU General Public
@@ -13,6 +13,10 @@
 # vim:syntax=apparmor
 #
 
+# Extended from apparmor-profiles.
+#
+# NOTE: this will cause false alerts to audit logs, as man inspects current
+# working directory for some reason. Those alerts can be safely ignored.
 
 /usr/bin/man {
   #include <abstractions/base>
@@ -24,8 +28,6 @@
   capability setgid,
   capability setuid,
 
-  /**/ r,
-  /bin/bash ix,
   /bin/bash ix,
   /etc/manpath.config r,
   /usr/bin/eqn mrix,
@@ -36,25 +38,22 @@
   /usr/bin/locale mrix,
   /usr/bin/man mr,
   /usr/bin/neqn mrix,
-  /usr/bin/neqn r,
   /usr/bin/nroff mrix,
   /usr/bin/preconv mrix,
   /usr/bin/tbl mrix,
   /usr/bin/troff mrix,
+  /usr/lib/locale/*/*/ r,
   /usr/lib/man-db/man Px,
+  /usr/local/man/ r,
+  /usr/share/fish/man/ r,
   /usr/share/fish/man/** r,
   /usr/share/groff/** r,
+  /usr/share/man/ r,
   /var/cache/man/*/index.db rk,
   /var/cache/man/index.db rk,
-  owner /**/.lesshsQ r,
-  owner /**/.lesshsQ w,
-  owner /**/.lesshst r,
-  owner /**/.lesshst w,
-  owner /etc/sensors.d/e w,
   owner /usr/bin/lessecho r,
-  owner @{HOME}/.lesshsQ r,
-  owner @{HOME}/.lesshsQ w,
-
+  owner @{HOME}/.lesshsQ rw,
+  owner @{HOME}/.lesshst rw,
 
   profile /usr/bin/lessecho flags=(complain) {
     #include <abstractions/base>
