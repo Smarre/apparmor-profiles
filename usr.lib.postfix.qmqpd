@@ -10,10 +10,10 @@
 
 #include <tunables/global>
 
-/usr/lib/postfix/bin/qmqpd {
+profile /usr/lib/postfix/{,bin}/qmqpd {
   #include <abstractions/base>
   #include <abstractions/nameservice>
   #include <abstractions/postfix-common>
 
-  /usr/lib/postfix/bin/qmqpd rmix,
+  /usr/lib/postfix/{,bin}/qmqpd rmix,
 }

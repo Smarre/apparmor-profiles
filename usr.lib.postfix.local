@@ -12,7 +12,7 @@
 # ------------------------------------------------------------------
 
 
-/usr/lib/postfix/bin/local {
+profile /usr/lib/postfix/{,bin}/local {
   #include <abstractions/base>
   #include <abstractions/bash>
   #include <abstractions/nameservice>
@@ -28,7 +28,7 @@
   /usr/bin/mlmmj-recieve Px,
   /usr/bin/procmail Px,
   /usr/lib/mailman/mail/mailman Px,
-  /usr/lib/postfix/bin/local mrix,
+  /usr/lib/postfix/{,bin}/local mrix,
   /var/lib/mailman/data/aliases.db r,
   /var/mailman/mail/wrapper Px,
   /{usr/,}bin/bash mrix,

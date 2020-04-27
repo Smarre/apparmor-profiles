@@ -12,12 +12,12 @@
 
 #include <tunables/global>
 
-/usr/lib/postfix/bin/scache {
+profile /usr/lib/postfix/{,bin}/scache {
   #include <abstractions/base>
   #include <abstractions/nameservice>
   #include <abstractions/postfix-common>
 
-  /usr/lib/postfix/bin/scache rmix,
+  /usr/lib/postfix/{,bin}/scache rmix,
 
   /{,var/}run/nscd/group r,
 }

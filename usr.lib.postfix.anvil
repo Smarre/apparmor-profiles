@@ -10,7 +10,7 @@
 
 #include <tunables/global>
 
-/usr/lib/postfix/bin/anvil {
+profile /usr/lib/postfix/{,bin}/anvil {
   #include <abstractions/base>
   #include <abstractions/nameservice>
   #include <abstractions/postfix-common>
@@ -18,7 +18,7 @@
   capability setgid,
   capability setuid,
 
-  /usr/lib/postfix/bin/anvil                      rmix,
+  /usr/lib/postfix/{,bin}/anvil                      rmix,
 
   /etc/postfix/main.cf                        r,
   /{var/spool/postfix/,}private/anvil         rw,

@@ -12,7 +12,7 @@
 # ------------------------------------------------------------------
 
 
-/usr/lib/postfix/bin/flush {
+profile /usr/lib/postfix/{,bin}/flush {
   #include <abstractions/base>
   #include <abstractions/nameservice>
   #include <abstractions/postfix-common>
@@ -23,7 +23,7 @@
   /etc/mtab r,
   /etc/postfix/main.cf r,
   /etc/postfix/virtual.db r,
-  /usr/lib/postfix/bin/flush mrix,
+  /usr/lib/postfix/{,bin}/flush mrix,
   /usr/share/icu/60.2/* r,
   /{var/spool/postfix/,}deferred/ r,
   /{var/spool/postfix/,}deferred/[0-9A-F]/ rwl,

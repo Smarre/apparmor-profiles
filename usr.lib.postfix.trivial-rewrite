@@ -12,7 +12,7 @@
 # ------------------------------------------------------------------
 
 
-/usr/lib/postfix/bin/trivial-rewrite {
+profile /usr/lib/postfix/{,bin}/trivial-rewrite {
   #include <abstractions/base>
   #include <abstractions/nameservice>
   #include <abstractions/postfix-common>
@@ -23,7 +23,7 @@
   /etc/postfix/transport.db r,
   /etc/postfix/virtual.db r,
   /etc/{m,fs}tab r,
-  /usr/lib/postfix/bin/trivial-rewrite mrix,
+  /usr/lib/postfix/{,bin}/trivial-rewrite mrix,
   /var/spool/postfix/pid/unix.rewrite rw,
 
 }

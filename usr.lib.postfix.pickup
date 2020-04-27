@@ -12,14 +12,14 @@
 # ------------------------------------------------------------------
 
 
-/usr/lib/postfix/bin/pickup {
+profile /usr/lib/postfix/{,bin}/pickup {
   #include <abstractions/base>
   #include <abstractions/nameservice>
   #include <abstractions/postfix-common>
 
   signal receive set=term peer=/usr/lib/postfix/bin/master,
 
-  /usr/lib/postfix/bin/pickup mrix,
+  /usr/lib/postfix/{,bin}/pickup mrix,
   /{var/spool/postfix/,}maildrop/ r,
   /{var/spool/postfix/,}maildrop/* rwl,
   /{var/spool/postfix/,}public/cleanup w,

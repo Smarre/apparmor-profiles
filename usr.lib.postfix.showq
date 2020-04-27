@@ -12,12 +12,12 @@
 # ------------------------------------------------------------------
 
 
-/usr/lib/postfix/bin/showq {
+profile /usr/lib/postfix/{,bin}/showq {
   #include <abstractions/base>
   #include <abstractions/nameservice>
   #include <abstractions/postfix-common>
 
-  /usr/lib/postfix/bin/showq mrix,
+  /usr/lib/postfix/{,bin}/showq mrix,
   /{var/spool/postfix/,}active/ r,
   /{var/spool/postfix/,}active/[0-9A-F]/ r,
   /{var/spool/postfix/,}active/[0-9A-F]/[0-9A-F]/ r,

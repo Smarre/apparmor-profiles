@@ -10,10 +10,10 @@
 
 #include <tunables/global>
 
-/usr/lib/postfix/bin/verify {
+profile /usr/lib/postfix/{,bin}/verify {
   #include <abstractions/base>
   #include <abstractions/nameservice>
   #include <abstractions/postfix-common>
 
-  /usr/lib/postfix/bin/verify rmix,
+  /usr/lib/postfix/{,bin}/verify rmix,
 }

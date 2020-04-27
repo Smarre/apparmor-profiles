@@ -11,13 +11,13 @@
 
 #include <tunables/global>
 
-/usr/lib/postfix/bin/error {
+profile /usr/lib/postfix/{,bin}/error {
   #include <abstractions/base>
   #include <abstractions/nameservice>
   #include <abstractions/postfix-common>
 
   @{PROC}/sys/kernel/ngroups_max r,
-  /usr/lib/postfix/bin/error mrix,
+  /usr/lib/postfix/{,bin}/error mrix,
   owner /var/spool/postfix/active/* rwk,
   /var/spool/postfix/pid/unix.error rwk,
   /var/spool/postfix/pid/unix.retry rwk,

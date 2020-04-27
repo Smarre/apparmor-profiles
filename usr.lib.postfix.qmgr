@@ -12,14 +12,14 @@
 # ------------------------------------------------------------------
 
 
-/usr/lib/postfix/bin/qmgr {
+profile /usr/lib/postfix/{,bin}/qmgr {
   #include <abstractions/base>
   #include <abstractions/nameservice>
   #include <abstractions/postfix-common>
 
   signal receive set=term peer=/usr/lib/postfix/bin/master,
 
-  /usr/lib/postfix/bin/qmgr mrix,
+  /usr/lib/postfix/{,bin}/qmgr mrix,
   /{var/spool/postfix/,}active/ r,
   /{var/spool/postfix/,}active/[0-9A-F]/ rwl,
   /{var/spool/postfix/,}active/[0-9A-F]/[0-9A-F]/ rwl,

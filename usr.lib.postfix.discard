@@ -11,8 +11,8 @@
 
 #include <tunables/global>
 
-/usr/lib/postfix/bin/discard {
+profile /usr/lib/postfix/{,bin}/discard {
   #include <abstractions/base>
 
-  /usr/lib/postfix/bin/discard rmix,
+  /usr/lib/postfix/{,bin}/discard rmix,
 }

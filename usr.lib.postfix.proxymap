@@ -10,7 +10,7 @@
 
 #include <tunables/global>
 
-/usr/lib/postfix/bin/proxymap {
+profile /usr/lib/postfix/{,bin}/proxymap {
   #include <abstractions/base>
   #include <abstractions/nameservice>
   #include <abstractions/postfix-common>
@@ -18,7 +18,7 @@
   capability setgid,
   capability setuid,
 
-  /usr/lib/postfix/bin/proxymap     rmix,
+  /usr/lib/postfix/{,bin}/proxymap     rmix,
 
   /etc/postfix/main.cf          r,
   @{PROC}/net/if_inet6          r,

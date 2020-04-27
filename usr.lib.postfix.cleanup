@@ -12,7 +12,7 @@
 # ------------------------------------------------------------------
 
 
-/usr/lib/postfix/bin/cleanup {
+profile /usr/lib/postfix/{,bin}/cleanup {
   #include <abstractions/base>
   #include <abstractions/nameservice>
   #include <abstractions/postfix-common>
@@ -23,7 +23,7 @@
 
   /etc/postfix/* r,
   /etc/{m,fs}tab r,
-  /usr/lib/postfix/bin/cleanup mrix,
+  /usr/lib/postfix/{,bin}/cleanup mrix,
   /{var/spool/postfix/,}hold/[0-9A-F]* w,
   /{var/spool/postfix/,}incoming/[0-9A-F]/ rwl,
   /{var/spool/postfix/,}incoming/[0-9A-F]/[0-9A-F]/ rwl,

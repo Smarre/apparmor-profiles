@@ -12,7 +12,7 @@
 # ------------------------------------------------------------------
 
 
-/usr/lib/postfix/bin/master {
+profile /usr/lib/postfix/{,bin}/master {
   #include <abstractions/base>
   #include <abstractions/nameservice>
   #include <abstractions/postfix-common>
@@ -29,25 +29,25 @@
   signal send set=term peer=/usr/lib/postfix/bin/trivial-rewrite,
 
   /etc/postfix/master.cf r,
-  /usr/lib/postfix/bin/anvil Px,
-  /usr/lib/postfix/bin/bounce Px,
-  /usr/lib/postfix/bin/cleanup Px,
-  /usr/lib/postfix/bin/error mrix,
-  /usr/lib/postfix/bin/flush Px,
-  /usr/lib/postfix/bin/local Px,
-  /usr/lib/postfix/bin/master mrix,
-  /usr/lib/postfix/bin/master mrix,
-  /usr/lib/postfix/bin/nqmgr Px,
-  /usr/lib/postfix/bin/pickup Px,
-  /usr/lib/postfix/bin/pipe Px,
-  /usr/lib/postfix/bin/proxymap Px,
-  /usr/lib/postfix/bin/qmgr Px,
-  /usr/lib/postfix/bin/scache Px,
-  /usr/lib/postfix/bin/showq Px,
-  /usr/lib/postfix/bin/smtp Px,
-  /usr/lib/postfix/bin/smtpd Px,
-  /usr/lib/postfix/bin/tlsmgr Px,
-  /usr/lib/postfix/bin/trivial-rewrite Px,
+  /usr/lib/postfix/{,bin}/anvil Px,
+  /usr/lib/postfix/{,bin}/bounce Px,
+  /usr/lib/postfix/{,bin}/cleanup Px,
+  /usr/lib/postfix/{,bin}/error mrix,
+  /usr/lib/postfix/{,bin}/flush Px,
+  /usr/lib/postfix/{,bin}/local Px,
+  /usr/lib/postfix/{,bin}/master mrix,
+  /usr/lib/postfix/{,bin}/master mrix,
+  /usr/lib/postfix/{,bin}/nqmgr Px,
+  /usr/lib/postfix/{,bin}/pickup Px,
+  /usr/lib/postfix/{,bin}/pipe Px,
+  /usr/lib/postfix/{,bin}/proxymap Px,
+  /usr/lib/postfix/{,bin}/qmgr Px,
+  /usr/lib/postfix/{,bin}/scache Px,
+  /usr/lib/postfix/{,bin}/showq Px,
+  /usr/lib/postfix/{,bin}/smtp Px,
+  /usr/lib/postfix/{,bin}/smtpd Px,
+  /usr/lib/postfix/{,bin}/tlsmgr Px,
+  /usr/lib/postfix/{,bin}/trivial-rewrite Px,
   /var/spool/postfix/pid/unix.retry wk,
   /{var/spool/postfix/,}pid/master.pid rwk,
   /{var/spool/postfix/,}private/* wl,

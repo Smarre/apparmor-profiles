@@ -11,12 +11,12 @@
 
 #include <tunables/global>
 
-/usr/lib/postfix/bin/pipe {
+profile /usr/lib/postfix/{,bin}/pipe {
   #include <abstractions/base>
   #include <abstractions/nameservice>
   #include <abstractions/postfix-common>
 
-  /usr/lib/postfix/bin/pipe mrix,
+  /usr/lib/postfix/{,bin}/pipe mrix,
   /var/spool/postfix/active/* rwk,
   /var/spool/postfix/private/bounce w,
   /var/spool/postfix/private/defer w,

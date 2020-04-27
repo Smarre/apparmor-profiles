@@ -10,10 +10,10 @@
 
 #include <tunables/global>
 
-/usr/lib/postfix/bin/spawn {
+profile /usr/lib/postfix/{,bin}/spawn {
   #include <abstractions/base>
   #include <abstractions/nameservice>
   #include <abstractions/postfix-common>
 
-  /usr/lib/postfix/bin/spawn rmix,
+  /usr/lib/postfix/{,bin}/spawn rmix,
 }

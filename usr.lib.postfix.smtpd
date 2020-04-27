@@ -10,7 +10,7 @@
 
 #include <tunables/global>
 
-/usr/lib/postfix/bin/smtpd {
+profile /usr/lib/postfix/{,bin}/smtpd {
   #include <abstractions/base>
   #include <abstractions/nameservice>
   #include <abstractions/postfix-common>
@@ -21,7 +21,7 @@
   capability setgid,
   capability setuid,
 
-  /usr/lib/postfix/bin/smtpd                       rmix,
+  /usr/lib/postfix/{,bin}/smtpd                       rmix,
   /usr/sbin/postdrop                           rPx,
 
   /dev/urandom                                r,
