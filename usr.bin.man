@@ -17,6 +17,8 @@
 #
 # NOTE: this will cause false alerts to audit logs, as man inspects current
 # working directory for some reason. Those alerts can be safely ignored.
+#
+# You can add explicit denies to local/man in order to mute these alerts.
 
 /usr/bin/man {
   #include <abstractions/base>
@@ -61,4 +63,6 @@
     /usr/bin/lessecho mr,
 
   }
+
+  #include <local/man>
 }

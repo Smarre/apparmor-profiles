@@ -1,0 +1,5 @@
+# This file is useful for muting warnings for some common directories one may use.
+#
+# For example, consider following:
+#
+#   deny /etc/apparmor.d/ r,
