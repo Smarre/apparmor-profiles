@@ -52,6 +52,7 @@
   /home/*/.osc_build/*/usr/lib64/* mr,
   /home/*/.osc_build/*/usr/lib64/** mrwk,
   /home/*/.osc_build/*/usr/lib64/gcc/** ix,
+  /home/*/.osc_build/*/usr/lib/udev/scripts/* ix,
   /home/smar/.osc_build/*/usr/sbin/* mrix,
   /usr/bin/cat mrix,
   /usr/bin/chmod mrix,

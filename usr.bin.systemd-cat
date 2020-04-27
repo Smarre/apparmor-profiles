@@ -1,7 +1,7 @@
 # Last Modified: Thu Feb 13 14:13:41 2020
 #include <tunables/global>
 
-/usr/bin/systemd-cat flags=(complain) {
+profile /usr/bin/systemd-cat {
   #include <abstractions/base>
   #include <abstractions/bash>
   #include <abstractions/nameservice>
@@ -19,5 +19,6 @@
   owner /proc/*/sched r,
   owner /proc/*/stat r,
   owner /usr/bin/fish mr,
+  /usr/bin/cat ix,
 
 }
