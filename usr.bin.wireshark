@@ -5,6 +5,7 @@
 # ------------------------------------------------------------------
 #
 #    Copyright (C) 2002-2005 Novell/SUSE
+#    Copyright (C) 2020 Samu Voutilainen
 #
 #    This program is free software; you can redistribute it and/or
 #    modify it under the terms of version 2 of the GNU General Public
@@ -12,18 +13,13 @@
 #
 # ------------------------------------------------------------------
 
+# Extended from apparmor-profiles.
 
 /usr/bin/wireshark {
-  #include <abstractions/X>
-  #include <abstractions/base>
   #include <abstractions/bash>
-  #include <abstractions/consoles>
   #include <abstractions/dbus-accessibility-strict>
-  #include <abstractions/dbus-session-strict>
   #include <abstractions/dconf>
   #include <abstractions/gnome>
-  #include <abstractions/ibus>
-  #include <abstractions/kde>
   #include <abstractions/nameservice>
   #include <abstractions/openssl>
   #include <abstractions/smar_kde>
@@ -35,15 +31,17 @@
   dbus receive bus=session interface=org.a11y.atspi**,
   dbus send bus=session peer=(name=org.a11y.Bus),
 
-  signal receive set=stop peer=/usr/lib64/libexec/drkonqi,
+  signal receive set=stop peer=drkonqi,
   signal send set=int peer=/usr/bin/dumpcap,
   signal send set=term peer=/usr/bin/dumpcap,
   signal send set=term peer=/usr/bin/kdeinit5,
 
   deny /run/udev/data/** r,
 
+  # Allow reading capture files from anywhere; they may be root’s files
+  # The reads below are for people who wants to have more strict control.
   /** r,
-  /**.pcap r,
+
   /etc/wireshark/** r,
   /sys/devices/pci[0-9]*/**/uevent r,
   /usr/bin/dumpcap Px,
@@ -62,27 +60,30 @@
   /usr/share/wireshark/** r,
   /var/lib/GeoIP/* r,
   @{PROC}/@{pid}/net/dev r,
-  owner /home/*/.* r,
-  owner /home/*/.config/.* rw,
-  owner /home/*/.config/QtProject.conf.* rw,
-  owner /home/*/.config/QtProject.conf.lock rk,
-  owner /home/*/.config/wireshark/ w,
-  owner /home/*/.config/wireshark/*/ w,
-  owner /home/*/.directory r,
-  owner /home/*/.emacs r,
-  owner /home/*/.esd_auth r,
-  owner /home/*/.i18n r,
-  owner /home/*/.inputrc r,
-  owner /home/*/.local/share/user-places.xbel r,
-  owner /home/*/.miu.kate-swp r,
-  owner /home/*/.muttrc r,
-  owner /home/*/.mysql_history r,
-  owner /home/*/.osc_cookiejar r,
-  owner /home/*/.pry_history r,
-  owner /home/*/.xim.template r,
-  owner /home/*/.xinitrc.template r,
-  owner /home/*/.y2log r,
-  owner /home/*/.yarnrc r,
+
+  # See comment at /** r rule.
+  owner @{HOME}/** r,
+
+  owner @{HOME}/.config/.* rw,
+  owner @{HOME}/.config/QtProject.conf.* rw,
+  owner @{HOME}/.config/QtProject.conf.lock rk,
+  owner @{HOME}/.config/wireshark/ w,
+  owner @{HOME}/.config/wireshark/*/ w,
+  owner @{HOME}/.directory r,
+  owner @{HOME}/.emacs r,
+  owner @{HOME}/.esd_auth r,
+  owner @{HOME}/.i18n r,
+  owner @{HOME}/.inputrc r,
+  owner @{HOME}/.local/share/user-places.xbel r,
+  owner @{HOME}/.miu.kate-swp r,
+  owner @{HOME}/.muttrc r,
+  owner @{HOME}/.mysql_history r,
+  owner @{HOME}/.osc_cookiejar r,
+  owner @{HOME}/.pry_history r,
+  owner @{HOME}/.xim.template r,
+  owner @{HOME}/.xinitrc.template r,
+  owner @{HOME}/.y2log r,
+  owner @{HOME}/.yarnrc r,
   owner /run/user/*/Wireshark*.slave-socket w,
   owner /run/user/*/kcrash_* w,
   owner /{,var/}run/user/*/dconf/user w,

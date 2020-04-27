@@ -1,7 +1,7 @@
 # Last Modified: Sun Mar 22 19:33:39 2020
 #include <tunables/global>
 
-/usr/lib64/libexec/drkonqi flags=(complain) {
+profile drkonqi /usr/lib64/libexec/drkonqi flags=(complain) {
   #include <abstractions/base>
   #include <abstractions/nameservice>
   #include <abstractions/smar_kde>
