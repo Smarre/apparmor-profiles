@@ -1,10 +1,24 @@
-# Last Modified: Tue Apr 14 07:34:58 2020
+# Last Modified: Sun Apr 26 09:40:41 2020
 #include <tunables/global>
 
 /usr/bin/scdaemon flags=(complain) {
   #include <abstractions/base>
 
+  /dev/bus/usb/ r,
+  /run/udev/data/* r,
+  /sys/bus/ r,
+  /sys/bus/usb/devices/ r,
+  /sys/class/ r,
+  /sys/devices/pci*/*/*/*/*/usb*/*/*/*/* r,
+  /sys/devices/pci*/*/*/*/*/usb*/*/*/* r,
+  /sys/devices/pci*/*/*/*/*/usb*/*/* r,
+  /sys/devices/pci*/*/*/*/*/usb*/* r,
+  /sys/devices/pci*/*/*/usb*/*/*/* r,
+  /sys/devices/pci*/*/*/usb*/*/* r,
+  /sys/devices/pci*/*/*/usb*/* r,
   /usr/bin/scdaemon mr,
   owner /home/*/.gnupg/scdaemon.conf r,
+  owner /proc/*/task/*/comm rw,
+  owner /run/user/*/gnupg/S.scdaemon w,
 
 }

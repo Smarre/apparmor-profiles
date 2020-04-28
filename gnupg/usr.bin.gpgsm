@@ -1,13 +1,17 @@
-# Last Modified: Thu Apr 16 07:12:15 2020
+# Last Modified: Sat Apr 25 09:52:45 2020
 #include <tunables/global>
 
 /usr/bin/gpgsm flags=(complain) {
   #include <abstractions/base>
+  #include <abstractions/consoles>
   #include <abstractions/nameservice>
 
   /proc/sys/crypto/fips_enabled r,
+  /usr/bin/dirmngr mrix,
   /usr/bin/gpgsm mr,
   owner /home/*/.gnupg/* r,
   owner /home/*/.gnupg/* wl,
+  owner /proc/*/fd/ r,
+  owner /run/user/*/gnupg/S.dirmngr w,
 
 }

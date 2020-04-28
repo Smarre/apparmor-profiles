@@ -1,4 +1,4 @@
-# Last Modified: Thu Apr 16 07:12:15 2020
+# Last Modified: Sun Apr 26 10:35:31 2020
 #include <tunables/global>
 
 /usr/bin/gpg2 flags=(complain) {
@@ -10,9 +10,13 @@
   /proc/sys/crypto/fips_enabled r,
   /usr/bin/gpg-agent Px,
   /usr/bin/gpg2 mr,
+  /usr/share/qt5/resources/* r,
+  /usr/share/qt5/translations/qtwebengine_locales/*.pak r,
+  owner /dev/shm/.org.chromium.Chromium.* ra,
   owner /home/*/.gnupg/* k,
   owner /home/*/.gnupg/* r,
   owner /home/*/.gnupg/* w,
+  owner /home/*/.local/share/sddm/xorg-session.log w,
   owner /proc/*/fd/ r,
   owner /root/.gnupg/* r,
   owner /run/user/*/gnupg/*/ w,
