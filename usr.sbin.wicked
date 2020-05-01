@@ -1,10 +1,11 @@
-# Last Modified: Wed Apr  8 07:08:16 2020
+# Last Modified: Fri Apr 24 07:40:21 2020
 #include <tunables/global>
 
 /usr/sbin/wicked flags=(complain) {
   #include <abstractions/cli>
   #include <abstractions/consoles>
   #include <abstractions/nameservice>
+  #include <abstractions/user-tmp>
 
   /etc/wicked/extensions/ibft mrix,
   /lib64/ld-*.so mr,

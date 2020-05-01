@@ -1,7 +1,8 @@
-# Last Modified: Wed Nov 27 12:38:04 2019
+# Last Modified: Sun Apr 26 20:25:09 2020
 #include <tunables/global>
 
 /usr/bin/mpv flags=(complain) {
+  #include <abstractions/X>
   #include <abstractions/base>
   #include <abstractions/consoles>
   #include <abstractions/fonts>

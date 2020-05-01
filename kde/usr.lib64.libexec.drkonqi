@@ -1,10 +1,14 @@
-# Last Modified: Sun Mar 22 19:33:39 2020
+# Last Modified: Sun Apr 26 10:32:16 2020
 #include <tunables/global>
 
 profile drkonqi /usr/lib64/libexec/drkonqi flags=(complain) {
   #include <abstractions/base>
+  #include <abstractions/bash>
   #include <abstractions/nameservice>
+  #include <abstractions/python>
   #include <abstractions/smar_kde>
+
+  capability sys_ptrace,
 
   signal send set=cont,
   signal send set=stop,
@@ -14,6 +18,7 @@ profile drkonqi /usr/lib64/libexec/drkonqi flags=(complain) {
   /etc/os-release r,
   /etc/xdg/menus/ r,
   /etc/xdg/menus/applications-merged/ r,
+  /usr/bin/gdb mrix,
   /usr/lib64/libexec/drkonqi mr,
   /usr/share/drkonqi/** r,
   /usr/share/drkonqi/**/ r,
@@ -22,5 +27,7 @@ profile drkonqi /usr/lib64/libexec/drkonqi flags=(complain) {
   owner /home/*/.config/drkonqirc r,
   owner /home/*/.config/menus/ r,
   owner /home/*/.config/menus/applications-merged/ r,
+  owner /home/*/.local/share/sddm/xorg-session.log w,
+  owner /proc/*/fd/ r,
 
 }

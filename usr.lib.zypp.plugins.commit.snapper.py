@@ -1,11 +1,17 @@
-# Last Modified: Mon Apr 13 10:19:56 2020
+# Last Modified: Mon Apr 27 06:05:32 2020
 #include <tunables/global>
 
 /usr/lib/zypp/plugins/commit/snapper.py flags=(complain) {
   #include <abstractions/base>
+  #include <abstractions/consoles>
   #include <abstractions/python>
+
+  ptrace read peer=/usr/bin/fish,
+  ptrace read peer=unconfined,
 
   /usr/bin/python3.6 ix,
   /usr/lib/zypp/plugins/commit/snapper.py r,
+  owner /etc/snapper/zypp-plugin.conf r,
+  owner /usr/bin/python* r,
 
 }

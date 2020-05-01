@@ -1,4 +1,4 @@
-# Last Modified: Wed Apr 15 14:03:32 2020
+# Last Modified: Sun Apr 26 08:37:28 2020
 #include <tunables/global>
 
 /usr/bin/osc-wrapper.py flags=(complain) {
@@ -15,10 +15,13 @@
   capability setuid,
   capability sys_resource,
 
+  signal send set=kill peer=/usr/lib/obs/service/tar_scm,
+
   /** r,
   /bin/bash mrix,
   /etc/rpm/* r,
   /home/*/.osc_build/**/ r,
+  /usr/bin/diff mrix,
   /usr/bin/diff3 mrix,
   /usr/bin/find mrix,
   /usr/bin/perl ix,
@@ -28,6 +31,10 @@
   /usr/bin/vim-nox11 Cx,
   /usr/lib/build/build Px,
   /usr/lib/build/queryconfig mrix,
+  /usr/lib/build/vc Px,
+  /usr/lib/obs/service/recompress Px,
+  /usr/lib/obs/service/set_version Px,
+  /usr/lib/obs/service/tar_scm Px,
   owner /** w,
   owner /home/*/.config/osc/oscrc rw,
   owner /home/*/.local/lib/python*/site-packages/ r,

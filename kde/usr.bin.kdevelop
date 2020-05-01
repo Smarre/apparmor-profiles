@@ -1,4 +1,4 @@
-# Last Modified: Sun Apr 12 09:09:47 2020
+# Last Modified: Mon Apr 27 06:05:32 2020
 #include <tunables/global>
 
 /usr/bin/kdevelop flags=(complain) {
@@ -11,6 +11,7 @@
 
   capability sys_ptrace,
 
+  signal receive set=stop peer=/usr/lib64/libexec/drkonqi,
   signal send set=hup,
   signal send set=kill peer=/usr/bin/cmake,
   signal send set=term peer=/usr/bin/kdeinit5,
@@ -42,6 +43,7 @@
   /usr/bin/sed mrix,
   /usr/bin/svn Px,
   /usr/bin/testparm mrix,
+  /usr/bin/touch mrix,
   /usr/bin/tput mrix,
   /usr/bin/tty mrix,
   /usr/bin/uname mrix,
@@ -50,6 +52,8 @@
   /usr/lib/git/git Px,
   /usr/lib/utempter/utempter Px,
   owner /** rw,
+  owner /home/*/**.lock rk,
+  owner /home/*/**/.* rk,
   owner /home/*/.cache/kdevelop/qmlcache/*.jsc mr,
   owner /home/*/.cache/kdevelop/qmlcache/*.qmlc mr,
   owner /home/*/.config/.* rk,
@@ -65,5 +69,6 @@
   owner /home/*/.local/share/kdevelop/sessions/*/lock rwk,
   owner /home/*/.local/share/kdevelop/sessions/*/lock.rmlock rk,
   owner /home/*/.local/share/kdevelop/sessions/*/sessionrc.lock rk,
+  owner /home/*/Projektit/random/apparmor-profiles/.* rk,
 
 }

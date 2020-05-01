@@ -1,4 +1,4 @@
-# Last Modified: Sun Mar 22 10:12:09 2020
+# Last Modified: Sun Apr 26 10:35:32 2020
 #include <tunables/global>
 
 /usr/lib64/firefox/firefox.sh flags=(complain) {
@@ -48,6 +48,7 @@
   owner /home/*/.fonts.conf r,
   owner /home/*/.local/share/applications/mimeinfo.cache r,
   owner /home/*/.local/share/mime/mime.cache r,
+  owner /home/*/.local/share/sddm/xorg-session.log w,
   owner /home/*/.mozilla/** rwk,
   owner /proc/*/maps r,
   owner /proc/*/mountinfo r,

@@ -1,9 +1,12 @@
-# Last Modified: Sun Mar 22 11:14:35 2020
+# Last Modified: Sun Apr 26 10:35:32 2020
 #include <tunables/global>
 
 /usr/lib64/libexec/kf5/klauncher flags=(complain) {
   #include <abstractions/base>
   #include <abstractions/smar_kde>
+
+  signal receive set=hup peer=/usr/bin/kdeinit5,
+  signal receive set=term peer=/usr/bin/kdeinit5,
 
   /etc/xdg/menus/ r,
   /etc/xdg/menus/applications-merged/ r,
@@ -13,6 +16,7 @@
   owner /home/*/.cache/ksycoca5_* r,
   owner /home/*/.config/menus/ r,
   owner /home/*/.config/menus/applications-merged/ r,
+  owner /home/*/.local/share/sddm/xorg-session.log w,
   owner /run/user/*/klauncher*.slave-socket rw,
 
 }

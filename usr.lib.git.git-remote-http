@@ -1,9 +1,13 @@
-# Last Modified: Sat Apr 11 10:18:26 2020
+# Last Modified: Fri Apr 17 07:28:01 2020
 #include <tunables/global>
 
 /usr/lib/git/git-remote-http flags=(complain) {
   #include <abstractions/base>
+  #include <abstractions/nameservice>
+  #include <abstractions/openssl>
 
+  /usr/lib/git/git Px,
   /usr/lib/git/git-remote-http mr,
+  owner /** r,
 
 }

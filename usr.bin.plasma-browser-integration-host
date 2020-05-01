@@ -1,4 +1,4 @@
-# Last Modified: Fri Mar 20 09:51:22 2020
+# Last Modified: Sun Apr 26 10:01:33 2020
 #include <tunables/global>
 
 /usr/bin/plasma-browser-integration-host flags=(complain) {
@@ -12,11 +12,15 @@
   /usr/share/icu/** r,
   owner /dev/shm/org.chromium.* r,
   owner /home/*/.Xauthority r,
+  owner /home/*/.cache/mozilla/firefox/rnt2rlel.default/safebrowsing-updating/* w,
   owner /home/*/.cache/mozilla/firefox/rnt2rlel.default/startupCache/* r,
   owner /home/*/.config/ibus/bus/* r,
   owner /home/*/.config/kdeglobals r,
+  owner /home/*/.local/share/gvfs-metadata/* r,
+  owner /home/*/.local/share/gvfs-metadata/home r,
   owner /home/*/.local/share/mime/generic-icons r,
   owner /home/*/.mozilla/firefox/rnt2rlel.default/.parentlock w,
   owner /home/*/.mozilla/firefox/rnt2rlel.default/extensions/* r,
+  owner /home/*/.mozilla/firefox/rnt2rlel.default/extensions/* w,
 
 }

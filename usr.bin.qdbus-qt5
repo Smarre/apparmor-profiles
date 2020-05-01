@@ -1,4 +1,4 @@
-# Last Modified: Sun Apr 12 08:55:13 2020
+# Last Modified: Sun Apr 26 10:32:16 2020
 #include <tunables/global>
 
 /usr/bin/qdbus-qt5 flags=(complain) {
@@ -7,5 +7,6 @@
   #include <abstractions/smar_kde>
 
   /usr/bin/qdbus-qt5 mr,
+  owner /home/*/.local/share/sddm/xorg-session.log w,
 
 }

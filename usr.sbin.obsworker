@@ -1,8 +1,10 @@
-# Last Modified: Wed Apr 15 07:15:04 2020
+# Last Modified: Tue Apr 21 07:26:28 2020
 #include <tunables/global>
 
 # attach_disconnected is necessary since this script wants to kill bs_worker
 # type=AVC msg=audit(1586924404.039:2911619): apparmor="ALLOWED" operation="getattr" info="Failed name lookup - disconnected path" error=-13 profile="/usr/sbin/obsworker" name="" pid=26342 comm="killall" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+
+
 /usr/sbin/obsworker flags=(complain, attach_disconnected) {
   #include <abstractions/authentication>
   #include <abstractions/base>
@@ -60,7 +62,7 @@
   /usr/sbin/obsworker r,
   owner /bin/bash mr,
   owner /dev/ptmx rw,
-  owner /dev/tty7 r,
+  owner /dev/tty* r,
   owner /etc/rc.status r,
   owner /etc/screenrc r,
   owner /etc/slp.conf r,

@@ -1,4 +1,4 @@
-# Last Modified: Sat Apr 11 13:14:32 2020
+# Last Modified: Sun Apr 26 15:18:23 2020
 #include <tunables/global>
 
 /usr/bin/keepassxc-proxy flags=(complain) {
@@ -19,6 +19,7 @@
   owner /home/*/.local/share/gvfs-metadata/* r,
   owner /home/*/.local/share/gvfs-metadata/home r,
   owner /home/*/.mozilla/firefox/rnt2rlel.default/* w,
+  owner /home/*/.mozilla/firefox/rnt2rlel.default/** w,
   owner /home/*/.mozilla/firefox/rnt2rlel.default/.parentlock w,
   owner /home/*/.mozilla/firefox/rnt2rlel.default/extensions/* r,
   owner /home/*/.mozilla/firefox/rnt2rlel.default/extensions/* w,
@@ -28,6 +29,7 @@
   owner /home/*/.mozilla/firefox/rnt2rlel.default/sessionstore-backups/recovery.* a,
   owner /home/*/.mozilla/firefox/rnt2rlel.default/storage/** w,
   owner /home/*/.mozilla/firefox/rnt2rlel.default/weave/failed/history.json w,
+  owner /home/*/Lataukset/* w,
   owner /proc/*/mountinfo r,
 
 }

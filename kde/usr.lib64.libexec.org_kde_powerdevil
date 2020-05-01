@@ -1,4 +1,4 @@
-# Last Modified: Sun Apr  5 07:56:47 2020
+# Last Modified: Sun Apr 26 10:35:32 2020
 #include <tunables/global>
 
 /usr/lib64/libexec/org_kde_powerdevil flags=(complain) {
@@ -17,6 +17,7 @@
   owner /home/*/.config/menus/ r,
   owner /home/*/.config/menus/applications-merged/ r,
   owner /home/*/.config/powermanagementprofilesrc r,
+  owner /home/*/.local/share/sddm/xorg-session.log w,
   owner /proc/*/mounts r,
 
 }

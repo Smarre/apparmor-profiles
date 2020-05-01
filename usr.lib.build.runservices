@@ -1,13 +1,27 @@
-# Last Modified: Wed Apr 15 11:02:38 2020
+# Last Modified: Sat Apr 25 07:26:39 2020
 #include <tunables/global>
 
 /usr/lib/build/runservices flags=(complain) {
   #include <abstractions/base>
+  #include <abstractions/bash>
   #include <abstractions/consoles>
   #include <abstractions/perl>
+  #include <abstractions/python>
+
+  capability dac_override,
+  capability sys_chroot,
 
   /** r,
+  /bin/bash ix,
+  /home/*/.osc_build/*/bin/bash mr,
+  /home/*/.osc_build/*/lib64/* mr,
+  /home/*/.osc_build/*/usr/bin/* mr,
+  /home/*/.osc_build/*/usr/bin/* mrix,
+  /home/*/.osc_build/*/usr/lib64/** mr,
+  /home/*/.osc_build/*/usr/lib/obs/service/* mrix,
   /usr/bin/perl ix,
+  /usr/bin/python2.7 ix,
+  /usr/bin/python3.6 ix,
   owner /** rw,
 
 }

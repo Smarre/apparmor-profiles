@@ -1,4 +1,4 @@
-# Last Modified: Sun Mar 22 18:50:30 2020
+# Last Modified: Sun Apr 26 13:55:20 2020
 #include <tunables/global>
 
 /usr/lib64/libexec/kcheckpass flags=(complain) {
@@ -6,6 +6,7 @@
   #include <abstractions/base>
   #include <abstractions/bash>
   #include <abstractions/nameservice>
+  #include <abstractions/sddm>
   #include <abstractions/wutmp>
 
   capability audit_write,

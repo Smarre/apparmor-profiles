@@ -1,4 +1,4 @@
-# Last Modified: Sun Apr 12 08:45:15 2020
+# Last Modified: Sun Apr 26 10:32:16 2020
 #include <tunables/global>
 
 /usr/lib/utempter/utempter flags=(complain) {
@@ -9,5 +9,6 @@
 
   /dev/ptmx rw,
   /usr/lib/utempter/utempter mr,
+  owner /home/*/.local/share/sddm/xorg-session.log w,
 
 }

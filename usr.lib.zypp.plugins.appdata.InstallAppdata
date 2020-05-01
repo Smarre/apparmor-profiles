@@ -1,4 +1,4 @@
-# Last Modified: Mon Apr 13 11:07:51 2020
+# Last Modified: Tue Apr 21 18:00:33 2020
 #include <tunables/global>
 
 /usr/lib/zypp/plugins/appdata/InstallAppdata flags=(complain) {
@@ -24,6 +24,7 @@
 
   profile /usr/bin/appstreamcli flags=(complain) {
     #include <abstractions/base>
+    #include <abstractions/consoles>
     #include <abstractions/freedesktop.org>
     #include <abstractions/nameservice>
 

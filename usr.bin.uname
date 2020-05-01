@@ -1,9 +1,10 @@
-# Last Modified: Fri Apr  3 17:14:23 2020
+# Last Modified: Mon Apr 20 07:30:12 2020
 #include <tunables/global>
 
 /usr/bin/uname flags=(complain) {
   #include <abstractions/base>
   #include <abstractions/consoles>
+  #include <abstractions/user-tmp>
 
   /usr/bin/uname mr,
   owner /dev/shm/u*-Shm_* rw,

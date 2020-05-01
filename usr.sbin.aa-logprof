@@ -1,4 +1,4 @@
-# Last Modified: Wed Apr  8 15:17:38 2020
+# Last Modified: Sun Apr 26 17:31:16 2020
 #include <tunables/global>
 
 /usr/sbin/aa-logprof flags=(complain) {
@@ -7,6 +7,7 @@
   #include <abstractions/consoles>
   #include <abstractions/perl>
   #include <abstractions/python>
+  #include <abstractions/user-tmp>
 
   capability dac_read_search,
 
@@ -19,6 +20,7 @@
   /usr/bin/ldd mrix,
   /usr/bin/python3.6 ix,
   owner /**/ r,
+  owner /dev/tty* mrw,
   owner /etc/apparmor.d/** r,
   owner /etc/apparmor.d/** w,
   owner /etc/apparmor/* r,

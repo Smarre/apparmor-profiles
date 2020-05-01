@@ -1,4 +1,4 @@
-# Last Modified: Mon Apr 13 20:42:48 2020
+# Last Modified: Sun Apr 26 10:35:31 2020
 #include <tunables/global>
 
 /usr/bin/setxkbmap flags=(complain) {
@@ -7,5 +7,6 @@
 
   /usr/bin/setxkbmap mr,
   owner /home/*/.Xauthority r,
+  owner /home/*/.local/share/sddm/xorg-session.log w,
 
 }

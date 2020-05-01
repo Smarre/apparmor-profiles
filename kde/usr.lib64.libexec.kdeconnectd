@@ -1,4 +1,4 @@
-# Last Modified: Tue Mar 31 07:58:38 2020
+# Last Modified: Sun Apr 26 10:35:32 2020
 #include <tunables/global>
 
 /usr/lib64/libexec/kdeconnectd {
@@ -19,6 +19,7 @@
   /usr/share/icu/** r,
   /usr/share/plasma/look-and-feel/** r,
   owner /home/*/.cache/icon-cache.kcache rw,
+  owner /home/*/.local/share/sddm/xorg-session.log w,
   owner /root/.config/kdeconnect/ w,
   owner /run/user/0/kcrash_* w,
   owner /usr/share/color-schemes/* r,

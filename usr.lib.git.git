@@ -1,4 +1,4 @@
-# Last Modified: Sun Apr 12 09:03:23 2020
+# Last Modified: Fri Apr 17 07:59:03 2020
 #include <tunables/global>
 
 /usr/lib/git/git flags=(complain) {
@@ -10,15 +10,35 @@
   /bin/bash ix,
   /bin/bash mr,
   /usr/bin/basename mrix,
+  /usr/bin/cat mrix,
+  /usr/bin/cp mrix,
+  /usr/bin/dirname mrix,
   /usr/bin/envsubst Px,
+  /usr/bin/expr mrix,
+  /usr/bin/gawk mrix,
   /usr/bin/gettext Px,
+  /usr/bin/grep mrix,
+  /usr/bin/kdiff3 Px,
   /usr/bin/less mrix,
+  /usr/bin/mkdir mrix,
+  /usr/bin/mv mrix,
+  /usr/bin/ngettext mrix,
   /usr/bin/rm mrix,
+  /usr/bin/rmdir mrix,
   /usr/bin/sed mrix,
+  /usr/bin/ssh Px,
+  /usr/bin/tr mrix,
   /usr/bin/uname mrix,
+  /usr/bin/vim-nox11 mrix,
+  /usr/bin/wc mrix,
   /usr/lib/git/git mrix,
+  /usr/lib/git/git-mergetool mrix,
+  /usr/lib/git/git-mergetool r,
+  /usr/lib/git/git-rebase mrix,
+  /usr/lib/git/git-rebase r,
   /usr/lib/git/git-remote-http Px,
   /usr/lib/git/git-stash mrix,
+  owner /** rl,
   owner /** rw,
   owner /home/*/.gitconfig r,
 

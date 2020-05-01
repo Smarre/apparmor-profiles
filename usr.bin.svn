@@ -1,4 +1,4 @@
-# Last Modified: Sat Apr 11 13:35:38 2020
+# Last Modified: Sun Apr 26 08:58:05 2020
 #include <tunables/global>
 
 /usr/bin/svn flags=(complain) {
@@ -8,6 +8,7 @@
   /proc/filesystems r,
   /proc/sys/crypto/fips_enabled r,
   /usr/bin/svn mr,
+  owner /dev/tty* rw,
   owner /home/*/.subversion/* r,
   owner /home/*/.subversion/servers r,
   owner /root/.subversion/* r,
