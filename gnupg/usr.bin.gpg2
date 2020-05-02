@@ -6,6 +6,14 @@
   #include <abstractions/consoles>
   #include <abstractions/nameservice>
   #include <abstractions/user-tmp>
+  #include <abstractions/sddm>
+
+  # Everything must be readable since keys imported/exported anywhere.
+  # Writing is only allowed to home directories to have some extra restrictions.
+  # For better safety, programs using gpg2 should really inherit the program
+  # instead of using this profile, which is a fallback, or for cases a user uses
+  # gpg directly.
+  /** r,
 
   /proc/sys/crypto/fips_enabled r,
   /usr/bin/gpg-agent Px,
@@ -13,12 +21,10 @@
   /usr/share/qt5/resources/* r,
   /usr/share/qt5/translations/qtwebengine_locales/*.pak r,
   owner /dev/shm/.org.chromium.Chromium.* ra,
-  owner /home/*/.gnupg/* k,
-  owner /home/*/.gnupg/* r,
-  owner /home/*/.gnupg/* w,
-  owner /home/*/.local/share/sddm/xorg-session.log w,
   owner /proc/*/fd/ r,
   owner /root/.gnupg/* r,
   owner /run/user/*/gnupg/*/ w,
 
+  owner @{HOME}/** rw,
+  owner @{HOME}/.gnupg/* rwkl,
 }
