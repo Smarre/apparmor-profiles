@@ -1,4 +1,3 @@
-# Last Modified: Sun Apr 26 08:37:28 2020
 #include <tunables/global>
 
 /usr/bin/osc-wrapper.py flags=(complain) {
@@ -17,15 +16,19 @@
 
   signal send set=kill peer=/usr/lib/obs/service/tar_scm,
 
-  /** r,
-  /bin/bash mrix,
+  /etc/rpm/ r,
   /etc/rpm/* r,
-  /home/*/.osc_build/**/ r,
+  @{HOME}/.osc_build/**/ r,
+
+  /bin/bash mrix,
+
+  /usr/bin/ r,
+  /usr/bin/osc-wrapper.py r,
   /usr/bin/diff mrix,
   /usr/bin/diff3 mrix,
   /usr/bin/find mrix,
   /usr/bin/perl ix,
-  /usr/bin/python3.6 ix,
+  /usr/bin/python[0-9].[0-9] rix,
   /usr/bin/sudo ix,
   /usr/bin/uname mrix,
   /usr/bin/vim-nox11 Cx,
@@ -35,13 +38,20 @@
   /usr/lib/obs/service/recompress Px,
   /usr/lib/obs/service/set_version Px,
   /usr/lib/obs/service/tar_scm Px,
-  owner /** w,
-  owner /home/*/.config/osc/oscrc rw,
-  owner /home/*/.local/lib/python*/site-packages/ r,
-  owner /home/*/.local/lib/python*/site-packages/* r,
-  owner /home/*/.local/lib/python*/site-packages/** r,
-  owner /home/*/.local/lib/python*/site-packages/*/ r,
-  owner /home/*/.osc_cookiejar rw,
+
+  # OBS project files can really reside anywhere, so let’s just allow reading and writing to anywhere user owns files.
+  owner /** rw,
+
+  /var/lib/osc-plugins/ r,
+
+  /proc/[0-9]*/fd/ r,
+
+  owner @{HOME}/**/.osc/_apiurl r,
+  owner @{HOME}/.config/osc/oscrc rw,
+  owner @{HOME}/.local/lib/python*/site-packages/ r,
+  owner @{HOME}/.local/lib/python*/site-packages/** r,
+  #owner @{HOME}/.local/lib/python*/site-packages/*/ r,
+  owner @{HOME}/.osc_cookiejar rw,
   owner /lib64/security/* mr,
   owner /proc/*/mounts r,
   owner /usr/lib/osc-plugins/__pycache__/* rw,
@@ -57,11 +67,12 @@
     /etc/vimrc r,
     /usr/bin/vim-nox11 mr,
     /usr/share/vim/** r,
+
+    # Same as with main profile’s system-wide read-write.
     owner /**/ r,
-    owner /home/*/.viminfo r,
-    owner /home/*/.viminfo w,
-    owner /home/*/.viminfo.tmp rw,
-    /dev/pts/* wr,
+
+    owner @{HOME}/.viminfo{,.tmp} rw,
+    /dev/pts/* rw,
 
   }
 }
