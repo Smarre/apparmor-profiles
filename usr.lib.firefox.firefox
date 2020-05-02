@@ -1,0 +1,190 @@
+# vim:syntax=apparmor
+# ------------------------------------------------------------------
+#
+#    Copyright (C) 2009-2011 Canonical Ltd.
+#
+#    This program is free software; you can redistribute it and/or
+#    modify it under the terms of version 2 of the GNU General Public
+#    License published by the Free Software Foundation.
+#
+# ------------------------------------------------------------------
+
+#include <tunables/global>
+
+# We want to confine the binaries that match:
+#  /usr/lib/firefox-4.0b8/firefox
+#  /usr/lib/firefox-4.0b8/firefox
+# but not:
+#  /usr/lib/firefox-4.0b8/firefox.sh
+profile firefox /usr/lib{,64}/firefox{,-[0-9]*}/firefox{,*[^s][^h]} {
+  #include <abstractions/audio>
+  #include <abstractions/cups-client>
+  #include <abstractions/dbus-session>
+  #include <abstractions/gnome>
+  #include <abstractions/ibus>
+  #include <abstractions/kde>
+  #include <abstractions/nameservice>
+  #include <abstractions/sddm>
+  #include <abstractions/consoles>
+
+  # This is for Firefox’s sandboxes. AppArmor is missing a feature called unshare that would allow making this work better.
+  capability sys_admin,
+  capability sys_chroot,
+
+  # This is needed for Firefox crash dumps. To generate them, change this line to allow.
+  deny capability sys_ptrace,
+  deny ptrace,
+
+  # for networking
+  network inet stream,
+  network inet6 stream,
+  @{PROC}/@{pid}/net/if_inet6 r,
+  @{PROC}/@{pid}/net/ipv6_route r,
+
+  # should maybe be in abstractions
+  /usr/share/xubuntu/applications/defaults.list r,
+  owner /tmp/** m,
+  owner /var/tmp/** m,
+  /tmp/.X[0-9]*-lock r,
+
+  /etc/timezone r,
+  /etc/wildmidi/wildmidi.cfg r,
+
+  # firefox specific
+  /etc/firefox*/** r,
+  /etc/xul-ext/** r,
+  /etc/xulrunner{,-[0-9]*}/** r,
+  /etc/gre.d/* r,
+  /etc/mailcap r,
+  /etc/mime.types r,
+
+  # noisy
+  deny /usr/lib{,64}/firefox{,-[0-9]*}/** w,
+  deny /usr/lib{,64}/{firefox,xulrunner}-addons/** w,
+  deny /usr/lib{,64}/xulrunner-*/components/*.tmp w,
+  deny /.suspended r,
+  deny /boot/initrd.img* r,
+  deny /boot/vmlinuz* r,
+  deny /var/cache/fontconfig/ w,
+
+  deny /usr/bin/gconftool-2 x,
+
+  # These are needed when a new user starts firefox and firefox.sh is used
+  /usr/lib{,64}/firefox{,-[0-9]*}/** ixr,
+  deny /usr/lib{,64}/firefox/firefox.sh x,
+  /usr/bin/basename ixr,
+  /usr/bin/dirname ixr,
+  /usr/bin/pwd ixr,
+  /{usr/,}sbin/killall5 ixr,
+  /{usr/,}bin/which ixr,
+  /usr/bin/tr ixr,
+  @{PROC}/@{pid}/cmdline r,
+  @{PROC}/@{pid}/mountinfo r,
+  @{PROC}/@{pid}/stat r,
+  @{PROC}/@{pid}/status r,
+
+  # Firefox wants to read some hardware information.
+  /sys/devices/pci**/uevent r,
+  /sys/devices/pci**/vendor r,
+  /sys/devices/pci**/revision r,
+  /sys/devices/pci**/device r,
+  /sys/devices/pci**/subsystem_device r,
+  /sys/devices/pci**/subsystem_vendor r,
+  /sys/devices/pci**/config r,
+  /sys/devices/pci**/drm/card[0-9]*/device r,
+  /sys/devices/pci**/drm/card[0-9]*/uevent r,
+  #audit /sys/devices/pci**/* r,
+
+  /etc/mtab r,
+  /etc/fstab r,
+
+  # Needed for the crash reporter
+  owner @{PROC}/@{pid}/environ r,
+  owner @{PROC}/@{pid}/auxv r,
+  /etc/lsb-release r,
+  /usr/bin/expr ix,
+
+  # Needed for container to work in xul builds
+  /usr/lib{,64}/xulrunner-*/plugin-container ixr,
+
+  # Make browsing directories work
+  / r,
+  /**/ r,
+
+  # allow access to documentation and other files the user may want to look
+  # at in /usr
+  /usr/{include,share,src}/** r,
+
+  # Default profile allows downloads to ~/Downloads and uploads from ~/Public
+  owner @{HOME}/ r,
+  owner @{HOME}/Public/ r,
+  owner @{HOME}/Public/** r,
+  owner @{HOME}/Downloads/ r,
+  owner @{HOME}/Downloads/** rw,
+  owner @{HOME}/.thumbnails/*/*.png r,
+
+  # per-user firefox configuration
+  owner @{HOME}/.{firefox,mozilla}/ rw,
+  owner @{HOME}/.{firefox,mozilla}/** rw,
+  owner @{HOME}/.{firefox,mozilla}/**/*.{db,parentlock,sqlite}* k,
+  owner @{HOME}/.{firefox,mozilla}/plugins/** rm,
+  owner @{HOME}/.{firefox,mozilla}/**/plugins/** rm,
+  owner @{HOME}/.gnome2/firefox*-bin-* rw,
+
+  # Caches
+  owner /home/smar/.cache/mesa_shader_cache/index rw,
+  owner @{HOME}/.cache/mozilla/firefox/** rw,
+  owner @{HOME}/.cache/mozilla/firefox/**.sqlite k,
+
+  # Shared memories
+  /dev/shm/org.mozilla.ipc.* rw,
+  # For reasons unknown, launching Firefox causes a Chromium shared memory getting used.
+  /dev/shm/org.chromium.* rw,
+
+  # Some miscellaneous libraries Firefox seems to need.
+  /usr/lib{,64}/libproxy-*/modules/network_networkmanager.so m,
+
+  # Login to websites through gssapi.
+  /var/lib/sss/pubconf/kdcinfo.* r,
+
+  # Some miscellaneous proc entries which Firefox seems to need.
+  @{PROC}/@{pid}/task/@{pid}/stat r,
+  @{PROC}/@{pid}/net/arp r,
+  # TODO: may not be necessary
+  @{PROC}/@{pid}/smaps r,
+  @{PROC}/@{pid}/statm r,
+  # These are fishy somehow...
+  @{PROC}/@{pid}/uid_map rw,
+  @{PROC}/@{pid}/gid_map rw,
+  @{PROC}/@{pid}/setgroups rw,
+
+  # /sys entries
+  # TODO: may not be necessary
+  @{sys}/devices/system/cpu/cpu[0-9]*/cache/index[0-9]*/size r,
+  @{sys}/devices/system/cpu/present r,
+  @{sys}/devices/system/cpu/cpufreq/policy[0-9]*/cpuinfo_max_freq r,
+
+  # KDE integration
+  /usr/lib/mozilla/kmozillahelper Px,
+  /usr/bin/plasma-browser-integration-host Px,
+
+  # Keepassxc browser plugin features
+  /usr/bin/keepassxc-proxy Px,
+
+  #
+  # Extensions
+  # /usr/share/.../extensions/... is already covered by '/usr/.../** r', above.
+  # Allow 'x' for downloaded extensions, but inherit policy for safety
+  owner @{HOME}/.mozilla/**/extensions/** mixr,
+
+  deny /usr/lib{,64}/firefox{,-[0-9]*}/update.test w,
+  deny /usr/lib{,64}/mozilla/extensions/**/ w,
+  deny /usr/lib{,64}/xulrunner-addons/extensions/**/ w,
+  deny /usr/share/mozilla/extensions/**/ w,
+  deny /usr/share/mozilla/ w,
+
+  # Site-specific additions and overrides. See local/README for details.
+  # Local path is disabled, we only enable them for profiles we promote
+  # out of extras.
+  ## include <local/usr.bin.firefox>
+}

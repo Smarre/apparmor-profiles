@@ -1,4 +1,5 @@
-# Last Modified: Wed Apr  8 06:55:26 2020
+# Profile for Kerberos 5 ticket granting application.
+
 #include <tunables/global>
 
 /usr/lib/mit/bin/kinit flags=(complain) {
@@ -6,10 +7,9 @@
   #include <abstractions/kerberosclient>
   #include <abstractions/nameservice>
   #include <abstractions/user-tmp>
+  #include <abstractions/consoles>
 
   /proc/filesystems r,
   /usr/lib/mit/bin/kinit mr,
   /var/lib/sss/pubconf/kdcinfo.* r,
-  /dev/pts/* wr,
-
 }

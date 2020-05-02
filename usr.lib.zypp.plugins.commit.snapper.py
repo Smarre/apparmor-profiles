@@ -9,7 +9,7 @@
   ptrace read peer=/usr/bin/fish,
   ptrace read peer=unconfined,
 
-  /usr/bin/python3.6 ix,
+  /usr/bin/python[0-9].[0-9] ix,
   /usr/lib/zypp/plugins/commit/snapper.py r,
   owner /etc/snapper/zypp-plugin.conf r,
   owner /usr/bin/python* r,

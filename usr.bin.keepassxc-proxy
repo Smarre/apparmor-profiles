@@ -1,9 +1,12 @@
+# Keepassxc browser plugin proxy
+
 #include <tunables/global>
 
 /usr/bin/keepassxc-proxy flags=(complain) {
   #include <abstractions/base>
   #include <abstractions/kerberosclient>
   #include <abstractions/user-tmp>
+  #include <abstractions/consoles>
 
   /proc/sys/crypto/fips_enabled r,
   /usr/bin/keepassxc-proxy mr,

@@ -10,17 +10,16 @@
   /bin/bash mrix,
   /usr/bin/appstream-util Px,
   /usr/bin/appstreamcli Cx,
-  /usr/bin/python3.6 ix,
+  /usr/bin/python[0-9].[0-9] ix,
   /usr/lib/AsHelper Px,
   /usr/lib/zypp/plugins/appdata/InstallAppdata r,
   owner /proc/filesystems r,
   owner /proc/sys/crypto/fips_enabled r,
   owner /usr/bin/appstream-util mr,
-  owner /usr/bin/python* r,
+  owner /usr/bin/python[0-9].[0-9] r,
   owner /var/cache/app-info/**/ w,
   owner /var/cache/app-info/icons/ r,
   owner /var/cache/app-info/xmls/ r,
-
 
   profile /usr/bin/appstreamcli flags=(complain) {
     #include <abstractions/base>

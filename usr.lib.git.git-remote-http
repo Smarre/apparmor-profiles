@@ -1,5 +1,8 @@
-# Last Modified: Fri Apr 17 07:28:01 2020
+# Profile for git-remote-http
+
 #include <tunables/global>
+
+# git-remote-http should be inherited; this profile is only a fallaback option.
 
 /usr/lib/git/git-remote-http flags=(complain) {
   #include <abstractions/base>

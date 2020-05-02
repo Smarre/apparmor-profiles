@@ -1,4 +1,5 @@
-# Last Modified: Sun Apr 26 10:32:16 2020
+# Profile for utempter
+
 #include <tunables/global>
 
 /usr/lib/utempter/utempter flags=(complain) {
@@ -6,9 +7,8 @@
   #include <abstractions/consoles>
   #include <abstractions/nameservice>
   #include <abstractions/wutmp>
+  #include <abstractions/sddm>
 
   /dev/ptmx rw,
   /usr/lib/utempter/utempter mr,
-  owner /home/*/.local/share/sddm/xorg-session.log w,
-
 }

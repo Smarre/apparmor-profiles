@@ -10,12 +10,11 @@
 
   owner /dev/shm/org.chromium.* r,
 
+  owner @{HOME}/.cache/mozilla/firefox/rnt2rlel.default/cache2/entries/* rw,
   owner @{HOME}/.cache/mozilla/firefox/rnt2rlel.default/safebrowsing-updating/* w,
   owner @{HOME}/.cache/mozilla/firefox/rnt2rlel.default/startupCache/* r,
   owner @{HOME}/.local/share/gvfs-metadata/* r,
-  owner @{HOME}/.local/share/gvfs-metadata/home r,
   owner @{HOME}/.mozilla/firefox/rnt2rlel.default/.parentlock w,
-  owner @{HOME}/.mozilla/firefox/rnt2rlel.default/extensions/* r,
-  owner @{HOME}/.mozilla/firefox/rnt2rlel.default/extensions/* w,
+  owner @{HOME}/.mozilla/firefox/rnt2rlel.default/extensions/* rw,
 
 }

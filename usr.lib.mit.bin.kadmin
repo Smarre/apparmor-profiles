@@ -1,4 +1,5 @@
-# Last Modified: Wed Apr  1 10:36:31 2020
+# Profile for Kerberos 5 admin tool
+
 #include <tunables/global>
 
 /usr/lib/mit/bin/kadmin flags=(complain) {
@@ -12,7 +13,7 @@
   /etc/inputrc.keys r,
   /usr/lib/mit/bin/kadmin mr,
   /var/lib/sss/pubconf/kdcinfo.* r,
-  owner /** rwk,
+  #owner /** rwk,
   owner /home/*/.inputrc r,
 
 }

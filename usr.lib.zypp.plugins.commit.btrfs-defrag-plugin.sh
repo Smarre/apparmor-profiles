@@ -8,6 +8,9 @@
   #include <abstractions/nameservice>
   #include <abstractions/user-tmp>
 
+  # BTRFS needs to be able to defrag everything.
+  owner /** r,
+
   /usr/bin/basename mrix,
   /usr/bin/mktemp mrix,
   /usr/bin/rm mrix,
@@ -16,6 +19,5 @@
   /bin/bash ix,
   /usr/lib/zypp/plugins/commit/btrfs-defrag-plugin.sh r,
   /usr/sbin/btrfs Px,
-  owner /** r,
 
 }
