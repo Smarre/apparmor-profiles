@@ -41,6 +41,13 @@
   /usr/lib/git/git-rebase r,
   /usr/lib/git/git-remote-http Px,
   /usr/lib/git/git-stash mrix,
+
+  /etc/nsswitch.conf r,
+  /etc/passwd r,
+  /etc/vimrc r,
+
+  /usr/share/vim/** r,
+
   owner /home/*/.gitconfig r,
 
 }
