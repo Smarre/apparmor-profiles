@@ -61,6 +61,7 @@
     owner /home/*/.viminfo r,
     owner /home/*/.viminfo w,
     owner /home/*/.viminfo.tmp rw,
+    /dev/pts/* wr,
 
   }
 }

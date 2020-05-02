@@ -10,5 +10,6 @@
   /proc/filesystems r,
   /usr/lib/mit/bin/kinit mr,
   /var/lib/sss/pubconf/kdcinfo.* r,
+  /dev/pts/* wr,
 
 }
