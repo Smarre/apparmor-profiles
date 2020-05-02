@@ -1,4 +1,3 @@
-# Last Modified: Sun Apr 26 20:25:09 2020
 #include <tunables/global>
 
 /usr/bin/mpv flags=(complain) {
@@ -8,31 +7,52 @@
   #include <abstractions/fonts>
   #include <abstractions/openssl>
 
+  # Maybe it’s nice to see when network is used. Probably there also should be some kind of config
+  # that can be used to specify what exactly is allowed, in whitelist manner.
   audit network inet stream,
 
-  /** mr,
+  # By default, allow reading all owned directories. If there happens to be files one wants to play
+  # without having access to them, a local/ profile should be used to specify such locations.
+  owner /** r,
+
+  /etc/machine-id r,
   /etc/mpv/* r,
   /etc/mpv/*/ r,
-  /sys/devices/system/** r,
+  /etc/nsswitch.conf r,
+  /etc/passwd r,
+  /etc/pulse/client.conf r,
+  /etc/pulse/client.conf.d/ r,
+  /etc/pulse/client.conf.d/* r,
+
+  /usr/bin/mpv mr,
   /usr/bin/xdg-screensaver Cx,
+  /usr/share/drirc.d/ r,
+  /usr/share/drirc.d/* r,
+  /usr/share/icons/** r,
+  /usr/share/libdrm/* r,
   /usr/share/lua/** r,
   /usr/share/mpv-plugin-mpris/* r,
+
+  /dev/dri/ r,
+  /dev/shm/ r,
+
+  /sys/devices/system/** r,
+  /sys/devices/pci**/* r,
+
   /{usr/,}lib{,32,64}/** mr,
-  owner /**/ r,
+
   owner @{HOME}/.cache/fontconfig/* r,
   owner @{HOME}/.cache/mesa_shader_cache/** mrwk,
   owner @{HOME}/.cache/mesa_shader_cache/index rw,
   owner @{HOME}/.fonts.conf r,
   owner @{HOME}/.fonts/ r,
 
-
   profile /usr/bin/xdg-screensaver flags=(complain) {
     #include <abstractions/base>
     #include <abstractions/bash>
     #include <abstractions/consoles>
 
-    /bin/bash ix,
-    /bin/bash mr,
+    /bin/bash mrix,
     /usr/bin/dbus-send mrix,
     /usr/bin/grep mrix,
     /usr/bin/mv mrix,
