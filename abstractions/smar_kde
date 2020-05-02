@@ -1,0 +1,31 @@
+
+# Real abstractions/kde doesn’t seem to include everything that about everything needs, so here is rest.
+
+#include <abstractions/consoles>
+#include <abstractions/dbus-session-strict>
+#include <abstractions/sddm>
+#include <abstractions/kde>
+#include <abstractions/qt5>
+#include <abstractions/vulkan>
+#include <abstractions/ibus>
+
+  /sys/devices/** r,
+  /usr/share/drirc.d/ r,
+  /usr/share/drirc.d/* r,
+  /usr/share/icu/** r,
+  /usr/share/libdrm/* r,
+  /usr/share/plasma/look-and-feel/** r,
+  /usr/share/kservices5/ r,
+  /usr/share/kservices5/**/ r,
+  /usr/share/kservices5/** r,
+  /usr/share/mime/ r,
+
+  /proc/sys/kernel/core_pattern r,
+
+  owner @{HOME}/.Xauthority r,
+  owner @{HOME}/.cache/icon-cache.kcache rw,
+  owner @{HOME}/.cache/mesa_shader_cache/** r,
+  owner @{HOME}/.cache/mesa_shader_cache/index rw,
+  owner @{HOME}/.config/kdeglobals r,
+  owner @{HOME}/.config/ibus/bus/* r,
+  owner @{HOME}/.local/share/mime/generic-icons r,
