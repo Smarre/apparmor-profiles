@@ -6,20 +6,16 @@
   #include <abstractions/qt5>
   #include <abstractions/smar_kde>
 
-  /proc/sys/kernel/core_pattern r,
   /usr/bin/plasma-browser-integration-host mr,
-  /usr/share/icu/** r,
+
   owner /dev/shm/org.chromium.* r,
-  owner /home/*/.Xauthority r,
-  owner /home/*/.cache/mozilla/firefox/rnt2rlel.default/safebrowsing-updating/* w,
-  owner /home/*/.cache/mozilla/firefox/rnt2rlel.default/startupCache/* r,
-  owner /home/*/.config/ibus/bus/* r,
-  owner /home/*/.config/kdeglobals r,
-  owner /home/*/.local/share/gvfs-metadata/* r,
-  owner /home/*/.local/share/gvfs-metadata/home r,
-  owner /home/*/.local/share/mime/generic-icons r,
-  owner /home/*/.mozilla/firefox/rnt2rlel.default/.parentlock w,
-  owner /home/*/.mozilla/firefox/rnt2rlel.default/extensions/* r,
-  owner /home/*/.mozilla/firefox/rnt2rlel.default/extensions/* w,
+
+  owner @{HOME}/.cache/mozilla/firefox/rnt2rlel.default/safebrowsing-updating/* w,
+  owner @{HOME}/.cache/mozilla/firefox/rnt2rlel.default/startupCache/* r,
+  owner @{HOME}/.local/share/gvfs-metadata/* r,
+  owner @{HOME}/.local/share/gvfs-metadata/home r,
+  owner @{HOME}/.mozilla/firefox/rnt2rlel.default/.parentlock w,
+  owner @{HOME}/.mozilla/firefox/rnt2rlel.default/extensions/* r,
+  owner @{HOME}/.mozilla/firefox/rnt2rlel.default/extensions/* w,
 
 }
