@@ -21,7 +21,6 @@
   owner @{HOME}/.mozilla/firefox/rnt2rlel.default/extensions/* rw,
   owner @{HOME}/.mozilla/firefox/rnt2rlel.default/extensions/keepassxc-browser@keepassxc.org.xpi r,
   owner @{HOME}/.mozilla/firefox/rnt2rlel.default/sessionstore-backups/* w,
-  owner @{HOME}/.mozilla/firefox/rnt2rlel.default/sessionstore-backups/recovery.* a,
   owner @{HOME}/.mozilla/firefox/rnt2rlel.default/storage/** w,
   owner @{HOME}/.mozilla/firefox/rnt2rlel.default/weave/failed/history.json w,
   owner @{HOME}/{Downloads,Lataukset}/* w,
