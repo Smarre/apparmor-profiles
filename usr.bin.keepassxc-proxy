@@ -1,4 +1,3 @@
-# Last Modified: Sun Apr 26 15:18:23 2020
 #include <tunables/global>
 
 /usr/bin/keepassxc-proxy flags=(complain) {
@@ -9,27 +8,22 @@
   /proc/sys/crypto/fips_enabled r,
   /usr/bin/keepassxc-proxy mr,
   /usr/share/icu/** r,
+
   owner /dev/shm/org.chromium.* r,
   owner /dev/shm/org.mozilla.ipc.* rw,
-  owner /home/*/.cache/mozilla/firefox/rnt2rlel.default/** r,
-  owner /home/*/.cache/mozilla/firefox/rnt2rlel.default/** w,
-  owner /home/*/.cache/mozilla/firefox/rnt2rlel.default/cache2/entries/* rw,
-  owner /home/*/.cache/mozilla/firefox/rnt2rlel.default/startupCache/* r,
-  owner /home/*/.cache/mozilla/firefox/rnt2rlel.default/startupCache/scriptCache-child-current.bin r,
-  owner /home/*/.local/share/gvfs-metadata/* r,
-  owner /home/*/.local/share/gvfs-metadata/home r,
-  owner /home/*/.mozilla/firefox/rnt2rlel.default/* w,
-  owner /home/*/.mozilla/firefox/rnt2rlel.default/** w,
-  owner /home/*/.mozilla/firefox/rnt2rlel.default/.parentlock w,
-  owner /home/*/.mozilla/firefox/rnt2rlel.default/extensions/* r,
-  owner /home/*/.mozilla/firefox/rnt2rlel.default/extensions/* w,
-  owner /home/*/.mozilla/firefox/rnt2rlel.default/extensions/keepassxc-browser@keepassxc.org.xpi r,
-  owner /home/*/.mozilla/firefox/rnt2rlel.default/sessionstore-backups/* w,
-  owner /home/*/.mozilla/firefox/rnt2rlel.default/sessionstore-backups/previous.jsonlz4 r,
-  owner /home/*/.mozilla/firefox/rnt2rlel.default/sessionstore-backups/recovery.* a,
-  owner /home/*/.mozilla/firefox/rnt2rlel.default/storage/** w,
-  owner /home/*/.mozilla/firefox/rnt2rlel.default/weave/failed/history.json w,
-  owner /home/*/Lataukset/* w,
   owner /proc/*/mountinfo r,
+
+  owner @{HOME}/.cache/mozilla/firefox/rnt2rlel.default/** rw,
+  owner @{HOME}/.local/share/gvfs-metadata/* r,
+  #owner @{HOME}/.mozilla/firefox/rnt2rlel.default/* w,
+  owner @{HOME}/.mozilla/firefox/rnt2rlel.default/** w,
+  owner @{HOME}/.mozilla/firefox/rnt2rlel.default/.parentlock w,
+  owner @{HOME}/.mozilla/firefox/rnt2rlel.default/extensions/* rw,
+  owner @{HOME}/.mozilla/firefox/rnt2rlel.default/extensions/keepassxc-browser@keepassxc.org.xpi r,
+  owner @{HOME}/.mozilla/firefox/rnt2rlel.default/sessionstore-backups/* w,
+  owner @{HOME}/.mozilla/firefox/rnt2rlel.default/sessionstore-backups/recovery.* a,
+  owner @{HOME}/.mozilla/firefox/rnt2rlel.default/storage/** w,
+  owner @{HOME}/.mozilla/firefox/rnt2rlel.default/weave/failed/history.json w,
+  owner @{HOME}/{Downloads,Lataukset}/* w,
 
 }
