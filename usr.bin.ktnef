@@ -1,4 +1,3 @@
-# Last Modified: Tue Jan 28 12:23:26 2020
 #include <tunables/global>
 
 /usr/bin/ktnef flags=(complain) {
@@ -15,12 +14,9 @@
   /usr/share/qt5/translations/qtwebengine_locales/*.pak r,
   owner /dev/shm/.org.chromium.Chromium.* ra,
   owner @{HOME}/.ICEauthority r,
-  owner @{HOME}/.Xauthority r,
   owner @{HOME}/.cache/fontconfig/* r,
-  owner @{HOME}/.cache/mesa_shader_cache/index rw,
   owner @{HOME}/.config/.* rwk,
   owner @{HOME}/.config/ibus/bus/* r,
-  owner @{HOME}/.config/kdeglobals r,
   owner @{HOME}/.config/ktnefrc rw,
   owner @{HOME}/.config/ktnefrc.* rw,
   owner @{HOME}/.config/ktnefrc.lock wk,
@@ -30,6 +26,5 @@
   owner @{HOME}/.fonts.conf r,
   owner @{HOME}/.fonts/ r,
   owner @{HOME}/.local/share/kxmlgui5/ktnef/ w,
-  owner @{HOME}/.local/share/mime/generic-icons r,
 
 }
