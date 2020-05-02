@@ -1,6 +1,8 @@
 # Last Modified: Wed Apr 15 11:02:38 2020
 #include <tunables/global>
 
+# queryconfig should be inherited; this profile is only a fallaback option.
+
 /usr/lib/build/queryconfig flags=(complain) {
   #include <abstractions/base>
   #include <abstractions/consoles>

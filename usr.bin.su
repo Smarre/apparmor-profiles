@@ -1,9 +1,8 @@
-# Last Modified: Thu Apr 16 08:56:52 2020
 #include <tunables/global>
 
 /usr/bin/su flags=(complain) {
   #include <abstractions/authentication>
-  #include <abstractions/base>
+  #include <abstractions/extended>
   #include <abstractions/consoles>
   #include <abstractions/nameservice>
   #include <abstractions/wutmp>
@@ -15,13 +14,19 @@
   capability sys_module,
 
   /etc/default/su r,
+
+  # Almost always fish should be inherited, but that would mean duplicating almost everything
+  # from fish profile to here, making no sense.
   /usr/bin/fish Px,
   /usr/bin/su mr,
+
   owner /etc/environment r,
   owner /etc/security/limits.d/ r,
   owner /proc/*/loginuid r,
+
+  # This also is in extended, but see todo there.
   owner /proc/filesystems r,
-  owner /proc/sys/crypto/fips_enabled r,
+
   owner /proc/sys/kernel/ngroups_max r,
 
 }

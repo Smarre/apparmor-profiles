@@ -2,11 +2,11 @@
 #include <tunables/global>
 
 /usr/bin/setxkbmap flags=(complain) {
-  #include <abstractions/X>
   #include <abstractions/base>
+  #include <abstractions/X>
+  #include <abstractions/sddm>
 
   /usr/bin/setxkbmap mr,
-  owner /home/*/.Xauthority r,
-  owner /home/*/.local/share/sddm/xorg-session.log w,
+  owner @{HOME}/.Xauthority r,
 
 }

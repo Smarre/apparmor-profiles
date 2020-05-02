@@ -1,5 +1,8 @@
-# Last Modified: Sat Apr 25 07:26:39 2020
+# Profile for runservices
+
 #include <tunables/global>
+
+# runservices should be inherited; this profile is only a fallaback option.
 
 /usr/lib/build/runservices flags=(complain) {
   #include <abstractions/base>

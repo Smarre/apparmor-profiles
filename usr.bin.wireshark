@@ -1,4 +1,5 @@
-# Last Modified: Sat Mar 28 10:39:49 2020
+# Profile for wireshark
+
 #include <tunables/global>
 
 # vim:syntax=apparmor

@@ -4,9 +4,9 @@
 /usr/bin/qdbus-qt5 flags=(complain) {
   #include <abstractions/base>
   #include <abstractions/consoles>
+  #include <abstractions/sddm>
   #include <abstractions/smar_kde>
 
   /usr/bin/qdbus-qt5 mr,
-  owner /home/*/.local/share/sddm/xorg-session.log w,
 
 }

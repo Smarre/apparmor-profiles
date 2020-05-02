@@ -1,4 +1,5 @@
-# Last Modified: Sun Apr 26 09:07:07 2020
+# Profile for script for building RPM packages
+
 #include <tunables/global>
 
 /usr/lib/build/build flags=(complain) {
@@ -34,27 +35,7 @@
 
   /** r,
   /bin/bash ix,
-  /home/*/.osc_build/** rwk,
-  /home/*/.osc_build/*/.build.command ix,
-  /home/*/.osc_build/*/bin/* ix,
-  /home/*/.osc_build/*/bin/* mrw,
-  /home/*/.osc_build/*/home/abuild/rpmbuild/BUILD/** ix,
-  /home/*/.osc_build/*/home/abuild/.cache/bazel/_bazel_abuild/install/*/* ix,
-  /home/*/.osc_build/*/lib64/* mr,
-  /home/*/.osc_build/*/opt/testing/bin/* ix,
-  /home/*/.osc_build/*/opt/testing/lib64/* mrw,
-  /home/*/.osc_build/*/opt/testing/lib64/** mrw,
-  /home/*/.osc_build/*/sbin/* mrix,
-  /home/*/.osc_build/*/tmp/** mrix,
-  /home/*/.osc_build/*/tmp/dlopen*/dlopen mrix,
-  /home/*/.osc_build/*/tmp/imake* mrix,
-  /home/*/.osc_build/*/usr/bin/* ix,
-  /home/*/.osc_build/*/usr/bin/* mrwk,
-  /home/*/.osc_build/*/usr/lib/** mrix,
-  /home/*/.osc_build/*/usr/lib64/* mr,
-  /home/*/.osc_build/*/usr/lib64/** mrixwk,
-  /home/*/.osc_build/*/usr/sbin/* mrix,
-  /home/smar/.osc_build/SLE_15_SP1-x86_64/.unpack.command mrix,
+  /home/*/.osc_build/** mrwklix,
   /usr/bin/bsdtar mrix,
   /usr/bin/cat mrix,
   /usr/bin/chattr mrix,

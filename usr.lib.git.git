@@ -1,4 +1,5 @@
-# Last Modified: Fri Apr 17 07:59:03 2020
+# Profile for git lib script
+
 #include <tunables/global>
 
 /usr/lib/git/git flags=(complain) {
@@ -6,9 +7,11 @@
   #include <abstractions/bash>
   #include <abstractions/consoles>
 
-  /** r,
-  /bin/bash ix,
-  /bin/bash mr,
+  # Reading and writing to about everywhere where owner is allowed, since git repositories can
+  # reside about anywhere.
+  owner /** rwl,
+
+  /bin/bash mrix,
   /usr/bin/basename mrix,
   /usr/bin/cat mrix,
   /usr/bin/cp mrix,
@@ -38,8 +41,6 @@
   /usr/lib/git/git-rebase r,
   /usr/lib/git/git-remote-http Px,
   /usr/lib/git/git-stash mrix,
-  owner /** rl,
-  owner /** rw,
   owner /home/*/.gitconfig r,
 
 }

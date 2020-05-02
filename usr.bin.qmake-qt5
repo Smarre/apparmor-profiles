@@ -3,7 +3,10 @@
 
 /usr/bin/qmake-qt5 flags=(complain) {
   #include <abstractions/base>
+  #include <abstractions/consoles>
 
   /usr/bin/qmake-qt5 mr,
 
+  # Better just allow read and write from anywhere; please inherit qmake instead of using this profile if using from a script.
+  /** rw,
 }

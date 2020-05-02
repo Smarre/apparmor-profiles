@@ -23,6 +23,5 @@
   owner /var/cache/app-info/icons/** w,
   owner /var/cache/app-info/xmls/* rw,
   owner /var/cache/zypp/raw/** r,
-  owner /var/cache/zypp/raw/*/repodata/repomd.xml r,
 
 }

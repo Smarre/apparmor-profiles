@@ -1,5 +1,8 @@
-# Last Modified: Thu Feb 13 14:13:41 2020
+# systemd-cat profile.
+
 #include <tunables/global>
+
+# systemd-cat should be inherited; this profile is only a fallaback option.
 
 profile /usr/bin/systemd-cat {
   #include <abstractions/base>
