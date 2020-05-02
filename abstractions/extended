@@ -1,0 +1,9 @@
+
+# More extended basic profile
+
+#include <abstractions/base>
+
+  # TODO: this one probably should not be here, as not everything should be able to get filesystem info...
+  owner /proc/filesystems r,
+  owner /proc/sys/crypto/fips_enabled r,
+
