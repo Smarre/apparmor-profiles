@@ -18,6 +18,7 @@
   /proc/sys/crypto/fips_enabled r,
   /usr/bin/gpg-agent Px,
   /usr/bin/gpg2 mr,
+  /usr/bin/dirmngr Pix,
   /usr/share/qt5/resources/* r,
   /usr/share/qt5/translations/qtwebengine_locales/*.pak r,
   owner /dev/shm/.org.chromium.Chromium.* ra,

@@ -9,23 +9,27 @@
 
   capability dac_read_search,
 
-  /** r,
+  # Files that needs to have a profile may reside anywhere.
+  # aa-autodep needs to load a binary in order to find its deps.
+  /** mr,
+
   /bin/bash ix,
-  @{HOME}/Projektit/random/apparmor-profiles/** r,
-  /lib/ld-2.26.so mrix,
-  /lib64/ld-2.26.so mrix,
-  /opt/TeamSpeak3-Client-linux_amd64/* r,
+  /lib/ld-2.26.so ix,
+  /lib64/ld-2.26.so ix,
   /sbin/apparmor_parser Px,
-  /usr/bin/cat mrix,
-  /usr/bin/ldd mrix,
-  /usr/bin/python3.6 ix,
-  owner /** mr,
-  owner /dev/tty* w,
+  /usr/bin/cat ix,
+  /usr/bin/ldd ix,
+  /usr/bin/python[0-9].[0-9] ix,
+
+  owner /dev/tty[0-9]* w,
+
+  # Profiles can be written...
   owner /etc/apparmor.d/* rw,
+
+  # ..but even abstraction files needs to be readable.
   owner /etc/apparmor.d/** r,
+
   owner /proc/*/fd/ r,
   owner /proc/*/mounts r,
   owner /usr/share/apparmor/** r,
-  owner /usr/share/apparmor/**/ r,
-
 }

@@ -16,8 +16,11 @@
 
   signal send set=kill peer=/usr/lib/obs/service/tar_scm,
 
+  /etc/os-release r,
   /etc/rpm/ r,
   /etc/rpm/* r,
+  # Read by sudo, which is used internally by this system.
+  /etc/sudoers r,
   @{HOME}/.osc_build/**/ r,
 
   /bin/bash mrix,

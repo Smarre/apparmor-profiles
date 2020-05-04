@@ -16,5 +16,6 @@
   /usr/bin/scdaemon Px,
   owner /home/*/.gnupg/* r,
   owner /proc/*/fd/ r,
+  owner /run/user/[0-9]*/gnupg/ w,
 
 }

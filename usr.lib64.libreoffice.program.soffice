@@ -1,4 +1,5 @@
-# Last Modified: Fri Dec 20 18:07:20 2019
+# Main LibreOffice binary, I suppose.
+
 #include <tunables/global>
 
 /usr/lib64/libreoffice/program/soffice flags=(complain) {
@@ -7,8 +8,7 @@
   #include <abstractions/consoles>
   #include <abstractions/nameservice>
 
-  /bin/bash ix,
-  /bin/bash r,
+  /bin/bash rix,
   /usr/bin/basename mrix,
   /usr/bin/dirname mrix,
   /usr/bin/grep mrix,
@@ -19,8 +19,8 @@
   /usr/share/qt5/resources/* r,
   /usr/share/qt5/translations/qtwebengine_locales/* r,
   /{usr/,}lib{,32,64}/** mr,
+
   owner "@{HOME}/.local/share/kmail2/QtWebEngine/Default/Visited Links" rw,
   owner /dev/shm/.org.chromium.Chromium.* ra,
   owner @{HOME}/.Xauthority r,
-
 }

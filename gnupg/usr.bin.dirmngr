@@ -3,6 +3,7 @@
 
 /usr/bin/dirmngr flags=(complain) {
   #include <abstractions/base>
+  #include <abstractions/consoles>
 
   /proc/sys/crypto/fips_enabled r,
   /usr/bin/dirmngr mr,

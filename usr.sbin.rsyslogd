@@ -1,12 +1,15 @@
 # ------------------------------------------------------------------
 #
 #    Copyright (C) 2014 Novell/SUSE
+#    Copyright (C) 2020 Samu Voutilainen
 #
 #    This program is free software; you can redistribute it and/or
 #    modify it under the terms of version 2 of the GNU General Public
 #    License published by the Free Software Foundation.
 #
 # ------------------------------------------------------------------
+
+# Modified from apparmor-profiles.
 
 #include <tunables/global>
 
@@ -24,7 +27,7 @@
   capability sys_tty_config,
   capability syslog,
 
-  /dev/tty* w,
+  /dev/tty[0-9]* w,
   /dev/xconsole rw,
 
   /etc/rsyslog.conf r,

@@ -1,5 +1,7 @@
-# Last Modified: Fri Dec 20 18:10:47 2019
+# Profile for LibreOffice’s splash shown when launching.
 #include <tunables/global>
+
+# I find it strange the splash does everything, but I guess that is the splash’s function...
 
 /usr/lib64/libreoffice/program/oosplash flags=(complain) {
   #include <abstractions/base>
@@ -10,29 +12,34 @@
   #include <abstractions/nameservice>
   #include <abstractions/openssl>
   #include <abstractions/user-tmp>
+  #include <abstractions/consoles>
 
-  /**/ r,
-  /proc/sys/crypto/fips_enabled r,
-  /sys/devices/system/cpu/online r,
+  #/**/ r,
+
+  #/{usr/,}lib{,32,64}/** mr,
   /usr/lib64/libreoffice/program/javaldx Px,
   /usr/lib64/libreoffice/program/soffice.bin Px,
-  /usr/share/icu/** r,
-  /usr/share/libreoffice/** r,
-  /usr/share/qt5/resources/* r,
-  /usr/share/qt5/translations/qtwebengine_locales/* r,
-  /usr/share/voikko/** r,
-  /{usr/,}lib{,32,64}/** mr,
-  owner "@{HOME}/.local/share/kmail2/QtWebEngine/Default/Visited Links" rw,
-  owner /dev/shm/.org.chromium.Chromium.* ra,
-  owner @{HOME}/.ICEauthority r,
-  owner @{HOME}/.Xauthority r,
-  owner @{HOME}/.cache/fontconfig/* r,
-  owner @{HOME}/.config/libreoffice/** rwk,
-  owner @{HOME}/.config/user-dirs.dirs r,
-  owner @{HOME}/.fonts.conf r,
-  owner @{HOME}/.local/lib/python*/** r,
-  owner @{HOME}/.recently-used rwk,
-  owner /proc/*/mounts r,
-  owner /{usr/,}lib{,32,64}/** mrw,
 
+  /usr/lib64/libreoffice/program/oosplash mr,
+
+  #/usr/share/icu/** r,
+  /usr/share/libreoffice/** r,
+  #/usr/share/qt5/resources/* r,
+  #/usr/share/qt5/translations/qtwebengine_locales/* r,
+  #/usr/share/voikko/** r,
+
+  #/proc/sys/crypto/fips_enabled r,
+  #/sys/devices/system/cpu/online r,
+
+  #owner "@{HOME}/.local/share/kmail2/QtWebEngine/Default/Visited Links" rw,
+  #owner /dev/shm/.org.chromium.Chromium.* ra,
+  #owner @{HOME}/.ICEauthority r,
+  owner @{HOME}/.Xauthority r,
+  #owner @{HOME}/.cache/fontconfig/* r,
+  #owner @{HOME}/.config/libreoffice/** rwk,
+  #owner @{HOME}/.config/user-dirs.dirs r,
+  #owner @{HOME}/.fonts.conf r,
+  #owner @{HOME}/.local/lib/python*/** r,
+  #owner @{HOME}/.recently-used rwk,
+  #owner /proc/*/mounts r,
 }

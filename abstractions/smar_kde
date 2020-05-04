@@ -24,7 +24,7 @@
 
   owner @{HOME}/.Xauthority r,
   owner @{HOME}/.cache/icon-cache.kcache rw,
-  owner @{HOME}/.cache/mesa_shader_cache/** r,
+  owner @{HOME}/.cache/mesa_shader_cache/** rw,
   owner @{HOME}/.cache/mesa_shader_cache/index rw,
   owner @{HOME}/.config/kdeglobals r,
   owner @{HOME}/.config/ibus/bus/* r,

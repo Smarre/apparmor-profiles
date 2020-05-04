@@ -1,4 +1,5 @@
-# Last Modified: Wed Apr  8 07:03:40 2020
+# Bring a network device up.
+
 #include <tunables/global>
 
 /usr/sbin/ifup flags=(complain) {

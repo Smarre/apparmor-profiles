@@ -1,4 +1,4 @@
-# Last Modified: Sun Apr 26 09:54:53 2020
+# Show and filter entries in audit log.
 #include <tunables/global>
 
 /usr/sbin/ausearch flags=(complain) {
@@ -7,7 +7,7 @@
   #include <abstractions/nameservice>
 
   /usr/sbin/ausearch mr,
-  owner /dev/tty* rw,
+  owner /dev/tty[0-9]* rw,
   owner /etc/audit/auditd.conf r,
   owner /var/log/audit/ r,
   owner /var/log/audit/* r,

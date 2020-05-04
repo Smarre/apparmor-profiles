@@ -5,6 +5,7 @@
   #include <abstractions/base>
   #include <abstractions/nameservice>
   #include <abstractions/user-tmp>
+  #include <abstractions/consoles>
 
   /proc/sys/crypto/fips_enabled r,
   /usr/bin/gpg-agent mr,

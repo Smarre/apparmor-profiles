@@ -3,6 +3,7 @@
 
 /usr/bin/scdaemon flags=(complain) {
   #include <abstractions/base>
+  #include <abstractions/consoles>
 
   /dev/bus/usb/ r,
   /run/udev/data/* r,

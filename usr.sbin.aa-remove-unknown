@@ -1,4 +1,5 @@
-# Last Modified: Sun Apr 26 09:53:43 2020
+# Remove automatically generated profiles from AppArmor’s cache.
+
 #include <tunables/global>
 
 /usr/sbin/aa-remove-unknown flags=(complain) {
@@ -16,13 +17,13 @@
   /usr/bin/sed mrix,
   /usr/bin/sort mrix,
   /usr/sbin/aa-remove-unknown r,
+
   owner /bin/bash r,
   owner /dev/tty* rw,
   owner /etc/apparmor.d/ r,
   owner /etc/apparmor/* r,
   owner /etc/fstab r,
   owner /proc/filesystems r,
-  owner /sys/kernel/security/apparmor/* r,
-  owner /sys/kernel/security/apparmor/* w,
+  owner /sys/kernel/security/apparmor/* rw,
 
 }

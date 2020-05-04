@@ -10,14 +10,22 @@
 
   /etc/exports r,
   /etc/fstab r,
+  /etc/pulse/client.conf r,
+  /etc/pulse/client.conf.d/ r,
+  /etc/pulse/client.conf.d/* r,
   /etc/xdg/libkleopatrarc r,
   /etc/xdg/menus/ r,
   /etc/xdg/menus/applications-merged/ r,
   /etc/xdg/ui/* r,
+
+  /usr/share/sounds/* r,
+
+  /dev/shm/ r,
   /run/udev/data/* r,
   /sys/bus/ r,
   /sys/bus/usb/devices/ r,
   /sys/class/ r,
+
   /usr/bin/gpg2 Px,
   /usr/bin/gpgconf Px,
   /usr/bin/gpgsm Px,
@@ -38,12 +46,14 @@
   owner /home/*/.local/share/user-places.xbel r,
   owner /proc/*/fd/ r,
   owner /proc/*/mounts r,
-  owner /run/user/*/kleopatra*.slave-socket rw,
+  owner /run/user/[0-9]*/kleopatra*.slave-socket rw,
+  owner /run/user/[0-9]*/gvfs/ r,
 
 
   profile /usr/bin/net flags=(complain) {
     #include <abstractions/base>
     #include <abstractions/samba>
+    #include <abstractions/consoles>
 
     /usr/bin/net mr,
 

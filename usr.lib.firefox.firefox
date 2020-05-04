@@ -131,6 +131,9 @@ profile firefox /usr/lib{,64}/firefox{,-[0-9]*}/firefox{,*[^s][^h]} {
   owner @{HOME}/.{firefox,mozilla}/**/plugins/** rm,
   owner @{HOME}/.gnome2/firefox*-bin-* rw,
 
+  # Binaries Firefox tries to use
+  /usr/bin/expr ix,
+
   # Caches
   owner /home/smar/.cache/mesa_shader_cache/index rw,
   owner @{HOME}/.cache/mozilla/firefox/** rw,
