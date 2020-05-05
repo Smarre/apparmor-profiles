@@ -1,0 +1,72 @@
+# Last Modified: Sun Apr 26 10:43:26 2020
+#include <tunables/global>
+
+/usr/bin/steam {
+  #include <abstractions/audio>
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/consoles>
+  #include <abstractions/dbus-session-strict>
+  #include <abstractions/freedesktop.org>
+  #include <abstractions/gnome>
+  #include <abstractions/nameservice>
+  #include <abstractions/user-tmp>
+
+  capability setuid,
+
+  /bin/bash mrix,
+  /dev/ptmx rw,
+  /proc/filesystems r,
+  /usr/bin/* mrix,
+  /usr/bin/id Cx,
+  /usr/bin/ln Cx,
+  /usr/bin/systemctl Cx,
+  /usr/share/zenity/zenity.ui r,
+  @{HOME}/.local/share/Steam/steam.sh Px,
+  owner /home/*/.local/share/sddm/xorg-session.log w,
+  owner /proc/*/fd/ r,
+  owner /proc/*/stat r,
+  owner @{HOME}/.ICEauthority r,
+  owner @{HOME}/.Xauthority r,
+  owner @{HOME}/.config/gtk-3.0/* r,
+  owner @{HOME}/.config/user-dirs.dirs r,
+  owner @{HOME}/.local/share/Steam/* w,
+  owner @{HOME}/.local/share/Steam/bootstrap.tar.xz w,
+  owner @{HOME}/.local/share/Steam/linux32/steamerrorreporter w,
+  owner @{HOME}/.local/share/Steam/steam.sh r,
+  owner @{HOME}/.local/share/Steam/ubuntu12_32/* w,
+  owner @{HOME}/.local/share/Steam/ubuntu12_32/** w,
+  owner @{HOME}/.steam/starting w,
+  owner @{HOME}/Työpöytä/steam.desktop w,
+
+
+  profile /usr/bin/id {
+    #include <abstractions/base>
+    #include <abstractions/sddm>
+
+    /usr/bin/id mr,
+
+  }
+
+  profile /usr/bin/ln {
+    #include <abstractions/base>
+
+    /usr/bin/ln mr,
+    @{HOME}/.steam/steam w,
+
+  }
+
+  profile /usr/bin/systemctl {
+    #include <abstractions/base>
+    #include <abstractions/sddm>
+
+    ptrace read peer=unconfined,
+
+    /proc/*/cgroup r,
+    /proc/*/sched r,
+    /proc/cmdline r,
+    /usr/bin/systemctl mr,
+    owner /proc/*/stat r,
+
+  }
+}
