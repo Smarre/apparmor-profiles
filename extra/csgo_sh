@@ -1,0 +1,32 @@
+# Last Modified: Tue Aug 27 23:34:47 2019
+
+# TODO: this is not used, tho I don’t really know how I should do this...
+profile csgo_sh flags=(complain) {
+  #include <abstractions/X>
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/consoles>
+  #include <abstractions/user-tmp>
+  #include <abstractions/vulkan>
+
+  "/home/smar/Tiedostot/Sek/Steam/steamapps/common/Counter-Strike Global Offensive/csgo.sh" r,
+  /bin/bash ix,
+  /bin/bash r,
+  /dev/hidraw* rw,
+  /proc/cpuinfo r,
+  /proc/filesystems r,
+  /sys/devices/** r,
+  /sys/devices/system/cpu/** r,
+  /usr/share/drirc.d/ r,
+  /usr/share/drirc.d/* r,
+  /usr/share/libdrm/amdgpu.ids r,
+  owner "@{HOME}/Tiedostot/Sek/Steam/steamapps/common/Counter-Strike Global Offensive/bin/*" r,
+  owner "@{HOME}/Tiedostot/Sek/Steam/steamapps/common/Counter-Strike Global Offensive/bin/linux64/*" mr,
+  owner "@{HOME}/Tiedostot/Sek/Steam/steamapps/common/Counter-Strike Global Offensive/csgo_linux64" mr,
+  owner @{HOME}/.Xauthority r,
+  owner @{HOME}/.steam/steam.pipe r,
+  owner @{HOME}/Tiedostot/Sek/Steam/steamapps/shadercache/** rw,
+  owner /proc/*/cmdline r,
+  owner /proc/*/status r,
+
+}
