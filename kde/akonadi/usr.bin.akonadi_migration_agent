@@ -3,12 +3,7 @@
 
 /usr/bin/akonadi_migration_agent {
   #include <abstractions/akonadi_agent_base>
-  #include <abstractions/base>
-  #include <abstractions/consoles>
-  #include <abstractions/dbus-session-strict>
-  #include <abstractions/kde>
-  #include <abstractions/qt5>
-  #include <abstractions/sddm>
+  #include <abstractions/smar_kde>
 
   network netlink raw,
 
@@ -16,6 +11,5 @@
   owner @{HOME}/.config/akonadi-migrationrc r,
   owner @{HOME}/.config/akonadi/* w,
   owner @{HOME}/.local/share/akonadi_migration_agent/gidmigratortext/directorymigration.log w,
-  owner @{HOME}/.local/share/mime/generic-icons r,
 
 }

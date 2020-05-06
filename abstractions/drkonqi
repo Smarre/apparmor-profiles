@@ -1,0 +1,8 @@
+
+# When a KDE program crashes, drkonqi is launched to handle the crash. This profile should contain everything
+# programs needs to handle this integration.
+
+
+
+  /usr/lib64/libexec/drkonqi mrix,
+  #owner /kcrash_* w,

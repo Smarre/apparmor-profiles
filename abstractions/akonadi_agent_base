@@ -1,0 +1,17 @@
+
+# Akonadi base for agent binaries
+
+   #include <abstractions/base>
+   #include <abstractions/consoles>
+   #include <abstractions/dbus-session-strict>
+
+   /proc/filesystems r,
+   /proc/sys/crypto/fips_enabled r,
+   /proc/sys/kernel/core_pattern r,
+   /usr/share/icu/** r,
+   /usr/share/plasma/look-and-feel/** r,
+   owner @{HOME}/.cache/icon-cache.kcache rw,
+   owner @{HOME}/.config/akonadi/* r,
+   owner @{HOME}/.config/ibus/bus/* r,
+   owner @{HOME}/.config/kcminputrc r,
+

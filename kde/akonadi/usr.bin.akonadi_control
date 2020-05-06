@@ -3,14 +3,9 @@
 
 /usr/bin/akonadi_control {
   #include <abstractions/base>
-  #include <abstractions/consoles>
-  #include <abstractions/dbus-session-strict>
-  #include <abstractions/kde>
   #include <abstractions/nameservice>
   #include <abstractions/openssl>
-  #include <abstractions/qt5>
   #include <abstractions/smar_kde>
-  #include <abstractions/vulkan>
 
   signal send set=kill peer=/usr/bin/akonadi_archivemail_agent,
   signal send set=kill peer=/usr/bin/akonadi_davgroupware_resource,
@@ -34,42 +29,10 @@
   /proc/sys/crypto/fips_enabled r,
   /proc/sys/kernel/core_pattern r,
   /proc/sys/vm/overcommit_memory r,
-  /usr/bin/akonadi_akonotes_resource Px,
-  /usr/bin/akonadi_akonotes_resource mr,
-  /usr/bin/akonadi_archivemail_agent Px,
-  /usr/bin/akonadi_archivemail_agent mr,
-  /usr/bin/akonadi_birthdays_resource Px,
-  /usr/bin/akonadi_birthdays_resource mr,
-  /usr/bin/akonadi_contacts_resource Px,
-  /usr/bin/akonadi_contacts_resource mr,
+  /usr/bin/akonadi_*_resource mrPx,
+  /usr/bin/akonadi_*_agent mrPx,
   /usr/bin/akonadi_control mr,
-  /usr/bin/akonadi_davgroupware_resource Px,
-  /usr/bin/akonadi_followupreminder_agent Px,
-  /usr/bin/akonadi_followupreminder_agent mr,
-  /usr/bin/akonadi_ical_resource Px,
-  /usr/bin/akonadi_ical_resource mr,
-  /usr/bin/akonadi_imap_resource Px,
-  /usr/bin/akonadi_imap_resource mr,
-  /usr/bin/akonadi_indexing_agent Px,
-  /usr/bin/akonadi_indexing_agent mr,
-  /usr/bin/akonadi_maildir_resource Px,
-  /usr/bin/akonadi_maildir_resource mr,
-  /usr/bin/akonadi_maildispatcher_agent Px,
-  /usr/bin/akonadi_maildispatcher_agent mr,
-  /usr/bin/akonadi_mailfilter_agent Px,
-  /usr/bin/akonadi_mailfilter_agent mr,
-  /usr/bin/akonadi_migration_agent Px,
-  /usr/bin/akonadi_migration_agent mr,
-  /usr/bin/akonadi_newmailnotifier_agent Px,
-  /usr/bin/akonadi_newmailnotifier_agent mr,
-  /usr/bin/akonadi_notes_agent Px,
-  /usr/bin/akonadi_notes_agent mr,
-  /usr/bin/akonadi_sendlater_agent Px,
-  /usr/bin/akonadi_sendlater_agent mr,
-  /usr/bin/akonadi_unifiedmailbox_agent Px,
-  /usr/bin/akonadi_unifiedmailbox_agent mr,
-  /usr/bin/akonadiserver Px,
-  /usr/bin/akonadiserver mr,
+  /usr/bin/akonadiserver mrPx,
   /usr/share/akonadi/agents/ r,
   /usr/share/akonadi/agents/* r,
   /usr/share/akonadi/plugins/serializer/ r,
@@ -78,32 +41,26 @@
   /usr/share/qt5/resources/* r,
   /usr/share/qt5/translations/qtwebengine_locales/*.pak r,
   /usr/share/ssl/ r,
+
+  # TODO: probably shouldn’t be this here.
   /{usr/,}lib{,32,64}/** mr,
+
   owner "@{HOME}/.config/Unknown Organization/akonadi_unifiedmailbox_agent.conf_changes.dat" r,
   owner /akonadi_control.error w,
   owner /home/*/.local/share/sddm/xorg-session.log w,
   owner /run/user/*/kcrash_* w,
   owner @{HOME}/.ICEauthority r,
-  owner @{HOME}/.Xauthority r,
   owner @{HOME}/.cache/fontconfig/* r,
-  owner @{HOME}/.cache/mesa_shader_cache/** r,
-  owner @{HOME}/.cache/mesa_shader_cache/index rw,
   owner @{HOME}/.config/* r,
   owner @{HOME}/.config/akonadi/* rwk,
-  owner @{HOME}/.config/ibus/bus/* r,
-  owner @{HOME}/.config/kdeglobals r,
   owner @{HOME}/.fonts.conf r,
   owner @{HOME}/.fonts/ r,
-  owner @{HOME}/.local/share/**/ r,
-  owner @{HOME}/.local/share/**/ w,
-  owner @{HOME}/.local/share/akonadi/* rw,
-  owner @{HOME}/.local/share/akonadi/db_data/ r,
-  owner @{HOME}/.local/share/akonadi/db_data/* w,
-  owner @{HOME}/.local/share/akonadi/db_data/mysql.err rw,
-  owner @{HOME}/.local/share/akonadi/search_db/** rw,
-  owner @{HOME}/.local/share/akonadi/search_db/** wk,
-  owner @{HOME}/.local/share/akonadi/search_db/email/* rw,
-  owner @{HOME}/.local/share/akonadi/search_db/email/flintlock wk,
+
+  # TODO: this looks bad.
+  owner @{HOME}/.local/share/**/ rw,
+
+  owner @{HOME}/.local/share/akonadi/** rw,
+  owner @{HOME}/.local/share/akonadi/search_db/** rwk,
   owner @{HOME}/.local/share/akonadi_migration_agent/gidmigratortext/directorymigration.log w,
   owner @{HOME}/.local/share/local-mail/ r,
   owner @{HOME}/.local/share/local-mail/*/ r,

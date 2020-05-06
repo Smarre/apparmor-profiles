@@ -3,12 +3,7 @@
 
 /usr/bin/akonadi_indexing_agent {
   #include <abstractions/akonadi_agent_base>
-  #include <abstractions/base>
-  #include <abstractions/consoles>
-  #include <abstractions/dbus-session-strict>
-  #include <abstractions/kde>
-  #include <abstractions/qt5>
-  #include <abstractions/sddm>
+  #include <abstractions/smar_kde>
 
   network netlink raw,
 
@@ -20,14 +15,11 @@
   /usr/share/akonadi/plugins/serializer/* r,
   owner @{HOME}/.config/.* rwk,
   owner @{HOME}/.config/akonadi/* rwk,
-  owner @{HOME}/.config/akonadi_indexing_agentrc r,
-  owner @{HOME}/.config/akonadi_indexing_agentrc w,
+  owner @{HOME}/.config/akonadi_indexing_agentrc rw,
   owner @{HOME}/.config/akonadi_indexing_agentrc.* rw,
   owner @{HOME}/.config/akonadi_indexing_agentrc.lock wk,
   owner @{HOME}/.local/share/akonadi/file_db_data/** r,
   owner @{HOME}/.local/share/akonadi/search_db/ w,
-  owner @{HOME}/.local/share/akonadi/search_db/** rw,
-  owner @{HOME}/.local/share/akonadi/search_db/** wk,
-  owner @{HOME}/.local/share/mime/generic-icons r,
+  owner @{HOME}/.local/share/akonadi/search_db/** rwk,
 
 }

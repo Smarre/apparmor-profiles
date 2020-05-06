@@ -3,7 +3,6 @@
 
 /usr/bin/akonadi_davgroupware_resource flags=(complain) {
   #include <abstractions/akonadi_resource_base>
-  #include <abstractions/base>
   #include <abstractions/nameservice>
   #include <abstractions/smar_kde>
 
@@ -20,22 +19,15 @@
   /usr/bin/kdeinit5 mr,
   /usr/share/akonadi/plugins/serializer/ r,
   /usr/share/akonadi/plugins/serializer/* r,
-  /usr/share/kservices5/* r,
-  /usr/share/kservices5/*/ r,
-  /usr/share/mime/ r,
   owner /run/user/*/akonadi_davgroupware_resource_*.slave-socket rw,
-  owner @{HOME}/.Xauthority r,
   owner @{HOME}/.cache/* r,
   owner @{HOME}/.cache/fontconfig/* r,
-  owner @{HOME}/.cache/mesa_shader_cache/index rw,
   owner @{HOME}/.config/.* rwk,
   owner @{HOME}/.config/akonadi/* k,
   owner @{HOME}/.config/akonadi/* rw,
   owner @{HOME}/.config/akonadi/akonadiconnectionrc r,
   owner @{HOME}/.config/akonadi_davgroupware_resource* rw,
   owner @{HOME}/.config/akonadi_davgroupware_resource*.lock wk,
-  owner @{HOME}/.config/ibus/bus/* r,
-  owner @{HOME}/.config/kdeglobals r,
   owner @{HOME}/.config/kwalletrc r,
   owner @{HOME}/.config/menus/ r,
   owner @{HOME}/.config/menus/applications-merged/ r,
@@ -43,8 +35,5 @@
   owner @{HOME}/.fonts/ r,
   owner @{HOME}/.local/share/akonadi-davgroupware/ w,
   owner @{HOME}/.local/share/akonadi-davgroupware/* rw,
-  owner @{HOME}/.local/share/mime/ r,
-  owner @{HOME}/.local/share/mime/*/ r,
-  owner @{HOME}/.local/share/mime/generic-icons r,
 
 }

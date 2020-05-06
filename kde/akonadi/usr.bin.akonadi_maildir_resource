@@ -3,11 +3,6 @@
 
 /usr/bin/akonadi_maildir_resource {
   #include <abstractions/akonadi_resource_base>
-  #include <abstractions/base>
-  #include <abstractions/consoles>
-  #include <abstractions/dbus-session-strict>
-  #include <abstractions/kde>
-  #include <abstractions/qt5>
   #include <abstractions/smar_kde>
 
   network netlink raw,
@@ -18,20 +13,12 @@
   /usr/bin/akonadi_maildir_resource mr,
   /usr/share/akonadi/plugins/serializer/ r,
   /usr/share/akonadi/plugins/serializer/* r,
-  owner @{HOME}/.Xauthority r,
   owner @{HOME}/.config/* r,
   owner @{HOME}/.config/akonadi/* k,
   owner @{HOME}/.config/akonadi/* r,
   owner @{HOME}/.config/akonadi/* w,
-  owner @{HOME}/.config/ibus/bus/* r,
-  owner @{HOME}/.config/kdeglobals r,
-  owner @{HOME}/.local/share/akonadi/** r,
-  owner @{HOME}/.local/share/akonadi/** w,
+  owner @{HOME}/.local/share/akonadi/** rw,
   owner @{HOME}/.local/share/local-mail/ r,
-  owner @{HOME}/.local/share/local-mail/** r,
-  owner @{HOME}/.local/share/local-mail/** w,
-  owner @{HOME}/.local/share/local-mail/**/ r,
-  owner @{HOME}/.local/share/local-mail/*/ r,
-  owner @{HOME}/.local/share/mime/generic-icons r,
+  owner @{HOME}/.local/share/local-mail/** rw,
 
 }

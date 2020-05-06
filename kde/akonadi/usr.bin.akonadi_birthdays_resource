@@ -3,22 +3,13 @@
 
 /usr/bin/akonadi_birthdays_resource {
   #include <abstractions/akonadi_resource_base>
-  #include <abstractions/base>
-  #include <abstractions/dbus-session-strict>
-  #include <abstractions/kde>
   #include <abstractions/nameservice>
-  #include <abstractions/qt5>
   #include <abstractions/smar_kde>
 
   /usr/bin/akonadi_birthdays_resource mr,
-  owner @{HOME}/.Xauthority r,
-  owner @{HOME}/.config/akonadi/* r,
-  owner @{HOME}/.config/akonadi/* w,
+  owner @{HOME}/.config/akonadi/* rw,
   owner @{HOME}/.config/akonadi_birthdays_resourcerc.* w,
   owner @{HOME}/.config/akonadi_birthdays_resourcerc.lock wk,
-  owner @{HOME}/.config/ibus/bus/* r,
   owner @{HOME}/.config/kcminputrc r,
-  owner @{HOME}/.config/kdeglobals r,
-  owner @{HOME}/.local/share/mime/generic-icons r,
 
 }

@@ -3,23 +3,13 @@
 
 /usr/bin/akonadi_unifiedmailbox_agent {
   #include <abstractions/akonadi_agent_base>
-  #include <abstractions/base>
-  #include <abstractions/dbus-session-strict>
-  #include <abstractions/kde>
   #include <abstractions/nameservice>
-  #include <abstractions/qt5>
   #include <abstractions/smar_kde>
-  #include <abstractions/vulkan>
 
   /proc/cpuinfo r,
   /usr/bin/akonadi_unifiedmailbox_agent mr,
   owner "@{HOME}/.config/Unknown Organization/akonadi_unifiedmailbox_agent.conf_changes.dat" r,
-  owner @{HOME}/.cache/mesa_shader_cache/** r,
-  owner @{HOME}/.cache/mesa_shader_cache/index rw,
-  owner @{HOME}/.config/akonadi/* k,
-  owner @{HOME}/.config/akonadi/* w,
-  owner @{HOME}/.config/akonadi_unifiedmailbox_agentrc r,
-  owner @{HOME}/.config/akonadi_unifiedmailbox_agentrc w,
-  owner @{HOME}/.local/share/mime/generic-icons r,
+  owner @{HOME}/.config/akonadi/* wk,
+  owner @{HOME}/.config/akonadi_unifiedmailbox_agentrc rw,
 
 }

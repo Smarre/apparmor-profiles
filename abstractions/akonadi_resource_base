@@ -1,0 +1,12 @@
+
+# Common lines for each Akonadi resource binary
+
+  #include <abstractions/base>
+  #include <abstractions/dbus-session-strict>
+  #include <abstractions/smar_kde>
+  #include <abstractions/qt5>
+
+  /proc/filesystems r,
+  /proc/sys/crypto/fips_enabled r,
+  /usr/share/icu/** r,
+

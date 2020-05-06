@@ -6,6 +6,7 @@
   #include <abstractions/consoles>
   #include <abstractions/nameservice>
   #include <abstractions/user-tmp>
+  #include <abstractions/drkonqi>
 
   capability setgid,
   capability setuid,
@@ -13,14 +14,10 @@
   /proc/sys/kernel/core_pattern r,
   /usr/bin/akonadi_control Px,
   /usr/bin/akonadictl mr,
-  /usr/lib64/libexec/drkonqi mrix,
   /usr/share/akonadi/agents/ r,
   /usr/share/akonadi/agents/* r,
   /usr/share/icu/** r,
   owner /akonadictl.error w,
   owner @{HOME}/.local/share/akonadi/ w,
   owner @{HOME}/.local/share/akonadi/* rw,
-  owner /kcrash_* w,
-  owner /root/.local/share/akonadi/ w,
-
 }

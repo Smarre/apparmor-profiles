@@ -27,34 +27,20 @@
   /sys/devices/system/cpu/online r,
   /usr/bin/akonadiserver mr,
   /usr/bin/mysql_install_db Cx,
-  /usr/bin/mysqladmin Cx,
-  /usr/bin/mysqladmin mr,
-  /usr/bin/mysqlcheck Cx,
-  /usr/bin/mysqlcheck mr,
-  /usr/sbin/mysqld Cx,
-  /usr/sbin/mysqld mr,
+  /usr/bin/mysqladmin mrCx,
+  /usr/bin/mysqlcheck mrCx,
+  /usr/sbin/mysqld mrCx,
   /usr/share/icu/** r,
   /usr/share/mariadb/** r,
   owner /akonadiserver.error w,
-  owner /proc/*/loginuid r,
-  owner /proc/*/mounts r,
-  owner /proc/*/stat r,
-  owner /run/user/*/kcrash_* w,
+  owner /proc/@{uid}/loginuid r,
+  owner /proc/@{uid}/mounts r,
+  owner /proc/@{uid}/stat r,
+  owner /run/user/[0-9]*/kcrash_* w,
   owner @{HOME}/.config/akonadi/* rwk,
-  owner @{HOME}/.config/akonadi/akonadiserverrc rw,
-  owner @{HOME}/.config/akonadi/akonadiserverrc.lock wk,
   owner @{HOME}/.local/share/akonadi/ w,
-  owner @{HOME}/.local/share/akonadi/* rw,
-  owner @{HOME}/.local/share/akonadi/** w,
-  owner @{HOME}/.local/share/akonadi/**/ r,
-  owner @{HOME}/.local/share/akonadi/**/ w,
-  owner @{HOME}/.local/share/akonadi/*/ r,
-  owner @{HOME}/.local/share/akonadi/db_data/ r,
-  owner @{HOME}/.local/share/akonadi/db_data/* rwk,
+  owner @{HOME}/.local/share/akonadi/** rw,
   owner @{HOME}/.local/share/akonadi/db_data/** rwk,
-  owner @{HOME}/.local/share/akonadi/file_db_data/** r,
-  owner @{HOME}/.local/share/akonadi/file_db_data/** w,
-  owner @{HOME}/.local/share/akonadi/search_db/** r,
   owner @{HOME}/.local/share/mime/mime.cache r,
   owner @{HOME}/.local/share/mime/types r,
 
@@ -64,10 +50,8 @@
     #include <abstractions/bash>
     #include <abstractions/consoles>
     #include <abstractions/nameservice>
-    #include <abstractions/smar_kde>
 
-    /bin/bash ix,
-    /bin/bash r,
+    /bin/bash rix,
     /proc/sys/crypto/fips_enabled r,
     /usr/ r,
     /usr/bin/cat mrix,
@@ -81,12 +65,9 @@
     /usr/share/mariadb/** r,
     owner @{HOME}/ r,
     owner @{HOME}/.local/share/akonadi/db_data/ r,
-    owner @{HOME}/.local/share/akonadi/db_data/* rwk,
     owner @{HOME}/.local/share/akonadi/db_data/** rwk,
-    owner @{HOME}/.local/share/akonadi/db_data/*/ w,
     owner @{HOME}/.local/share/akonadi/db_data/mysql/ rw,
     owner @{HOME}/.local/share/akonadi/db_data/mysql/* rw,
-
   }
 
   profile /usr/bin/mysqladmin {
@@ -97,7 +78,7 @@
 
     /proc/sys/crypto/fips_enabled r,
     /usr/bin/mysqladmin mr,
-    owner /proc/*/loginuid r,
+    owner /proc/@{uid}/loginuid r,
     owner @{HOME}/.local/share/akonadi/mysql.conf r,
 
   }
@@ -110,7 +91,7 @@
 
     /proc/sys/crypto/fips_enabled r,
     /usr/bin/mysqlcheck mr,
-    owner /proc/*/loginuid r,
+    owner /proc/@{uid}/loginuid r,
     owner @{HOME}/.local/share/akonadi/mysql.conf r,
 
   }
@@ -130,12 +111,9 @@
     /usr/share/mariadb/** r,
     owner @{HOME}/.local/share/akonadi/db_data/ r,
     owner @{HOME}/.local/share/akonadi/db_data/* rwk,
-    owner @{HOME}/.local/share/akonadi/db_data/** r,
-    owner @{HOME}/.local/share/akonadi/db_data/** w,
-    owner @{HOME}/.local/share/akonadi/db_data/*/ r,
-    owner @{HOME}/.local/share/akonadi/db_data/akonadi/ r,
-    owner @{HOME}/.local/share/akonadi/db_data/akonadi/* rwk,
-    owner @{HOME}/.local/share/akonadi/db_data/mysql/* rwk,
+    owner @{HOME}/.local/share/akonadi/db_data/** rw,
+    owner @{HOME}/.local/share/akonadi/db_data/akonadi/* k,
+    owner @{HOME}/.local/share/akonadi/db_data/mysql/* k,
     owner @{HOME}/.local/share/akonadi/mysql.conf r,
 
   }

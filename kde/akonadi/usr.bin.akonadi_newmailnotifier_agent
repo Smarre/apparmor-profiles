@@ -3,12 +3,7 @@
 
 /usr/bin/akonadi_newmailnotifier_agent {
   #include <abstractions/akonadi_agent_base>
-  #include <abstractions/base>
-  #include <abstractions/consoles>
-  #include <abstractions/dbus-session-strict>
-  #include <abstractions/kde>
-  #include <abstractions/qt5>
-  #include <abstractions/sddm>
+  #include <abstractions/smar_kde>
 
   network netlink raw,
 
@@ -22,6 +17,5 @@
   owner @{HOME}/.config/kmail2rc r,
   owner @{HOME}/.config/specialmailcollectionsrc r,
   owner @{HOME}/.local/share/akonadi/file_db_data/** r,
-  owner @{HOME}/.local/share/mime/generic-icons r,
 
 }

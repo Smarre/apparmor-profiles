@@ -3,14 +3,8 @@
 
 /usr/bin/akonadi_mailfilter_agent {
   #include <abstractions/akonadi_agent_base>
-  #include <abstractions/base>
-  #include <abstractions/consoles>
-  #include <abstractions/dbus-session-strict>
-  #include <abstractions/kde>
   #include <abstractions/nameservice>
-  #include <abstractions/qt5>
   #include <abstractions/smar_kde>
-  #include <abstractions/vulkan>
 
   signal receive set=kill peer=/usr/bin/akonadi_control,
   signal receive set=term peer=/usr/bin/akonadi_control,
@@ -19,8 +13,6 @@
   /usr/bin/akonadi_mailfilter_agent mr,
   /usr/share/akonadi/plugins/serializer/ r,
   /usr/share/akonadi/plugins/serializer/* r,
-  owner @{HOME}/.cache/mesa_shader_cache/** r,
-  owner @{HOME}/.cache/mesa_shader_cache/index rw,
   owner @{HOME}/.config/akonadi/akonadiconnectionrc r,
   owner @{HOME}/.config/akonadi_mailfilter_agentrc r,
   owner @{HOME}/.config/emaildefaults r,
@@ -28,6 +20,5 @@
   owner @{HOME}/.config/kmail2rc r,
   owner @{HOME}/.config/specialmailcollectionsrc r,
   owner @{HOME}/.local/share/akonadi/file_db_data/** r,
-  owner @{HOME}/.local/share/mime/generic-icons r,
 
 }

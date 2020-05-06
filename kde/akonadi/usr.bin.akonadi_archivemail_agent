@@ -2,16 +2,10 @@
 #include <tunables/global>
 
 /usr/bin/akonadi_archivemail_agent {
-  #include <abstractions/X>
   #include <abstractions/akonadi_agent_base>
-  #include <abstractions/base>
   #include <abstractions/consoles>
-  #include <abstractions/dbus-session-strict>
-  #include <abstractions/kde>
   #include <abstractions/nameservice>
-  #include <abstractions/qt5>
   #include <abstractions/smar_kde>
-  #include <abstractions/vulkan>
 
   signal receive set=kill peer=/usr/bin/akonadi_control,
   signal receive set=term peer=/usr/bin/akonadi_control,
@@ -20,8 +14,6 @@
   /usr/bin/akonadi_archivemail_agent mr,
   /usr/share/akonadi/plugins/serializer/ r,
   /usr/share/akonadi/plugins/serializer/* r,
-  owner @{HOME}/.cache/mesa_shader_cache/** r,
-  owner @{HOME}/.cache/mesa_shader_cache/index rw,
   owner @{HOME}/.config/akonadi/* w,
   owner @{HOME}/.config/akonadi_archivemail_agentrc.* w,
   owner @{HOME}/.config/akonadi_archivemail_agentrc.lock wk,
@@ -29,6 +21,5 @@
   owner @{HOME}/.config/emailidentities r,
   owner @{HOME}/.config/kmail2rc r,
   owner @{HOME}/.local/share/akonadi/file_db_data/** r,
-  owner @{HOME}/.local/share/mime/generic-icons r,
 
 }

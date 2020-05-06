@@ -3,10 +3,6 @@
 
 /usr/bin/akonadi_ical_resource {
   #include <abstractions/akonadi_resource_base>
-  #include <abstractions/base>
-  #include <abstractions/consoles>
-  #include <abstractions/dbus-session-strict>
-  #include <abstractions/kde>
   #include <abstractions/nameservice>
   #include <abstractions/smar_kde>
 
@@ -14,16 +10,11 @@
   signal receive set=term peer=/usr/bin/akonadi_control,
 
   /usr/bin/akonadi_ical_resource mr,
-  owner @{HOME}/.Xauthority r,
-  owner @{HOME}/.config/akonadi/* r,
-  owner @{HOME}/.config/akonadi/* w,
+  owner @{HOME}/.config/akonadi/* rw,
   owner @{HOME}/.config/akonadi_ical_resource_*.lock w,
-  owner @{HOME}/.config/ibus/bus/* r,
   owner @{HOME}/.config/kcminputrc r,
-  owner @{HOME}/.config/kdeglobals r,
   owner @{HOME}/.local/share/akonadi/file_db_data/** r,
-  owner @{HOME}/.local/share/mime/generic-icons r,
   owner @{HOME}/.local/share/user-places.xbel r,
-  owner /run/user/*/kcrash_* w,
+  owner /run/user/[0-9]*/kcrash_* w,
 
 }
