@@ -16,7 +16,7 @@
   /sbin/ r,
   /usr/bin/ r,
   /usr/sbin/ r,
-  /usr/local/bin r,
+  /usr/local/bin/ r,
 
   /bin/bash mrix,
   /usr/bin/basename mrix,
