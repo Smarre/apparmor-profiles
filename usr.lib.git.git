@@ -11,6 +11,13 @@
   # reside about anywhere.
   owner /** rwl,
 
+  # Git wants to read binary directories for reason x or y...
+  /bin/ r,
+  /sbin/ r,
+  /usr/bin/ r,
+  /usr/sbin/ r,
+  /usr/local/bin r,
+
   /bin/bash mrix,
   /usr/bin/basename mrix,
   /usr/bin/cat mrix,
