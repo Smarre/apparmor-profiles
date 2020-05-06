@@ -1,0 +1,21 @@
+# Last Modified: Sun Apr 26 10:43:26 2020
+#include <tunables/global>
+
+/usr/bin/akonadi_migration_agent {
+  #include <abstractions/akonadi_agent_base>
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+  #include <abstractions/dbus-session-strict>
+  #include <abstractions/kde>
+  #include <abstractions/qt5>
+  #include <abstractions/sddm>
+
+  network netlink raw,
+
+  /usr/bin/akonadi_migration_agent mr,
+  owner @{HOME}/.config/akonadi-migrationrc r,
+  owner @{HOME}/.config/akonadi/* w,
+  owner @{HOME}/.local/share/akonadi_migration_agent/gidmigratortext/directorymigration.log w,
+  owner @{HOME}/.local/share/mime/generic-icons r,
+
+}

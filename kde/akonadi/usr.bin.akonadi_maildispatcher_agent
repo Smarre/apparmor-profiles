@@ -1,0 +1,32 @@
+# Last Modified: Fri Jan 31 08:22:47 2020
+#include <tunables/global>
+
+/usr/bin/akonadi_maildispatcher_agent {
+  #include <abstractions/akonadi_agent_base>
+  #include <abstractions/audio>
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+  #include <abstractions/dbus-session-strict>
+  #include <abstractions/kde>
+  #include <abstractions/nameservice>
+  #include <abstractions/openssl>
+  #include <abstractions/qt5>
+  #include <abstractions/smar_kde>
+
+  /usr/bin/akonadi_maildispatcher_agent mr,
+  /usr/share/akonadi/plugins/serializer/ r,
+  /usr/share/akonadi/plugins/serializer/* r,
+  /usr/share/ssl/ r,
+  /var/lib/sss/pubconf/* r,
+  owner @{HOME}/.cache/mesa_shader_cache/index rw,
+  owner @{HOME}/.config/akonadi/* k,
+  owner @{HOME}/.config/akonadi/* w,
+  owner @{HOME}/.config/ksslcertificatemanager r,
+  owner @{HOME}/.config/kwalletrc r,
+  owner @{HOME}/.config/mailtransports r,
+  owner @{HOME}/.config/mailtransports.lock wk,
+  owner @{HOME}/.config/specialmailcollectionsrc r,
+  owner @{HOME}/.local/share/akonadi/file_db_data/** r,
+  owner @{HOME}/.local/share/mime/generic-icons r,
+
+}

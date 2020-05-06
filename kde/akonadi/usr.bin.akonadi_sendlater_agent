@@ -1,0 +1,21 @@
+# Last Modified: Tue Feb  4 11:38:20 2020
+#include <tunables/global>
+
+/usr/bin/akonadi_sendlater_agent {
+  #include <abstractions/akonadi_agent_base>
+  #include <abstractions/base>
+  #include <abstractions/dbus-session-strict>
+  #include <abstractions/kde>
+  #include <abstractions/nameservice>
+  #include <abstractions/qt5>
+  #include <abstractions/smar_kde>
+  #include <abstractions/vulkan>
+
+  /proc/cpuinfo r,
+  /usr/bin/akonadi_sendlater_agent mr,
+  owner /home/*/.config/akonadi_sendlater_agentrc.lock wk,
+  owner @{HOME}/.cache/mesa_shader_cache/** r,
+  owner @{HOME}/.cache/mesa_shader_cache/index rw,
+  owner @{HOME}/.local/share/mime/generic-icons r,
+
+}

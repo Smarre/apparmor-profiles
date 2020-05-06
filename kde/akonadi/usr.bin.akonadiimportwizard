@@ -1,0 +1,70 @@
+# Last Modified: Tue Feb  4 14:00:19 2020
+#include <tunables/global>
+
+/usr/bin/akonadiimportwizard flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/nameservice>
+  #include <abstractions/qt5>
+  #include <abstractions/samba>
+  #include <abstractions/smar_kde>
+
+  signal send set=term peer=unconfined,
+
+  /** r,
+  /run/udev/data/* r,
+  /usr/bin/akonadiimportwizard mr,
+  /usr/bin/khelpcenter Px,
+  /usr/bin/khelpcenter mr,
+  /usr/bin/net mrix,
+  /usr/bin/testparm mrix,
+  /usr/share/akonadi/firstrun/* r,
+  /usr/share/doc/** r,
+  /usr/share/icu/** r,
+  /usr/share/importwizard/** r,
+  /usr/share/kf5/** r,
+  /usr/share/khelpcenter/** r,
+  /usr/share/khelpcenter/*/ r,
+  /usr/share/kservices5/* r,
+  /usr/share/kservices5/*/ r,
+  /usr/share/kxmlgui5/khelpcenter/* r,
+  /usr/share/qt5/resources/* r,
+  /usr/share/qt5/translations/qtwebengine_locales/*.pak r,
+  owner /** rwk,
+  owner /dev/shm/.org.chromium.Chromium.* ra,
+  owner /home/*/.ICEauthority r,
+  owner /home/*/.Xauthority r,
+  owner /home/*/.cache/fontconfig/* r,
+  owner /home/*/.cache/ksycoca5_* r,
+  owner /home/*/.cache/mesa_shader_cache/index rw,
+  owner /home/*/.config/* rw,
+  owner /home/*/.config/.* rwk,
+  owner /home/*/.config/akonadi-firstrunrc r,
+  owner /home/*/.config/akonadi/akonadiconnectionrc r,
+  owner /home/*/.config/emaildefaults r,
+  owner /home/*/.config/emailidentities r,
+  owner /home/*/.config/ibus/bus/* r,
+  owner /home/*/.config/importwizardrc rw,
+  owner /home/*/.config/importwizardrc.* rw,
+  owner /home/*/.config/importwizardrc.lock wk,
+  owner /home/*/.config/kdeglobals r,
+  owner /home/*/.config/khelpcenterrc rw,
+  owner /home/*/.config/khelpcenterrc.lock wk,
+  owner /home/*/.config/kmail2rc r,
+  owner /home/*/.config/menus/ r,
+  owner /home/*/.config/menus/applications-merged/ r,
+  owner /home/*/.config/session/* rwk,
+  owner /home/*/.fonts.conf r,
+  owner /home/*/.fonts/ r,
+  owner /home/*/.local/share/mime/ r,
+  owner /home/*/.local/share/mime/*/ r,
+  owner /home/*/.local/share/mime/generic-icons r,
+  owner /home/*/.local/share/mime/mime.cache r,
+  owner /home/*/.local/share/mime/packages/ r,
+  owner /home/*/.local/share/mime/types r,
+  owner /home/*/.local/share/user-places.xbel r,
+  owner /home/*/Lataukset/.directory r,
+  owner /home/*/Työpöytä/.directory r,
+  owner /proc/*/mounts r,
+  owner /run/user/1000/* rw,
+
+}

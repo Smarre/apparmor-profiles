@@ -1,0 +1,18 @@
+# Last Modified: Sun Apr 26 10:43:26 2020
+#include <tunables/global>
+
+/usr/bin/akonadi_notes_agent {
+  #include <abstractions/akonadi_agent_base>
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+  #include <abstractions/dbus-session-strict>
+  #include <abstractions/kde>
+  #include <abstractions/nameservice>
+  #include <abstractions/qt5>
+  #include <abstractions/sddm>
+
+  /usr/bin/akonadi_notes_agent mr,
+  owner @{HOME}/.config/akonadi/* w,
+  owner @{HOME}/.local/share/mime/generic-icons r,
+
+}

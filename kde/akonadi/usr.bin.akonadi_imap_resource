@@ -1,0 +1,39 @@
+# Last Modified: Fri Jan 24 08:08:44 2020
+#include <tunables/global>
+
+/usr/bin/akonadi_imap_resource {
+  #include <abstractions/akonadi_resource_base>
+  #include <abstractions/audio>
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+  #include <abstractions/dbus-session-strict>
+  #include <abstractions/kde>
+  #include <abstractions/nameservice>
+  #include <abstractions/openssl>
+  #include <abstractions/qt5>
+  #include <abstractions/smar_kde>
+  #include <abstractions/vulkan>
+
+  signal receive set=kill peer=/usr/bin/akonadi_control,
+  signal receive set=term peer=/usr/bin/akonadi_control,
+
+  /proc/cpuinfo r,
+  /usr/bin/akonadi_imap_resource mr,
+  /usr/share/akonadi/plugins/serializer/ r,
+  /usr/share/akonadi/plugins/serializer/* r,
+  /usr/share/ssl/ r,
+  /var/lib/sss/pubconf/* r,
+  /{usr/,}lib{,32,64}/** mr,
+  owner @{HOME}/.cache/mesa_shader_cache/** r,
+  owner @{HOME}/.cache/mesa_shader_cache/index rw,
+  owner @{HOME}/.config/* r,
+  owner @{HOME}/.config/* wk,
+  owner @{HOME}/.config/akonadi/* rwk,
+  owner @{HOME}/.config/ibus/bus/* r,
+  owner @{HOME}/.config/kdeglobals r,
+  owner @{HOME}/.local/share/akonadi/file_db_data/** r,
+  owner @{HOME}/.local/share/akonadi/file_db_data/** w,
+  owner @{HOME}/.local/share/mime/generic-icons r,
+  owner /run/user/*/kcrash_* w,
+
+}

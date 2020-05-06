@@ -1,0 +1,142 @@
+# Last Modified: Sun Apr 26 10:43:26 2020
+#include <tunables/global>
+
+/usr/bin/akonadiserver {
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+  #include <abstractions/freedesktop.org>
+  #include <abstractions/nameservice>
+  #include <abstractions/openssl>
+  #include <abstractions/qt5>
+  #include <abstractions/sddm>
+  #include <abstractions/user-tmp>
+
+  signal receive set=kill peer=/usr/bin/akonadi_control,
+  signal receive set=term peer=/usr/bin/akonadi_control,
+  signal send set=kill peer=/usr/bin/akonadiserver///usr/sbin/mysqld,
+  signal send set=term peer=/usr/bin/akonadiserver///usr/sbin/mysqld,
+
+  ptrace read peer=/usr/bin/akonadiserver///usr/sbin/mysqld,
+  ptrace read peer=unconfined,
+
+  /etc/my.cnf r,
+  /etc/my.cnf.d/ r,
+  /etc/xdg/akonadi/* r,
+  /proc/sys/crypto/fips_enabled r,
+  /proc/sys/kernel/core_pattern r,
+  /sys/devices/system/cpu/online r,
+  /usr/bin/akonadiserver mr,
+  /usr/bin/mysql_install_db Cx,
+  /usr/bin/mysqladmin Cx,
+  /usr/bin/mysqladmin mr,
+  /usr/bin/mysqlcheck Cx,
+  /usr/bin/mysqlcheck mr,
+  /usr/sbin/mysqld Cx,
+  /usr/sbin/mysqld mr,
+  /usr/share/icu/** r,
+  /usr/share/mariadb/** r,
+  owner /akonadiserver.error w,
+  owner /proc/*/loginuid r,
+  owner /proc/*/mounts r,
+  owner /proc/*/stat r,
+  owner /run/user/*/kcrash_* w,
+  owner @{HOME}/.config/akonadi/* rwk,
+  owner @{HOME}/.config/akonadi/akonadiserverrc rw,
+  owner @{HOME}/.config/akonadi/akonadiserverrc.lock wk,
+  owner @{HOME}/.local/share/akonadi/ w,
+  owner @{HOME}/.local/share/akonadi/* rw,
+  owner @{HOME}/.local/share/akonadi/** w,
+  owner @{HOME}/.local/share/akonadi/**/ r,
+  owner @{HOME}/.local/share/akonadi/**/ w,
+  owner @{HOME}/.local/share/akonadi/*/ r,
+  owner @{HOME}/.local/share/akonadi/db_data/ r,
+  owner @{HOME}/.local/share/akonadi/db_data/* rwk,
+  owner @{HOME}/.local/share/akonadi/db_data/** rwk,
+  owner @{HOME}/.local/share/akonadi/file_db_data/** r,
+  owner @{HOME}/.local/share/akonadi/file_db_data/** w,
+  owner @{HOME}/.local/share/akonadi/search_db/** r,
+  owner @{HOME}/.local/share/mime/mime.cache r,
+  owner @{HOME}/.local/share/mime/types r,
+
+
+  profile /usr/bin/mysql_install_db flags=(complain) {
+    #include <abstractions/base>
+    #include <abstractions/bash>
+    #include <abstractions/consoles>
+    #include <abstractions/nameservice>
+    #include <abstractions/smar_kde>
+
+    /bin/bash ix,
+    /bin/bash r,
+    /proc/sys/crypto/fips_enabled r,
+    /usr/ r,
+    /usr/bin/cat mrix,
+    /usr/bin/dirname mrix,
+    /usr/bin/hostname mrix,
+    /usr/bin/my_print_defaults mrix,
+    /usr/bin/mysql_install_db r,
+    /usr/bin/sed mrix,
+    /usr/sbin/mysqld mrix,
+    /usr/share/mariadb/* r,
+    /usr/share/mariadb/** r,
+    owner @{HOME}/ r,
+    owner @{HOME}/.local/share/akonadi/db_data/ r,
+    owner @{HOME}/.local/share/akonadi/db_data/* rwk,
+    owner @{HOME}/.local/share/akonadi/db_data/** rwk,
+    owner @{HOME}/.local/share/akonadi/db_data/*/ w,
+    owner @{HOME}/.local/share/akonadi/db_data/mysql/ rw,
+    owner @{HOME}/.local/share/akonadi/db_data/mysql/* rw,
+
+  }
+
+  profile /usr/bin/mysqladmin {
+    #include <abstractions/base>
+    #include <abstractions/nameservice>
+    #include <abstractions/openssl>
+    #include <abstractions/user-tmp>
+
+    /proc/sys/crypto/fips_enabled r,
+    /usr/bin/mysqladmin mr,
+    owner /proc/*/loginuid r,
+    owner @{HOME}/.local/share/akonadi/mysql.conf r,
+
+  }
+
+  profile /usr/bin/mysqlcheck {
+    #include <abstractions/base>
+    #include <abstractions/mysql>
+    #include <abstractions/nameservice>
+    #include <abstractions/openssl>
+
+    /proc/sys/crypto/fips_enabled r,
+    /usr/bin/mysqlcheck mr,
+    owner /proc/*/loginuid r,
+    owner @{HOME}/.local/share/akonadi/mysql.conf r,
+
+  }
+
+  profile /usr/sbin/mysqld {
+    #include <abstractions/base>
+    #include <abstractions/nameservice>
+    #include <abstractions/user-tmp>
+
+    signal receive set=kill peer=/usr/bin/akonadiserver,
+    signal receive set=term peer=/usr/bin/akonadiserver,
+
+    /etc/my.cnf r,
+    /etc/my.cnf.d/ r,
+    /proc/sys/crypto/fips_enabled r,
+    /usr/sbin/mysqld mr,
+    /usr/share/mariadb/** r,
+    owner @{HOME}/.local/share/akonadi/db_data/ r,
+    owner @{HOME}/.local/share/akonadi/db_data/* rwk,
+    owner @{HOME}/.local/share/akonadi/db_data/** r,
+    owner @{HOME}/.local/share/akonadi/db_data/** w,
+    owner @{HOME}/.local/share/akonadi/db_data/*/ r,
+    owner @{HOME}/.local/share/akonadi/db_data/akonadi/ r,
+    owner @{HOME}/.local/share/akonadi/db_data/akonadi/* rwk,
+    owner @{HOME}/.local/share/akonadi/db_data/mysql/* rwk,
+    owner @{HOME}/.local/share/akonadi/mysql.conf r,
+
+  }
+}

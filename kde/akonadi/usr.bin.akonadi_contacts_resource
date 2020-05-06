@@ -1,0 +1,25 @@
+# Last Modified: Sat Dec  7 10:43:24 2019
+#include <tunables/global>
+
+/usr/bin/akonadi_contacts_resource {
+  #include <abstractions/akonadi_resource_base>
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+  #include <abstractions/dbus-session-strict>
+  #include <abstractions/kde>
+  #include <abstractions/qt5>
+  #include <abstractions/smar_kde>
+
+  network netlink raw,
+
+  /usr/bin/akonadi_contacts_resource mr,
+  owner @{HOME}/.Xauthority r,
+  owner @{HOME}/.config/akonadi/* r,
+  owner @{HOME}/.config/akonadi/* w,
+  owner @{HOME}/.config/akonadi/agent_config_akonadi_contacts_resource_0 r,
+  owner @{HOME}/.config/ibus/bus/* r,
+  owner @{HOME}/.config/kcminputrc r,
+  owner @{HOME}/.config/kdeglobals r,
+  owner @{HOME}/.local/share/mime/generic-icons r,
+
+}
