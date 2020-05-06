@@ -1,7 +1,7 @@
 # Last Modified: Sat Apr 25 08:25:23 2020
 #include <tunables/global>
 
-/home/smar/.local/share/Steam/steam.sh {
+profile steam_sh @{HOME}/.local/share/Steam/steam.sh {
   #include <abstractions/X>
   #include <abstractions/audio>
   #include <abstractions/base>
@@ -19,7 +19,7 @@
   deny ptrace trace peer=unconfined,
 
   ptrace read peer=unconfined,
-  ptrace trace peer=/home/smar/.local/share/Steam/steam.sh,
+  ptrace trace peer=@{HOME}/.local/share/Steam/steam.sh,
 
   deny /proc/*/stat r,
 
@@ -40,10 +40,10 @@
   /etc/xdg/accept-languages.codes r,
   /etc/xdg/menus/ r,
   /etc/xdg/menus/applications-merged/ r,
-  /home/smar/.local/share/Steam/.steam_exec_test.sh Cx,
-  /home/smar/.local/share/Steam/steamapps/common/*/* ux,
-  /home/smar/.local/share/Steam/ubuntu12_32/gameoverlayui px,
-  /home/smar/Tiedostot/Steam/steamapps/common/*/* ux,
+  @{HOME}/.local/share/Steam/.steam_exec_test.sh Cx -> steam_exec_test,
+  @{HOME}/.local/share/Steam/steamapps/common/*/* ux,
+  @{HOME}/.local/share/Steam/ubuntu12_32/gameoverlayui px -> gameoverlayui,
+  @{HOME}/Tiedostot/Steam/steamapps/common/*/* ux,
   /lib/ld-2.26.so mrix,
   /lib64/ld-2.26.so mrix,
   /proc/ r,
@@ -78,29 +78,29 @@
   @{HOME}/.local/share/Steam/ubuntu12_32/steam mrix,
   @{HOME}/.local/share/Steam/ubuntu12_32/steam-runtime/amd64/usr/bin/* mrix,
   @{HOME}/.local/share/Steam/ubuntu12_32/steam-runtime/i386/usr/bin/* mrix,
-  @{HOME}/.local/share/Steam/ubuntu12_32/steam-runtime/run.sh Px,
-  @{HOME}/.local/share/Steam/ubuntu12_32/steam-runtime/setup.sh Px,
+  @{HOME}/.local/share/Steam/ubuntu12_32/steam-runtime/run.sh Px -> run_sh,
+  @{HOME}/.local/share/Steam/ubuntu12_32/steam-runtime/setup.sh Px -> setup_sh,
   @{HOME}/.local/share/Steam/ubuntu12_64/gldriverquery mrix,
-  @{HOME}/.local/share/Steam/ubuntu12_64/steamwebhelper.sh px,
+  @{HOME}/.local/share/Steam/ubuntu12_64/steamwebhelper.sh px -> steamwebhelper_sh,
   @{HOME}/.local/share/Steam/ubuntu12_64/vulkandriverquery mrix,
   owner /dev/shm/* rw,
   owner /dev/shm/u*-ValveIPCSharedObj-Steam rwk,
-  owner /home/*/.cache/icon-cache.kcache rw,
-  owner /home/*/.cache/ksycoca5_* r,
-  owner /home/*/.cache/mesa_shader_cache/** k,
-  owner /home/*/.cache/radv_builtin_shaders64 r,
-  owner /home/*/.config/kdeglobals r,
-  owner /home/*/.config/menus/ r,
-  owner /home/*/.config/menus/applications-merged/ r,
-  owner /home/*/.local/share/RecentDocuments/ r,
-  owner /home/*/.local/share/RecentDocuments/* w,
-  owner /home/*/.local/share/RecentDocuments/*.T11340 r,
-  owner /home/*/.local/share/RecentDocuments/.* k,
-  owner /home/*/.local/share/RecentDocuments/.* r,
-  owner /home/*/.local/share/RecentDocuments/watch.desktop.* r,
-  owner /home/*/.local/share/RecentDocuments/watch.desktop.lock wk,
-  owner /home/*/.local/share/Steam/WINDOWSTEMPDIR_FONTCONFIG_CACHE/* l,
-  owner /home/*/.steam/registry.vdf k,
+  owner @{HOME}/.cache/icon-cache.kcache rw,
+  owner @{HOME}/.cache/ksycoca5_* r,
+  owner @{HOME}/.cache/mesa_shader_cache/** k,
+  owner @{HOME}/.cache/radv_builtin_shaders64 r,
+  owner @{HOME}/.config/kdeglobals r,
+  owner @{HOME}/.config/menus/ r,
+  owner @{HOME}/.config/menus/applications-merged/ r,
+  owner @{HOME}/.local/share/RecentDocuments/ r,
+  owner @{HOME}/.local/share/RecentDocuments/* w,
+  owner @{HOME}/.local/share/RecentDocuments/*.T11340 r,
+  owner @{HOME}/.local/share/RecentDocuments/.* k,
+  owner @{HOME}/.local/share/RecentDocuments/.* r,
+  owner @{HOME}/.local/share/RecentDocuments/watch.desktop.* r,
+  owner @{HOME}/.local/share/RecentDocuments/watch.desktop.lock wk,
+  owner @{HOME}/.local/share/Steam/WINDOWSTEMPDIR_FONTCONFIG_CACHE/* l,
+  owner @{HOME}/.steam/registry.vdf k,
   owner /proc/*/cmdline r,
   owner /proc/*/environ r,
   owner /proc/*/fd/ r,
@@ -197,13 +197,13 @@
   owner @{HOME}/Tiedostot/Sek/ r,
 
 
-  profile /home/smar/.local/share/Steam/.steam_exec_test.sh {
+  profile steam_exec_test @{HOME}/.local/share/Steam/.steam_exec_test.sh {
     #include <abstractions/base>
     #include <abstractions/consoles>
 
     /bin/bash mr,
-    owner /home/*/.local/share/Steam/.steam_exec_test.sh r,
-    owner /home/*/.steam/steam.pipe r,
+    owner @{HOME}/.local/share/Steam/.steam_exec_test.sh r,
+    owner @{HOME}/.steam/steam.pipe r,
 
   }
 }

@@ -1,7 +1,7 @@
 
 #include <tunables/global>
 
-profile /home/smar/.local/share/Steam/ubuntu12_32/steam-runtime/setup.sh {
+profile setup_sh @{HOME}/.local/share/Steam/ubuntu12_32/steam-runtime/setup.sh {
   #include <abstractions/X>
   #include <abstractions/base>
   #include <abstractions/bash>

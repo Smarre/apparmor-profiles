@@ -1,0 +1,13 @@
+# Last Modified: Fri Apr 17 07:27:05 2020
+#include <tunables/global>
+
+profile steamerrorreporter @{HOME}/.local/share/Steam/linux32/steamerrorreporter flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/user-tmp>
+
+  @{HOME}/.local/share/Steam/linux32/steamerrorreporter mr,
+  owner @{HOME}/.local/share/Steam/ubuntu12_32/gameoverlayrenderer.so r,
+  owner @{HOME}/.steam/steam.pipe r,
+  owner /proc/*/status r,
+
+}

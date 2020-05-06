@@ -1,4 +1,5 @@
-# Last Modified: Sun Apr 26 10:43:26 2020
+# Profile for main steam script.
+
 #include <tunables/global>
 
 /usr/bin/steam {
@@ -22,7 +23,7 @@
   /usr/bin/ln Cx,
   /usr/bin/systemctl Cx,
   /usr/share/zenity/zenity.ui r,
-  @{HOME}/.local/share/Steam/steam.sh Px,
+  @{HOME}/.local/share/Steam/steam.sh Px -> steam_sh,
   owner /home/*/.local/share/sddm/xorg-session.log w,
   owner /proc/*/fd/ r,
   owner /proc/*/stat r,
@@ -37,12 +38,13 @@
   owner @{HOME}/.local/share/Steam/ubuntu12_32/* w,
   owner @{HOME}/.local/share/Steam/ubuntu12_32/** w,
   owner @{HOME}/.steam/starting w,
-  owner @{HOME}/Työpöytä/steam.desktop w,
+  owner @{HOME}/{Desktop,Työpöytä}/steam.desktop w,
 
 
   profile /usr/bin/id {
     #include <abstractions/base>
     #include <abstractions/sddm>
+    #include <abstractions/consoles>
 
     /usr/bin/id mr,
 
@@ -59,6 +61,7 @@
   profile /usr/bin/systemctl {
     #include <abstractions/base>
     #include <abstractions/sddm>
+    #include <abstractions/consoles>
 
     ptrace read peer=unconfined,
 

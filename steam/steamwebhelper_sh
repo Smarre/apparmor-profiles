@@ -1,7 +1,7 @@
 # Last Modified: Wed Apr  8 15:49:38 2020
 #include <tunables/global>
 
-/home/smar/.local/share/Steam/ubuntu12_64/steamwebhelper.sh flags=(complain) {
+profile steamwebhelper_sh @{HOME}/.local/share/Steam/ubuntu12_64/steamwebhelper.sh flags=(complain) {
   #include <abstractions/X>
   #include <abstractions/audio>
   #include <abstractions/base>
@@ -35,8 +35,8 @@
   @{HOME}/.local/share/Steam/ubuntu12_64/steamwebhelper mrix,
   @{HOME}/.local/share/Steam/ubuntu12_64/steamwebhelper.sh r,
   owner /dev/shm/* rwk,
-  owner /home/*/.cache/mesa_shader_cache/** k,
-  owner /home/*/.local/share/Steam/clientui/fonts/clientui.uifont k,
+  owner @{HOME}/.cache/mesa_shader_cache/** k,
+  owner @{HOME}/.local/share/Steam/clientui/fonts/clientui.uifont k,
   owner /proc/*/fd/ r,
   owner /proc/*/oom_score_adj w,
   owner /proc/*/status r,

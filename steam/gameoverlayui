@@ -1,20 +1,21 @@
 # Last Modified: Fri Apr 17 07:27:05 2020
 #include <tunables/global>
 
-/home/smar/.local/share/Steam/ubuntu12_32/gameoverlayui flags=(complain) {
+profile gameoverlayui @{HOME}/.local/share/Steam/ubuntu12_32/gameoverlayui flags=(complain) {
   #include <abstractions/audio>
   #include <abstractions/base>
   #include <abstractions/dbus-session-strict>
   #include <abstractions/fonts>
   #include <abstractions/user-tmp>
+  #include <abstractions/sddm>
 
   # Not sure how safe this one is..
   owner /tmp/miles_image_* m,
 
   / r,
   /home/ r,
-  /home/smar/.local/share/Steam/linux32/steamerrorreporter Px,
-  /home/smar/.local/share/Steam/ubuntu12_32/gameoverlayui mr,
+  @{HOME}/.local/share/Steam/linux32/steamerrorreporter Px -> steamerrorreporter,
+  @{HOME}/.local/share/Steam/ubuntu12_32/gameoverlayui mr,
   /proc/version r,
   /sys/devices/system/cpu/cpufreq/policy*/* r,
   /usr/share/fonts/** rk,
@@ -43,8 +44,8 @@
   owner /home/*/.local/share/Steam/ubuntu12_32/libtier0_s.so mr,
   owner /home/*/.steam/registry.vdf rk,
   owner /home/*/.steam/steam.pipe r,
-  owner /home/smar/.local/share/Steam/ubuntu12_32/steam-runtime/lib/** mr,
-  owner /home/smar/.local/share/Steam/ubuntu12_32/steam-runtime/usr/lib/** mr,
+  owner @{HOME}/.local/share/Steam/ubuntu12_32/steam-runtime/lib/** mr,
+  owner @{HOME}/.local/share/Steam/ubuntu12_32/steam-runtime/usr/lib/** mr,
   owner /proc/*/cmdline r,
   owner /proc/*/environ r,
   owner /proc/*/task/ r,
