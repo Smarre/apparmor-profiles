@@ -2,6 +2,7 @@
 #
 #    Copyright (C) 2009-2013 Canonical Ltd.
 #    Copyright (C) 2013 Christian Boltz
+#    Copyright (C) 2020 Samu Voutilainen
 #
 #    This program is free software; you can redistribute it and/or
 #    modify it under the terms of version 2 of the GNU General Public
@@ -9,6 +10,8 @@
 #
 # ------------------------------------------------------------------
 # vim: ft=apparmor
+
+# Modified from apparmor-profiles.
 
 #include <tunables/global>
 
