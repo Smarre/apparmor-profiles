@@ -1,0 +1,18 @@
+# Last Modified: Sun Apr 26 09:20:45 2020
+#include <tunables/global>
+
+/usr/sbin/ModemManager flags=(complain) {
+  #include <abstractions/base>
+
+  /usr/sbin/ModemManager mr,
+
+  /run/udev/data/* r,
+  /sys/class/ r,
+  /sys/class/usbmisc/ r,
+  /sys/bus/ r,
+  /sys/devices/virtual/net/*/uevent r,
+  /sys/devices/virtual/tty/*/uevent r,
+  /sys/devices/platform/**/uevent r,
+  /sys/devices/pci**/uevent r,
+
+}
