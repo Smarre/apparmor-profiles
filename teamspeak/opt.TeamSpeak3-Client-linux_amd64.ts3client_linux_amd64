@@ -1,7 +1,11 @@
-# Last Modified: Sat Apr 25 09:12:18 2020
+# Profile for main teamspeak3 binary.
+
 #include <tunables/global>
 
-/opt/TeamSpeak3-Client-linux_amd64/ts3client_linux_amd64 flags=(complain) {
+# WARNING: This profile is not complete, and probably have some bad holes that should be blocked.
+# Most notably ptracing.
+
+profile teamspeak3_client /opt/TeamSpeak3-Client-linux_amd64/ts3client_linux_amd64 flags=(complain) {
   #include <abstractions/audio>
   #include <abstractions/base>
   #include <abstractions/nameservice>
@@ -10,36 +14,35 @@
   capability sys_ptrace,
 
   audit ptrace read peer=unconfined,
-  ptrace read peer=/usr/bin/kdeinit5,
+  audit ptrace read peer=/usr/bin/kdeinit5,
 
-  /etc/os-release r,
-  /opt/TeamSpeak3-Client-linux_amd64/* mr,
-  /opt/TeamSpeak3-Client-linux_amd64/** mr,
-  /opt/TeamSpeak3-Client-linux_amd64/platforms/* mr,
   /proc/cpuinfo r,
   /proc/filesystems r,
   /proc/sys/crypto/fips_enabled r,
+
+  /dev/snd/controlC* rw,
+
+  /etc/os-release r,
+
+  /opt/TeamSpeak3-Client-linux_amd64/** mr,
+
   /usr/share/fonts/** mr,
   /usr/share/hwdata/pnp.ids r,
   /usr/share/icons/** mr,
   /usr/share/locale/** mr,
-  /usr/share/mime/** mr,
-  owner /home/*/#* mrw,
-  owner /home/*/.ICEauthority r,
-  owner /home/*/.Xauthority r,
-  owner /home/*/.cache/fontconfig/* r,
-  owner /home/*/.cache/mesa_shader_cache/index mrw,
-  owner /home/*/.config/kdeglobals r,
-  owner /home/*/.fonts.conf r,
-  owner /home/*/.fonts/ r,
-  owner /home/*/.local/share/mime/mime.cache mr,
-  owner /home/*/.local/share/mime/types r,
-  owner /home/*/.ts3client/ r,
-  owner /home/*/.ts3client/* rwk,
-  owner /home/*/.ts3client/** r,
-  owner /home/*/.ts3client/** w,
-  owner /home/*/.ts3client/*/ r,
-  owner /home/*/.ts3client/logs/* w,
-  /dev/snd/controlC* rw,
+  /usr/share/mime/** m,
+
+  owner @{HOME}/#* mrw,
+  owner @{HOME}/.ICEauthority r,
+  owner @{HOME}/.cache/fontconfig/* r,
+  owner @{HOME}/.cache/mesa_shader_cache/index mrw,
+  owner @{HOME}/.config/kdeglobals r,
+  owner @{HOME}/.fonts.conf r,
+  owner @{HOME}/.fonts/ r,
+  owner @{HOME}/.local/share/mime/mime.cache mr,
+  owner @{HOME}/.local/share/mime/types r,
+  owner @{HOME}/.ts3client/ rw,
+  owner @{HOME}/.ts3client/* rwk,
+  owner @{HOME}/.ts3client/** rw,
 
 }
