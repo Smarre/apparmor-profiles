@@ -1,0 +1,32 @@
+# Profile for KeePass compliant password manager software.
+
+#include <tunables/global>
+
+/usr/bin/keepassxc flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/nameservice>
+  #include <abstractions/smar_kde>
+
+  # Keepass database files can be anywhere.
+  /**.kdbx rw,
+  # Database’s lock file
+  /**.kdbx.* rw,
+
+  /dev/bus/usb/ r,
+  /run/udev/data/* r,
+  /sys/bus/ r,
+  /sys/bus/usb/devices/ r,
+  /sys/class/ r,
+
+  /usr/bin/ r,
+  /usr/bin/keepassxc mr,
+  /usr/share/keepassxc/** r,
+  owner @{HOME}/.config/KeePass{xc,XC}rc wr,
+  owner @{HOME}/.config/keepassxc/* rwk,
+
+  # TODO: write these open.
+  owner /run/user/[0-9]*/*/ rw,
+  owner /run/user/[0-9]*/*/* rw,
+  owner /run/user/[0-9]*/kpxc_server w,
+
+}
