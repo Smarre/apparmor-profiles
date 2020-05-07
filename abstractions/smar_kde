@@ -9,7 +9,9 @@
 #include <abstractions/vulkan>
 #include <abstractions/ibus>
 
+  # TODO: this one should have more complete rules.
   /sys/devices/** r,
+
   /usr/share/drirc.d/ r,
   /usr/share/drirc.d/* r,
   /usr/share/icu/** r,
