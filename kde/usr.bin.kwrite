@@ -1,0 +1,86 @@
+# Simple text editor from KDE.
+
+#include <tunables/global>
+
+/usr/bin/kwrite flags=(complain) {
+  #include <abstractions/audio>
+  #include <abstractions/base>
+  #include <abstractions/nameservice>
+  #include <abstractions/openssl>
+  #include <abstractions/smar_kde>
+  #include <abstractions/ssl_certs>
+
+  signal send set=term peer=/usr/bin/kdeinit5,
+  signal send set=term peer=unconfined,
+
+  / r,
+
+  # Files can be read from about anywhere.
+  # TODO: This was rw, but this shouldn’t be a problem.
+  /** r,
+
+  /usr/bin/baloo_filemetadata_temp_extractor mrix,
+  /usr/bin/diff mrix,
+  /usr/bin/keditfiletype5 Cx,
+  /usr/bin/keditfiletype5 mrw,
+  /usr/bin/kwrite mr,
+  /usr/bin/net mrix,
+  /usr/bin/testparm mrix,
+  /usr/lib64/libexec/kf5/kioexec mrix,
+  /usr/share/org.kde.syntax-highlighting/syntax/* r,
+  /usr/share/qt5/** r,
+  /usr/share/qt5/resources/* r,
+  owner "@{HOME}/.local/share/kmail2/QtWebEngine/Default/Visited Links" rw,
+
+  # Owner can modify files anywhere.
+  owner /** rw,
+
+  # TODO: why this lock here? Maybe KDE wants to lock all files to be edited?
+  owner /** k,
+
+  owner /dev/shm/.org.chromium.Chromium.* ra,
+  owner @{HOME}/.ICEauthority r,
+  owner @{HOME}/.cache/fontconfig/* r,
+  owner @{HOME}/.config/.* rwk,
+  owner @{HOME}/.config/kateschemarc r,
+  owner @{HOME}/.config/katesyntaxhighlightingrc r,
+  owner @{HOME}/.config/katevirc r,
+  owner @{HOME}/.config/kwriterc rw,
+  owner @{HOME}/.config/kwriterc.* rw,
+  owner @{HOME}/.config/kwriterc.lock wk,
+  owner @{HOME}/.config/session/.* rwk,
+  owner @{HOME}/.config/session/kwrite_* rw,
+  owner @{HOME}/.config/session/kwrite_*.lock wk,
+  owner @{HOME}/.fonts.conf r,
+  owner @{HOME}/.fonts/ r,
+  owner @{HOME}/.local/share/kxmlgui5/katepart/* r,
+  owner @{HOME}/.local/share/org.kde.syntax-highlighting/** r,
+
+
+  profile /usr/bin/keditfiletype5 flags=(complain) {
+    #include <abstractions/base>
+    #include <abstractions/nameservice>
+    #include <abstractions/smar_kde>
+
+    /etc/xdg/filetypesrc r,
+    /etc/xdg/menus/ r,
+    /etc/xdg/menus/*/ r,
+    /proc/cpuinfo r,
+    /proc/sys/crypto/fips_enabled r,
+    /proc/sys/kernel/core_pattern r,
+    /usr/bin/keditfiletype5 mr,
+    owner @{HOME}/.ICEauthority r,
+    owner @{HOME}/.cache/fontconfig/* r,
+    owner @{HOME}/.cache/ksycoca5_* r,
+    owner @{HOME}/.config/filetypesrc r,
+    owner @{HOME}/.config/menus/ r,
+    owner @{HOME}/.config/menus/*/ r,
+    owner @{HOME}/.fonts.conf r,
+    owner @{HOME}/.fonts/ r,
+    owner @{HOME}/.local/share/mime/ r,
+    owner @{HOME}/.local/share/mime/*/ r,
+    owner @{HOME}/.local/share/mime/mime.cache r,
+    owner @{HOME}/.local/share/mime/types r,
+
+  }
+}
