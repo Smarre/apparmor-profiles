@@ -1,0 +1,10 @@
+# Last Modified: Sat Apr  4 16:33:35 2020
+#include <tunables/global>
+
+/opt/TeamSpeak3-Client-linux_amd64/update flags=(complain) {
+  #include <abstractions/base>
+
+  /opt/TeamSpeak3-Client-linux_amd64/update mr,
+  /opt/TeamSpeak3-Client-linux_amd64/update: mr,
+
+}
