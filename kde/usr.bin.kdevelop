@@ -32,7 +32,8 @@
   /usr/bin/hostname mrix,
   /usr/bin/kdevelop mr,
   /usr/bin/kdevelop mrix,
-  /usr/bin/kdevelop\! mrix,
+  # NOTE: this ! causes apparmor to mistakenly sometimes say that ! doesn’t need to be escaped.
+  "/usr/bin/kdevelop!" mrix,
   /usr/bin/make Px,
   /usr/bin/mktemp mrix,
   /usr/bin/net mrix,
