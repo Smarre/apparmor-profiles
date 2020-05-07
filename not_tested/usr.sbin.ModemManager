@@ -8,8 +8,11 @@
 
   /run/udev/data/* r,
   /sys/class/ r,
+  /sys/class/net/ r,
+  /sys/class/tty/ r,
   /sys/class/usbmisc/ r,
   /sys/bus/ r,
+  /sys/bus/usb/devices/ r,
   /sys/devices/virtual/net/*/uevent r,
   /sys/devices/virtual/tty/*/uevent r,
   /sys/devices/platform/**/uevent r,
