@@ -1,0 +1,54 @@
+# KDE image viewer.
+
+#include <tunables/global>
+
+/usr/bin/gwenview flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/nameservice>
+  #include <abstractions/openssl>
+  #include <abstractions/smar_kde>
+
+  signal send set=term peer=/usr/bin/kdeinit5,
+  signal send set=term peer=unconfined,
+
+  # Images to be viewed can be about anywhere.
+  /** r,
+
+  /run/udev/data/* r,
+  owner /run/user/[0-9]*/gvfs/ r,
+  owner /run/user/[0-9]*/gwenview*.slave-socket rw,
+  owner /dev/shm/.org.chromium.Chromium.* ra,
+  owner @{PROC}/@{uid}/mounts r,
+
+  /usr/bin/gwenview mr,
+  /usr/share/gwenview/** r,
+  /usr/share/qt5/resources/* r,
+  /usr/share/qt5/translations/** r,
+
+  # But if one owns the file, it can be modified through gwenview.
+  owner /** rw,
+
+  # TODO: write an abstraction that handles KDE’s recently visited things system used by many apps.
+  owner "@{HOME}/.local/share/kmail2/QtWebEngine/Default/Visited Links" rw,
+
+  owner @{HOME}/.ICEauthority r,
+  owner @{HOME}/.cache/fontconfig/* r,
+  owner @{HOME}/.cache/thumbnails/** rw,
+  owner @{HOME}/.config/.* rwk,
+  owner @{HOME}/.config/baloofilerc r,
+  owner @{HOME}/.config/gwenviewrc rw,
+  owner @{HOME}/.config/gwenviewrc.* rw,
+  owner @{HOME}/.config/gwenviewrc.lock wk,
+  owner @{HOME}/.config/session/.* rwk,
+  owner @{HOME}/.config/session/gwenview_* rw,
+  owner @{HOME}/.config/session/gwenview_*.lock wk,
+  owner @{HOME}/.config/trashrc r,
+  owner @{HOME}/.fonts.conf r,
+  owner @{HOME}/.fonts/ r,
+  owner @{HOME}/.local/share/gwenview/recentfolders/ r,
+  owner @{HOME}/.local/share/gwenview/recentfolders/* rwk,
+  owner @{HOME}/.local/share/mime/mime.cache r,
+  owner @{HOME}/.local/share/mime/types r,
+  owner @{HOME}/.local/share/user-places.xbel r,
+
+}
