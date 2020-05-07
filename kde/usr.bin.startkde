@@ -1,0 +1,56 @@
+# KDE startup script.
+
+#include <tunables/global>
+
+/usr/bin/startkde flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/nameservice>
+  #include <abstractions/smar_kde>
+  #include <abstractions/user-tmp>
+  #include <abstractions/consoles>
+
+  signal send set=usr1 peer=/usr/bin/kdeinit5,
+
+  /bin/bash rix,
+  /usr/bin/cat mrix,
+  /usr/bin/dbus-update-activation-environment mrix,
+  /usr/bin/grep mrix,
+  /usr/bin/id mrix,
+  /usr/bin/kapplymousetheme mrix,
+  /usr/bin/kcheckrunning mrix,
+  /usr/bin/kdeinit5 Px,
+  /usr/bin/kdeinit5_shutdown Px,
+  /usr/bin/kdostartupconfig5 mrix,
+  /usr/bin/kreadconfig5 Px,
+  /usr/bin/ksplashqml mrix,
+  /usr/bin/kstartupconfig5 mrix,
+  /usr/bin/kwrapper5 Cx,
+  /usr/bin/mkdir mrix,
+  /usr/bin/qdbus-qt5 Px,
+  /usr/bin/startkde r,
+  /usr/bin/tr mrix,
+  /usr/bin/which mrix,
+  /usr/bin/xprop mrix,
+  /usr/bin/xrdb mrix,
+  /usr/bin/xsetroot mrix,
+  /usr/lib64/libexec/kf5/start_kdeinit ix,
+  /usr/lib64/libexec/kf5/start_kdeinit_wrapper ix,
+  /usr/share/plasma/look-and-feel/** mr,
+  owner @{HOME}/#* mrw,
+  owner @{HOME}/.cache/qtshadercache/* rw,
+  owner @{HOME}/.config/plasma-workspace/env/ r,
+  owner @{HOME}/.config/startupconfig r,
+  owner @{HOME}/.config/startupconfigfiles r,
+  owner @{HOME}/.config/startupconfigkeys rw,
+  owner @{PROC}/@{uid}/oom_score_adj w,
+
+
+  profile /usr/bin/kwrapper5 flags=(complain) {
+    #include <abstractions/base>
+    #include <abstractions/smar_kde>
+
+    /usr/bin/kwrapper5 mr,
+
+  }
+}
