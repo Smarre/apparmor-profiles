@@ -8,6 +8,7 @@
   #include <abstractions/nameservice>
   #include <abstractions/qt5>
   #include <abstractions/smar_kde>
+  #include <abstractions/drkonqi>
 
   capability sys_ptrace,
 
