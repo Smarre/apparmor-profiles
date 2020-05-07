@@ -70,15 +70,17 @@ profile bs_worker flags=(complain, attach_disconnected) {
 
   @{PROC}/@{pid}/mountinfo r,
   @{PROC}/@{pid}/mounts r,
-  @{PROC}/swaps r,
   @{PROC}/@{pid}/fd/@{pid} rw,
   @{PROC}/@{pid}/fd/ r,
   @{PROC}/@{pid}/cmdline r,
+  @{PROC}/swaps r,
   @{PROC}/version r,
 
   # From fuser
   @{PROC}/ r,
+  @{PROC}/@{pid}/fdinfo/13 r,
   @{PROC}/@{pid}/net/unix r,
+  @{PROC}/@{pid}/stat r,
 
   /dev/.blkid.tab* rwl,
   /dev/tty rw,
