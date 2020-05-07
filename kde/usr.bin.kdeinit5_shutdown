@@ -1,0 +1,13 @@
+# Handles KDE shutdown.
+
+#include <tunables/global>
+
+# WARNING: this profile probably is completely broken.
+
+/usr/bin/kdeinit5_shutdown flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/smar_kde>
+  #include <abstractions/sddm>
+
+  /usr/bin/kdeinit5_shutdown mr,
+}

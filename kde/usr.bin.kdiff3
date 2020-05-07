@@ -1,0 +1,31 @@
+# Profile for a three-way diff GUI app.
+
+#include <tunables/global>
+
+/usr/bin/kdiff3 flags=(complain) {
+  #include <abstractions/audio>
+  #include <abstractions/base>
+  #include <abstractions/cups-client>
+  #include <abstractions/nameservice>
+  #include <abstractions/smar_kde>
+
+  signal send set=term,
+
+  # Diffs that are read can reside about anywhere, so better just allow reading anything.
+  /** r,
+
+  /usr/bin/kdiff3 mr,
+  /usr/share/kxmlgui5/kdiff3/* r,
+  /usr/share/kxmlgui5/kdiff3part/* r,
+
+  # But if one owns the files to be diffed, they can be modified also.
+  owner /** rwk,
+
+  owner @{HOME}/.config/.* wk,
+  owner @{HOME}/.config/kdiff3rc rw,
+  owner @{HOME}/.config/kdiff3rc.lock wk,
+  owner @{HOME}/.config/session/.* rwk,
+  owner @{HOME}/.config/session/kdiff3_* rw,
+  owner @{HOME}/.config/session/kdiff3_*.lock wk,
+
+}
