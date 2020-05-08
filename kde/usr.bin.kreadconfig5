@@ -1,0 +1,10 @@
+# Last Modified: Sun Apr 26 10:32:16 2020
+#include <tunables/global>
+
+/usr/bin/kreadconfig5 flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/smar_kde>
+
+  /usr/bin/kreadconfig5 mr,
+
+}
