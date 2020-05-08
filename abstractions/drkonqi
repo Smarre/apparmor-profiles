@@ -4,5 +4,6 @@
 
   signal receive set=stop peer=drkonqi,
 
-  /usr/lib64/libexec/drkonqi mrix,
+  /usr/lib64/libexec/drkonqi mrPx -> drkonqi,
   #owner /kcrash_* w,
+  owner /run/user/[0-9]*/kcrash_* w,

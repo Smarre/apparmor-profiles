@@ -3,11 +3,12 @@
 
 #include <abstractions/consoles>
 #include <abstractions/dbus-session-strict>
-#include <abstractions/sddm>
+#include <abstractions/drkonqi>
+#include <abstractions/ibus>
 #include <abstractions/kde>
 #include <abstractions/qt5>
 #include <abstractions/vulkan>
-#include <abstractions/ibus>
+#include <abstractions/sddm>
 
   # TODO: this one should have more complete rules.
   /sys/devices/** r,
