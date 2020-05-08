@@ -16,6 +16,7 @@
   /usr/sbin/chronyd mr,
   owner /etc/chrony.conf r,
   owner /etc/chrony.d/ r,
+  owner /etc/chrony.d/* r,
   owner /run/chrony/ w,
   owner /run/chrony/chronyd.sock w,
   owner /var/lib/chrony/* rw,
