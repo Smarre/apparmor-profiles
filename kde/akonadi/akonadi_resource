@@ -1,0 +1,62 @@
+# Profile for Akonadi resource binaries.
+
+#include <tunables/global>
+
+profile akonadi_resource /usr/bin/akonadi_*_resource {
+  #include <abstractions/akonadi_resource_base>
+  #include <abstractions/nameservice>
+  #include <abstractions/smar_kde>
+  #include <abstractions/openssl>
+
+  signal receive set=kill peer=/usr/bin/akonadi_control,
+  signal receive set=term peer=/usr/bin/akonadi_control,
+  signal send set=term peer=/usr/bin/kdeinit5,
+  # TODO: this unconfined is probably unnecessary.
+  signal send set=term peer=unconfined,
+
+  network netlink raw,
+
+  @{PROC}/cpuinfo r,
+
+  /usr/share/akonadi/plugins/serializer/ r,
+  /usr/share/akonadi/plugins/serializer/* r,
+  /usr/share/ssl/ r,
+  /var/lib/sss/pubconf/* r,
+
+  # QLibProxyWrapper
+  /usr/lib{,64}/libproxy-[0-9].[0-9]*.[0-9]*/modules/network_networkmanager.so mr,
+
+  owner /run/user/[0-9]*/akonadi_*_resource_*.slave-socket rw,
+
+  /usr/bin/akonadi_*_resource mrPx,
+  owner @{HOME}/.config/akonadi/* rw,
+
+  # A file like .J21024.
+  owner @{HOME}/.config/akonadi/.J* k,
+
+  owner @{HOME}/.config/akonadi/agent_config_akonadi_*_resource_*.lock k,
+  owner @{HOME}/.config/akonadi_*_resourcerc.* rw,
+  owner @{HOME}/.config/akonadi_*_resourcerc.lock rwk,
+  owner @{HOME}/.config/akonadi_*_resource_*rc rw,
+  #owner @{HOME}/.config/akonadi_*_resource_*rc.lock rwk,
+  owner @{HOME}/.config/kcminputrc r,
+  owner @{HOME}/.config/ksslcertificatemanager r,
+  owner @{HOME}/.config/kwalletrc r,
+  owner @{HOME}/.config/menus/ r,
+  owner @{HOME}/.config/menus/applications-merged/ r,
+
+  # These contains actual mail data.
+  owner @{HOME}/.local/share/akonadi/file_db_data/** wr,
+  owner @{HOME}/.local/share/sent-mail/ rw,
+  owner @{HOME}/.local/share/sent-mail/** rw,
+  owner @{HOME}/.local/share/local-mail/ rw,
+  owner @{HOME}/.local/share/local-mail/** rw,
+
+  # davgroupware resource specific
+  /etc/xdg/accept-languages.codes r,
+  /etc/xdg/menus/ r,
+  /etc/xdg/menus/applications-merged/ r,
+  owner @{HOME}/.local/share/akonadi-davgroupware/akonadi_davgroupware_resource_*.dat rw,
+
+}
+

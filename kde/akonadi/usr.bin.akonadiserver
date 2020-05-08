@@ -75,6 +75,7 @@
     #include <abstractions/nameservice>
     #include <abstractions/openssl>
     #include <abstractions/user-tmp>
+    #include <abstractions/consoles>
 
     /proc/sys/crypto/fips_enabled r,
     /usr/bin/mysqladmin mr,
@@ -88,6 +89,7 @@
     #include <abstractions/mysql>
     #include <abstractions/nameservice>
     #include <abstractions/openssl>
+    #include <abstractions/consoles>
 
     /proc/sys/crypto/fips_enabled r,
     /usr/bin/mysqlcheck mr,

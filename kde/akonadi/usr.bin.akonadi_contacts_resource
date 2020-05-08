@@ -8,8 +8,7 @@
   network netlink raw,
 
   /usr/bin/akonadi_contacts_resource mr,
-  owner @{HOME}/.config/akonadi/* r,
-  owner @{HOME}/.config/akonadi/* w,
+  owner @{HOME}/.config/akonadi/* rw,
   owner @{HOME}/.config/akonadi/agent_config_akonadi_contacts_resource_0 r,
   owner @{HOME}/.config/kcminputrc r,
 

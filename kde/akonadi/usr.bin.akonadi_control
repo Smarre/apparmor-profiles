@@ -29,7 +29,7 @@
   /proc/sys/crypto/fips_enabled r,
   /proc/sys/kernel/core_pattern r,
   /proc/sys/vm/overcommit_memory r,
-  /usr/bin/akonadi_*_resource mrPx,
+  /usr/bin/akonadi_*_resource mrPx -> akonadi_resource,
   /usr/bin/akonadi_*_agent mrPx,
   /usr/bin/akonadi_control mr,
   /usr/bin/akonadiserver mrPx,
