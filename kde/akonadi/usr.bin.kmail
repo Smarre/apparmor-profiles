@@ -1,0 +1,174 @@
+# Profile for KMail binary.
+
+#include <tunables/global>
+
+/usr/bin/kmail {
+  #include <abstractions/audio>
+  #include <abstractions/base>
+  #include <abstractions/enchant>
+  #include <abstractions/nameservice>
+  #include <abstractions/openssl>
+  #include <abstractions/smar_kde>
+
+  capability sys_admin,
+  capability sys_chroot,
+
+  signal receive set=hup peer=/usr/bin/kdeinit5,
+  signal send set=term peer=unconfined,
+
+  ptrace read peer=unconfined,
+
+  # TODO: why?
+  deny owner @{HOME}/.local/share/RecentDocuments/ r,
+  deny owner @{HOME}/.local/share/RecentDocuments/* rwk,
+
+  / r,
+
+  # TODO: why?
+  /** r,
+
+  /etc/speech-dispatcher/clients/* r,
+  /etc/xdg/menus/*/ r,
+  /etc/xdg/ui/* r,
+  /usr/bin/accountwizard Px,
+  /usr/bin/akonadi_control Px,
+  /usr/bin/akonadiimportwizard Px,
+  /usr/bin/dirmngr mrix,
+  /usr/bin/gpg-agent mrix,
+  /usr/bin/gpg2 mrix,
+  /usr/bin/gpgconf mrix,
+  /usr/bin/gpgsm mrix,
+  /usr/bin/gwenview Px,
+  /usr/bin/kleopatra Cx,
+  /usr/bin/kmail mr,
+  /usr/bin/kmail mrix,
+  /usr/bin/kompare Px,
+  /usr/bin/korganizer Px,
+  /usr/bin/ktnef Px,
+  /usr/bin/kwrite Px,
+  /usr/bin/net Cx,
+  /usr/bin/okular Px,
+  /usr/bin/pulseaudio mrix,
+  /usr/bin/scdaemon mrix,
+  /usr/bin/speech-dispatcher mrix,
+  /usr/bin/testparm mrix,
+  /usr/lib/pulse/gconf-helper mrix,
+  /usr/lib64/libexec/kf5/kioexec mrix,
+  /usr/lib64/libreoffice/program/soffice Px,
+  /usr/lib64/qt5/libexec/QtWebEngineProcess mrix,
+  /usr/lib64/speech-dispatcher-modules/sd_dummy mrix,
+  /usr/lib64/speech-dispatcher-modules/sd_espeak mrix,
+  /usr/share/akonadi/** r,
+  /usr/share/emoticons/** r,
+  /usr/share/espeak-data/** r,
+  /usr/share/libmessageviewer/** r,
+  /usr/share/messagelist/** r,
+  /usr/share/messageviewer/** r,
+  /usr/share/org.kde.syntax-highlighting/** r,
+  /usr/share/poppler/** r,
+  /usr/share/qt5/resources/* r,
+  /usr/share/qt5/translations/qtwebengine_locales/* r,
+
+  # TODO: why?
+  /{usr/,}lib{,32,64}/** mr,
+
+  # TODO: why?
+  owner /** rwkl,
+
+  # TODO: wtf
+  owner /**/.local/share/akonadi/file_db_data/** w,
+
+  # TODO: should be more fine-grained...
+  owner /dev/shm/* rw,
+
+  owner @{PROC}/@{uid}/fd/ r,
+  owner @{PROC}/@{uid}/gid_map w,
+  owner @{PROC}/@{uid}/mounts r,
+  owner @{PROC}/@{uid}/oom_score_adj w,
+  owner @{PROC}/@{uid}/setgroups w,
+  owner @{PROC}/@{uid}/task/ r,
+  owner @{PROC}/@{uid}/task/@{uid}/status r,
+  owner @{PROC}/@{uid}/uid_map w,
+
+  owner /run/user/[0-9]*/gnupg/S.dirmngr w,
+  owner /run/user/[0-9]*/speech-dispatcher/ rw,
+  owner /run/user/[0-9]*/speech-dispatcher/** rw,
+  owner /run/user/[0-9]*/speech-dispatcher/pid/* k,
+
+  owner @{HOME}/ r,
+
+  # TODO: add comment what for these are.
+  owner @{HOME}/#* mrw,
+  owner @{HOME}/.* mrw,
+
+  owner @{HOME}/.cache/fontconfig/* r,
+  owner @{HOME}/.cache/kmail2/** rw,
+  owner @{HOME}/.cache/qtshadercache/* rw,
+  owner @{HOME}/.config/* rwk,
+  owner @{HOME}/.config/akonadi-firstrunrc r,
+  owner @{HOME}/.config/akonadi/* r,
+  owner @{HOME}/.config/akonadi_mailfilter_agentrc r,
+  owner @{HOME}/.config/emaildefaults r,
+  owner @{HOME}/.config/emailidentities r,
+  owner @{HOME}/.config/foldermailarchiverc r,
+  owner @{HOME}/.config/kmail2rc r,
+  owner @{HOME}/.config/kwalletrc r,
+  owner @{HOME}/.config/mailtransports r,
+  owner @{HOME}/.config/menus/ r,
+  owner @{HOME}/.config/menus/*/ r,
+  owner @{HOME}/.config/phishingurlrc r,
+  owner @{HOME}/.config/pimpluginsrc r,
+
+  # TODO: maybe this needs to be more fine-grained
+  owner @{HOME}/.config/session/* rwk,
+
+  owner @{HOME}/.config/specialmailcollectionsrc r,
+  owner @{HOME}/.fonts.conf r,
+  owner @{HOME}/.fonts/ r,
+  owner @{HOME}/.gnupg/* rw,
+  owner @{HOME}/.gnupg/*/ w,
+  owner @{HOME}/.gnupg/.#* l,
+  owner @{HOME}/.gnupg/gpg.conf r,
+  owner @{HOME}/.gnupg/pubring.kbx r,
+  owner @{HOME}/.gnupg/pubring.kbx.lock l,
+  owner @{HOME}/.gnupg/random_seed k,
+  owner @{HOME}/.local/share/akonadi/** r,
+  owner @{HOME}/.local/share/autocorrect/* r,
+  owner @{HOME}/.local/share/kmail2/** rw,
+  owner @{HOME}/.local/share/org.kde.syntax-highlighting/** r,
+  owner @{HOME}/.local/share/phishingurl/malware.db r,
+  owner @{HOME}/.local/share/user-places.xbel* rw,
+  owner @{HOME}/.pki/nssdb/* rwk,
+
+
+  profile /usr/bin/kleopatra flags=(complain) {
+    #include <abstractions/base>
+    #include <abstractions/nameservice>
+    #include <abstractions/qt5>
+    #include <abstractions/smar_kde>
+
+    /proc/sys/kernel/core_pattern r,
+    /usr/bin/kleopatra mr,
+    /usr/share/qt5/resources/* r,
+    /usr/share/qt5/translations/qtwebengine_locales/* r,
+    owner /dev/shm/.org.chromium.Chromium.* ra,
+    owner @{HOME}/.ICEauthority r,
+    owner @{HOME}/.config/kleopatrarc r,
+    owner @{HOME}/.gnupg/ r,
+    owner @{HOME}/.local/share/kmail2/QtWebEngine/Default/* rw,
+
+  }
+
+  profile /usr/bin/net flags=(complain) {
+    #include <abstractions/base>
+    #include <abstractions/nameservice>
+    #include <abstractions/samba>
+
+    /usr/bin/net mr,
+    /usr/share/qt5/resources/* r,
+    /usr/share/qt5/translations/qtwebengine_locales/* r,
+    owner "@{HOME}/.local/share/kmail2/QtWebEngine/Default/Visited Links" rw,
+    owner /dev/shm/.org.chromium.Chromium.* ra,
+
+  }
+}
