@@ -1,0 +1,101 @@
+# Profile for SDDM, a login and display manager.
+
+#include <tunables/global>
+
+/usr/bin/sddm flags=(complain) {
+  #include <abstractions/X>
+  #include <abstractions/authentication>
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/cli>
+  #include <abstractions/consoles>
+  #include <abstractions/fonts>
+  #include <abstractions/freedesktop.org>
+  #include <abstractions/nameservice>
+  #include <abstractions/qt5>
+  #include <abstractions/user-tmp>
+  #include <abstractions/vulkan>
+  #include <abstractions/wutmp>
+
+  capability audit_write,
+  capability chown,
+  capability dac_read_search,
+  capability setgid,
+  capability setuid,
+
+  signal send set=term peer=/usr/bin/Xorg,
+
+  ptrace read peer=unconfined,
+
+
+  /sbin/checkproc mrix,
+
+  @{PROC}/sys/kernel/core_pattern r,
+  /run/sddm/* w,
+  /sys/devices/pci*/**/* r,
+
+  /etc/X11/xdm/Xsession Px,
+  /etc/X11/xdm/Xsetup mrix,
+  /etc/fstab r,
+  /etc/sddm.conf r,
+  /etc/sddm.conf.d/ r,
+
+  /tmp/sddm-:* w,
+  /usr/bin/Xorg Px,
+  /usr/bin/cpp-7 mrix,
+  /usr/bin/numlockx mrix,
+  /usr/bin/sddm mr,
+  /usr/bin/sddm-greeter mrix,
+  /usr/bin/systemd-cat mrix,
+  /usr/bin/xauth mrix,
+  /usr/bin/xmodmap mrix,
+  /usr/bin/xrdb mrix,
+  /usr/bin/xset mrix,
+  /usr/bin/xsetroot mrix,
+  /usr/lib/sddm/sddm-helper mrix,
+  /usr/lib64/gcc/x86_64-suse-linux/7/cc1 mrix,
+  /usr/local/bin/auto_kinit.fish Px,
+  /usr/share/drirc.d/ r,
+  /usr/share/drirc.d/* r,
+  /usr/share/icu/** r,
+  /usr/share/libdrm/* r,
+  /usr/share/plasma/desktoptheme/default/metadata.desktop r,
+  /usr/share/sddm/** r,
+  /usr/share/sddm/scripts/Xstop mrix,
+  /usr/share/wayland-sessions/ r,
+  /usr/share/wayland-sessions/* r,
+  /usr/share/xsessions/ r,
+  /usr/share/xsessions/* r,
+  /var/lib/sddm/* r,
+
+  owner / r,
+
+  owner /usr/bin/xdm r,
+
+  owner @{PROC}/@{uid}/environ r,
+  owner @{PROC}/@{uid}/loginuid rw,
+  owner @{PROC}/@{uid}/sched r,
+  owner @{PROC}/@{uid}/uid_map r,
+  owner @{PROC}/cmdline r,
+  owner /run/sddm.pid w,
+  owner /run/sddm/* rwl,
+
+  owner /etc/X11/Xmodmap r,
+  owner /etc/X11/Xresources r,
+  owner /etc/environment r,
+  owner /etc/locale.conf r,
+  owner /etc/security/limits.d/ r,
+  owner /etc/sysconfig/displaymanager r,
+
+  owner @{HOME}/.Xauthority rwl,
+  owner @{HOME}/.Xauthority-c w,
+  owner @{HOME}/.Xauthority-l wl,
+  owner @{HOME}/.Xauthority-n w,
+  owner @{HOME}/.local/share/sddm/xorg-session.log w,
+
+  owner /usr/include/stdc-predef.h r,
+  owner /var/lib/sddm/#* mrw,
+  owner /var/lib/sddm/** rw,
+  owner /var/lib/sddm/.cache/sddm-greeter/qmlcache/* mr,
+
+}
