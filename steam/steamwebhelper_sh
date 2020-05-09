@@ -18,6 +18,7 @@ profile steamwebhelper_sh @{HOME}/.local/share/Steam/ubuntu12_64/steamwebhelper.
 
   /bin/bash ix,
   /bin/bash r,
+  /dev/ r,
   /dev/hidraw* rw,
   /proc/ r,
   /proc/*/stat r,

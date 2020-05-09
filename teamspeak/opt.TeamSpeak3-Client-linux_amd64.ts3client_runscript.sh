@@ -9,6 +9,8 @@ profile teamspeak_runscript /opt/TeamSpeak3-Client-linux_amd64/ts3client_runscri
 
   /bin/bash rix,
 
+  /proc/vmstat r,
+
   # LD_LIBRARY_PATH needs to be inherited so that bundled libraries are loaded correctly.
   /opt/TeamSpeak3-Client-linux_amd64/ts3client_linux_amd64 rpx,
 

@@ -6,7 +6,7 @@
   #include <abstractions/smar_kde>
 
   /usr/lib64/libexec/kf5/kio_http_cache_cleaner mr,
-  owner /home/*/.cache/kio_http/* r,
+  owner /home/*/.cache/kio_http/* wr,
   owner /run/user/*/kio_http_cache_cleaner w,
 
 }
