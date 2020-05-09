@@ -31,8 +31,8 @@ profile akonadi_resource /usr/bin/akonadi_*_resource {
   /usr/bin/akonadi_*_resource mrPx,
   owner @{HOME}/.config/akonadi/* rw,
 
-  # A file like .J21024.
-  owner @{HOME}/.config/akonadi/.J* k,
+  # A file like .J21024, .TJ3665.
+  owner @{HOME}/.config/akonadi/.{J,T}* k,
 
   owner @{HOME}/.config/akonadi/agent_config_akonadi_*_resource_*.lock k,
   owner @{HOME}/.config/akonadi_*_resourcerc.* rw,
