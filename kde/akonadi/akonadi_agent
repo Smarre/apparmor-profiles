@@ -1,0 +1,46 @@
+# Profile for Akonadi agent binaries.
+
+#include <tunables/global>
+
+profile akonadi_agent /usr/bin/akonadi_*_agent {
+  #include <abstractions/akonadi_agent_base>
+  #include <abstractions/consoles>
+  #include <abstractions/nameservice>
+  #include <abstractions/smar_kde>
+
+  signal receive set=kill peer=/usr/bin/akonadi_control,
+  signal receive set=term peer=/usr/bin/akonadi_control,
+
+  /proc/cpuinfo r,
+
+  /usr/bin/akonadi_*_agent mrPx,
+
+  /usr/share/akonadi/plugins/serializer/ r,
+  /usr/share/akonadi/plugins/serializer/* r,
+
+  # A file like .J21024, .TJ3665.
+  owner @{HOME}/.config/akonadi/.{J,T}* rwk,
+
+  owner @{HOME}/.config/akonadi/* rw,
+  owner @{HOME}/.config/akonadi/agent_config_akonadi_*_agent.lock rwk,
+  owner @{HOME}/.config/akonadi_*_agentrc rw,
+  owner @{HOME}/.config/akonadi_*_agentrc.* rw,
+  owner @{HOME}/.config/akonadi_*_agentrc.lock rwk,
+  owner @{HOME}/.config/akonadi-migrationrc r,
+  owner @{HOME}/.config/emaildefaults r,
+  owner @{HOME}/.config/emailidentities r,
+  owner @{HOME}/.config/kmail2rc r,
+  owner @{HOME}/.config/specialmailcollectionsrc r,
+
+  owner @{HOME}/.local/share/akonadi/search_db/** rw,
+  owner @{HOME}/.local/share/akonadi/search_db/*/flintlock rwk,
+
+  # To allow reading actual mail data.
+  owner @{HOME}/.local/share/akonadi/file_db_data/** r,
+
+  # akonadi_migration_agent specific
+  owner @{HOME}/.local/share/akonadi_migration_agent/** rw,
+
+  # akonadi_unifiedmailbox_agent specific (hopefully)
+  owner "@{HOME}/.config/Unknown Organization/akonadi_unifiedmailbox_agent.conf_changes.dat" rw,
+}
