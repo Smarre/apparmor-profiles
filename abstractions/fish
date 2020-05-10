@@ -1,8 +1,7 @@
 
 # Abstraction for apps utilizing friendly interactive shell.
 
-
-  /usr/bin/fish ix,
+  /usr/bin/fish mrix,
 
   /etc/fish/** r,
 
