@@ -1,4 +1,6 @@
 
+# Extra profile used as child profile by OBS worker builders.
+
 # Many things seems to be requiring attach_disconnected...
 profile bs_worker flags=(complain, attach_disconnected) {
   #include <abstractions/base>
@@ -17,10 +19,6 @@ profile bs_worker flags=(complain, attach_disconnected) {
   capability chown,
   # Used by mknod
   capability mknod,
-  # Used by fuser
-  capability dac_read_search,
-  # Used by fuser
-  capability kill,
 
   ptrace read,
 
@@ -30,9 +28,10 @@ profile bs_worker flags=(complain, attach_disconnected) {
   umount /mnt/misc/worker/root_[0-9]*/.mount/**,
 
   /usr/bin/* Pix,
+  /usr/bin/uname ix,
+  /usr/bin/fuser Cx -> bs_worker_fuser,
   /bin/* Pix,
   /sbin/* Pix,
-  /usr/bin/uname ix,
   /usr/sbin/* Pix,
 
   /usr/bin/egrep r,
@@ -76,12 +75,6 @@ profile bs_worker flags=(complain, attach_disconnected) {
   @{PROC}/swaps r,
   @{PROC}/version r,
 
-  # From fuser
-  @{PROC}/ r,
-  @{PROC}/@{pid}/fdinfo/13 r,
-  @{PROC}/@{pid}/net/unix r,
-  @{PROC}/@{pid}/stat r,
-
   /dev/.blkid.tab* rwl,
   /dev/tty rw,
   /dev/loop-control wr,
@@ -121,6 +114,18 @@ profile bs_worker flags=(complain, attach_disconnected) {
   /tmp/tmp.** rw,
   /tmp/sh-thd.* rw,
   /tmp/PerlIO_* rw,
-
 }
 
+profile bs_worker_fuser {
+  #include <abstractions/base>
+
+  capability dac_read_search,
+  capability kill,
+  capability syslog,
+  capability sys_ptrace,
+
+  @{PROC}/ r,
+  @{PROC}/@{pid}/fdinfo/13 r,
+  @{PROC}/@{pid}/net/unix r,
+  @{PROC}/@{pid}/stat r,
+}

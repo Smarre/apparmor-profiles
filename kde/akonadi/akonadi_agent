@@ -43,4 +43,7 @@ profile akonadi_agent /usr/bin/akonadi_*_agent {
 
   # akonadi_unifiedmailbox_agent specific (hopefully)
   owner "@{HOME}/.config/Unknown Organization/akonadi_unifiedmailbox_agent.conf_changes.dat" rw,
+
+  # akonadi_newmailnotifier_agent specific
+  owner @{HOME}/.config/akonadi_newmailnotifier_agent.notifyrc wr,
 }

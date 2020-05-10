@@ -2,9 +2,9 @@
 
 #include <tunables/global>
 
-# uname should be inherited; this profile is only a fallaback option.
+# uname should be inherited; this profile is only a fallback option.
 
-/usr/bin/uname flags=(complain) {
+/usr/bin/uname {
   #include <abstractions/base>
   #include <abstractions/consoles>
   #include <abstractions/user-tmp>

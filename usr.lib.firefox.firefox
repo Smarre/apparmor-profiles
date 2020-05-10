@@ -119,8 +119,9 @@ profile firefox /usr/lib{,64}/firefox{,-[0-9]*}/firefox{,*[^s][^h]} {
   owner @{HOME}/ r,
   owner @{HOME}/Public/ r,
   owner @{HOME}/Public/** r,
-  owner @{HOME}/Downloads/ r,
-  owner @{HOME}/Downloads/** rw,
+  owner @{HOME}/{Downloads,Lataukset}/ r,
+  owner @{HOME}/{Downloads,Lataukset}/** rw,
+  # TODO: this one needs its own comment
   owner @{HOME}/.thumbnails/*/*.png r,
 
   # per-user firefox configuration
@@ -185,6 +186,10 @@ profile firefox /usr/lib{,64}/firefox{,-[0-9]*}/firefox{,*[^s][^h]} {
   deny /usr/lib{,64}/xulrunner-addons/extensions/**/ w,
   deny /usr/share/mozilla/extensions/**/ w,
   deny /usr/share/mozilla/ w,
+
+  # WARNING: These are something I’m not completely sure of, but presumably may be useful in some cases.
+  owner @{HOME}/.local/share/gvfs-metadata/home r,
+  owner @{HOME}/.local/share/gvfs-metadata/home-*.log r,
 
   # Site-specific additions and overrides. See local/README for details.
   # Local path is disabled, we only enable them for profiles we promote

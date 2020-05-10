@@ -19,6 +19,7 @@ profile steam_sh @{HOME}/.local/share/Steam/steam.sh {
   deny ptrace trace peer=unconfined,
 
   ptrace read peer=unconfined,
+  ptrace trace peer=steam_sh,
   ptrace trace peer=@{HOME}/.local/share/Steam/steam.sh,
 
   deny /proc/*/stat r,
