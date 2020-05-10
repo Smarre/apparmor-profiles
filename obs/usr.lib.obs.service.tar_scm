@@ -1,0 +1,57 @@
+# OBS source service tar_scm.
+
+#include <tunables/global>
+
+/usr/lib/obs/service/tar_scm flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/consoles>
+  #include <abstractions/nameservice>
+  #include <abstractions/python>
+  #include <abstractions/user-tmp>
+
+  signal receive set=kill peer=/usr/bin/osc-wrapper.py,
+
+  /bin/bash mrix,
+  /usr/bin/basename mrix,
+  /usr/bin/cpio mrix,
+  /usr/bin/envsubst mrix,
+  /usr/bin/gettext mrix,
+  /usr/bin/gettext.sh r,
+  /usr/bin/locale mrix,
+  /usr/bin/python* r,
+  /usr/bin/python3.6 ix,
+  /usr/bin/rm mrix,
+  /usr/bin/sed mrix,
+  /usr/bin/ssh mrix,
+  /usr/bin/tar mrix,
+  /usr/bin/uname mrix,
+
+  /proc/filesystems r,
+  /proc/sys/crypto/fips_enabled r,
+
+  /etc/obs/services/tar_scm r,
+  /etc/ssh/ssh_config r,
+  /etc/ssl/openssl.cnf r,
+
+  /usr/lib/git/git* mrix,
+  /usr/lib/obs/service/tar_scm r,
+
+  /usr/share/git-core/** r,
+  /usr/share/git-core/**/ r,
+
+  # TODO: why this rule?
+  owner /** rwlk,
+
+  owner @{HOME}/.gitconfig r,
+  owner @{HOME}/.local/lib/python[0-9]*.[0-9]*/site-packages/ r,
+  owner @{HOME}/.local/lib/python[0-9]*.[0-9]*/site-packages/* r,
+  owner @{HOME}/.local/lib/python[0-9]*.[0-9]*/site-packages/*/ r,
+  owner @{HOME}/.local/lib/python[0-9]*.[0-9]*/site-packages/** m,
+  owner @{PROC}/@{uid}/fd/ r,
+
+  # TODO: wtf.
+  owner /usr/lib/obs/service/TarSCM/__pycache__/* rw,
+  owner /usr/lib/obs/service/TarSCM/scm/__pycache__/* rw,
+
+}

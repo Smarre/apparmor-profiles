@@ -1,0 +1,21 @@
+# OBS source service set_version.
+
+#include <tunables/global>
+
+/usr/lib/obs/service/set_version flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/python>
+
+  /usr/bin/python[0-9]*.[0-9]* mrix,
+  /usr/lib/obs/service/set_version r,
+
+  # TODO: why?
+  owner @{HOME}/** r,
+  owner @{HOME}/**.spec rw,
+  owner @{HOME}/**/ r,
+
+  # TODO: too lenient I guess.
+  owner @{HOME}/.local/lib/**/ r,
+  owner @{HOME}/.local/lib/python*/** r,
+
+}

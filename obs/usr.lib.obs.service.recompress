@@ -1,0 +1,33 @@
+# OBS source service recompress.
+
+#include <tunables/global>
+
+/usr/lib/obs/service/recompress flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/consoles>
+  #include <abstractions/user-tmp>
+
+  /bin/bash rix,
+  /usr/bin/cat mrix,
+  /usr/bin/diff mrix,
+  /usr/bin/gzip mrix,
+  /usr/bin/mkdir mrix,
+  /usr/bin/mktemp mrix,
+  /usr/bin/rm mrix,
+  /usr/bin/tar mrix,
+  /usr/bin/xz ix,
+
+  /proc/filesystems r,
+
+  /etc/group r,
+  /etc/nsswitch.conf r,
+  /etc/passwd r,
+
+  /usr/lib/obs/service/recompress r,
+
+  # TODO: why?
+  owner @{HOME}/** rw,
+  owner @{HOME}/**/ r,
+
+}
