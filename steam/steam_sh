@@ -73,26 +73,7 @@ profile steam_sh @{steamlocaldir}/steam.sh {
   /usr/share/kservices5/* r,
   /usr/share/zenity/* r,
 
-  @{steamlocaldir}/.steam_exec_test.sh Cx -> steam_exec_test,
-
-  # This is mostly to just allow games to run properly. In reality the games should go through a
-  # generic wrapper, but that still needs to be done.
-  @{steamapps}/common/*/* ux,
-
-  @{steamlocaldir}/ubuntu12_32/gameoverlayui px -> gameoverlayui,
-
-  @{HOME}*/Steam/.steam_exec_test.sh mrix,
-  @{steamlocaldir}/linux32/steamerrorreporter mrix,
-  @{steamlocaldir}/steam.sh mrix,
-  @{steamlocaldir}/ubuntu12_32/gldriverquery mrix,
-  @{steamlocaldir}/ubuntu12_32/steam mrix,
-  @{steamlocaldir}/ubuntu12_32/steam-runtime/amd64/usr/bin/* mrix,
-  @{steamlocaldir}/ubuntu12_32/steam-runtime/i386/usr/bin/* mrix,
-  @{steamlocaldir}/ubuntu12_32/steam-runtime/run.sh Px -> run_sh,
-  @{steamlocaldir}/ubuntu12_32/steam-runtime/setup.sh Px -> setup_sh,
-  @{steamlocaldir}/ubuntu12_64/gldriverquery mrix,
-  @{steamlocaldir}/ubuntu12_64/steamwebhelper.sh px -> steamwebhelper_sh,
-  @{steamlocaldir}/ubuntu12_64/vulkandriverquery mrix,
+  # Owned special files
 
   # TODO: better specification here.
   owner /dev/shm/* rw,
@@ -109,64 +90,81 @@ profile steam_sh @{steamlocaldir}/steam.sh {
   # TODO: be more explicit
   owner /run/user/[0-9]*/* rw,
 
+  # Temporary files
+
   owner /tmp/miles_image_* m,
+
+  # Steam application data
+
+  owner @{steamapps}/ r,
+  owner @{steamapps}/** r,
+  owner @{steamapps}/appmanifest_[0-9]*.acf k,
+
+  # This is mostly to just allow games to run properly. In reality the games should go through a
+  # generic wrapper, but that still needs to be done.
+  owner @{steamapps}/common/*/* ux,
+
+  # Steam’s runtime data
+
+  owner @{steamlocaldir}/ r,
+
+  # TODO: the m part probably could be more explicit.
+  owner @{steamlocaldir}/** mrwk,
+
+  owner @{steamlocaldir}/WINDOWSTEMPDIR_FONTCONFIG_CACHE/* l,
+
+  owner @{steamlocaldir}/ubuntu12_32/* mr,
+  owner @{steamlocaldir}/ubuntu12_32/steam-runtime/** mr,
+
+  owner @{steamlocaldir}/.steam_exec_test.sh Cx -> steam_exec_test,
+
+  owner @{steamlocaldir}/ubuntu12_32/gameoverlayui px -> gameoverlayui,
+
+  owner @{steamlocaldir}/linux32/steamerrorreporter mrix,
+  owner @{steamlocaldir}/steam.sh mrix,
+  owner @{steamlocaldir}/ubuntu12_32/gldriverquery mrix,
+  owner @{steamlocaldir}/ubuntu12_32/steam mrix,
+  owner @{steamlocaldir}/ubuntu12_32/steam-runtime/amd64/usr/bin/* mrix,
+  owner @{steamlocaldir}/ubuntu12_32/steam-runtime/i386/usr/bin/* mrix,
+  owner @{steamlocaldir}/ubuntu12_32/steam-runtime/run.sh Px -> run_sh,
+  owner @{steamlocaldir}/ubuntu12_32/steam-runtime/setup.sh Px -> setup_sh,
+  owner @{steamlocaldir}/ubuntu12_64/gldriverquery mrix,
+  owner @{steamlocaldir}/ubuntu12_64/steamwebhelper.sh px -> steamwebhelper_sh,
+  owner @{steamlocaldir}/ubuntu12_64/vulkandriverquery mrix,
+
+  owner @{steamdir}/registry.vdf k,
+  owner @{steamdir}/ r,
+  owner @{steamdir}/* rw,
+
+  # These are special files, *not* inside steamdir.
+  owner @{steamdir}path w,
+  owner @{steamdir}pid w,
+
+  # Miscellaneous home files.
+
+  owner @{HOME}/ r,
 
   owner @{HOME}/.cache/icon-cache.kcache rw,
   owner @{HOME}/.cache/ksycoca5_* r,
   owner @{HOME}/.cache/radv_builtin_shaders64 r,
-  owner @{HOME}/.config/menus/ r,
-  owner @{HOME}/.config/menus/applications-merged/ r,
-  owner @{HOME}/.local/share/RecentDocuments/ r,
-  owner @{HOME}/.local/share/RecentDocuments/* w,
-  owner @{HOME}/.local/share/RecentDocuments/.* k,
-  owner @{HOME}/.local/share/RecentDocuments/watch.desktop.* r,
-  owner @{HOME}/.local/share/RecentDocuments/watch.desktop.lock wk,
-
-  owner @{steamlocaldir}/WINDOWSTEMPDIR_FONTCONFIG_CACHE/* l,
-
-  owner @{steamdir}/registry.vdf k,
-
-  # TODO: what is this...
-  owner /steamapps/ w,
-
-  # TODO: these look just to be broken...
-  audit owner @{HOME}*/Steam/ r,
-  audit owner @{HOME}*/Steam/** rwk,
-  audit owner @{HOME}*/Steam/.steam_exec_test.sh mrw,
-
-  owner @{HOME}/ r,
 
   # This can be changed to read-only to disallow steam to write autolaunch file.
   owner @{HOME}/.config/autostart/steam.desktop w,
 
   owner @{HOME}/.config/gtk-3.0/* r,
   owner @{HOME}/.config/gtkrc-2.0 r,
+  owner @{HOME}/.config/menus/ r,
+  owner @{HOME}/.config/menus/applications-merged/ r,
 
-  owner @{steamlocaldir}/ r,
-
-  # TODO: the m part probably could be more explicit.
-  owner @{steamlocaldir}/** mrwk,
-  owner @{steamlocaldir}/ubuntu12_32/* mr,
-  owner @{steamlocaldir}/ubuntu12_32/steam-runtime/** mr,
-
+  owner @{HOME}/.local/share/RecentDocuments/ r,
+  owner @{HOME}/.local/share/RecentDocuments/* w,
+  owner @{HOME}/.local/share/RecentDocuments/.* k,
+  owner @{HOME}/.local/share/RecentDocuments/watch.desktop.* r,
+  owner @{HOME}/.local/share/RecentDocuments/watch.desktop.lock wk,
   owner @{HOME}/.local/share/vulkan/implicit_layer.d/* wk,
-  owner @{steamdir}/ r,
-  owner @{steamdir}/* r,
-  owner @{steamdir}/* w,
-  owner @{steamdir}/bin w,
-  owner @{steamdir}/bin32 w,
-  owner @{steamdir}/bin64 w,
-  owner @{steamdir}/registry.vdf rw,
-  owner @{steamdir}/registry.vdf20190827164541 w,
-  owner @{steamdir}/root w,
-  owner @{steamdir}/sdk32 w,
-  owner @{steamdir}/sdk64 w,
-  owner @{steamdir}/starting w,
-  owner @{steamdir}/steam w,
-  owner @{steamdir}/steam.pid rw,
-  owner @{steamdir}/steam.pipe r,
-  owner @{steamdir}path w,
-  owner @{steamdir}pid w,
+
+  # TODO: what is this...
+  owner /steamapps/ w,
 
   # If you have some custom rules, this file can be used for that.
   #include <local/steam_sh>
