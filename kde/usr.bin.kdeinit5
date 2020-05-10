@@ -66,6 +66,7 @@
   /usr/lib64/libexec/ksmserver-logout-greeter Px,
   /usr/lib64/libexec/org_kde_powerdevil Px,
   /usr/lib64/libexec/polkit-kde-authentication-agent-1 mrix,
+  /usr/lib64/mesa-demos/xdemos/* rPix,
   /usr/sbin/aa-logprof PUx,
   /usr/sbin/aa-remove-unknown PUx,
   /usr/sbin/aa-status PUx,
