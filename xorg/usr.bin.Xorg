@@ -1,0 +1,84 @@
+# Profile for Xorg binary.
+
+#include <tunables/global>
+
+/usr/bin/Xorg flags=(complain) {
+  #include <abstractions/X>
+  #include <abstractions/base>
+  #include <abstractions/fonts>
+  #include <abstractions/nameservice>
+  #include <abstractions/vulkan>
+
+  capability dac_read_search,
+  capability ipc_owner,
+  capability setgid,
+  capability setuid,
+  capability sys_admin,
+  capability sys_nice,
+  capability sys_rawio,
+
+  signal receive set=term peer=/usr/bin/sddm,
+
+  /bin/bash mrix,
+  /usr/bin/Xorg mr,
+  /usr/bin/xkbcomp mrix,
+
+  /dev/dri/** mrw,
+  /dev/fb* rw,
+  /dev/input/event* rw,
+  /dev/tty* rw,
+  /dev/vga_arbiter rw,
+
+  /proc/*/cmdline r,
+  /proc/cmdline r,
+  /proc/mtrr w,
+
+  /run/sddm/* r,
+  /run/udev/data/* r,
+  /run/udev/data/+drm:card* r,
+
+  /sys/bus/ r,
+  /sys/bus/pci/devices/ r,
+  /sys/class/ r,
+  /sys/class/drm/ r,
+  /sys/class/input/ r,
+  /sys/class/tty/ r,
+  /sys/devices/**/input/input*/event*/uevent r,
+  /sys/devices/**/input/input*/name r,
+  /sys/devices/**/input/input*/uevent r,
+  /sys/devices/pci**/uevent r,
+  /sys/devices/pci*/**/boot_vga r,
+  /sys/devices/pci*/**/class r,
+  /sys/devices/pci*/**/config r,
+  /sys/devices/pci*/**/device r,
+  /sys/devices/pci*/**/drm/ r,
+  /sys/devices/pci*/**/resource r,
+  /sys/devices/pci*/**/revision r,
+  /sys/devices/pci*/**/sound/card*/id r,
+  /sys/devices/pci*/**/sound/card*/input*/name r,
+  /sys/devices/pci*/**/subsystem_device r,
+  /sys/devices/pci*/**/subsystem_vendor r,
+  /sys/devices/pci*/**/vendor r,
+  /sys/devices/platform/serial*/tty/ttyS*/uevent r,
+  /sys/devices/virtual/drm/ttm/uevent r,
+  /sys/devices/virtual/input/mice/uevent r,
+  /sys/devices/virtual/tty/console/uevent r,
+  /sys/devices/virtual/tty/ptmx/uevent r,
+  /sys/devices/virtual/tty/tty*/uevent r,
+
+  /etc/X11/** r,
+
+  /usr/lib64/xorg/modules/** mr,
+  /usr/share/drirc.d/ r,
+  /usr/share/drirc.d/* r,
+  /usr/share/glvnd/egl_vendor.d/ r,
+  /usr/share/glvnd/egl_vendor.d/* r,
+  /usr/share/libdrm/* r,
+  /var/lib/xkb/compiled/* rw,
+  /var/log/Xorg.*.log rw,
+  /var/log/Xorg.*.log.old w,
+  /var/log/Xorg.pid-*.log rw,
+
+  owner @{HOME}/.cache/mesa_shader_cache/** rwk,
+
+}
