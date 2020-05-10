@@ -1,0 +1,11 @@
+
+# Abstraction for apps utilizing friendly interactive shell.
+
+
+  /usr/bin/fish ix,
+
+  /etc/fish/** r,
+
+  /usr/share/fish/** r,
+
+  owner @{HOME}/.config/fish/** r,
