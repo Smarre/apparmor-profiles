@@ -1,0 +1,35 @@
+# Profile for systemd’s journal reader.
+
+#include <tunables/global>
+
+/usr/bin/journalctl flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/consoles>
+  #include <abstractions/extended>
+
+  capability sys_resource,
+
+  /usr/bin/journalctl mr,
+  /usr/bin/less mrix,
+
+  # If opened as non-root, current pid is used here it seems.
+  owner /proc/*/stat r,
+
+  owner /proc/1/environ r,
+  owner /proc/1/sched r,
+  owner /proc/cmdline r,
+  /run/log/journal/ r,
+  /run/log/journal/** r,
+
+  /etc/group r,
+  /etc/machine-id r,
+  /etc/nsswitch.conf r,
+
+  owner /var/lib/systemd/catalog/* rw,
+
+  owner @{HOME}/.lesshsQ rw,
+  owner @{HOME}/.lesshst r,
+  owner @{HOME}/.lesshst w,
+
+}
