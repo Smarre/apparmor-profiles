@@ -1,0 +1,10 @@
+# (Probably broken) profile for chromium library thing
+
+#include <tunables/global>
+
+/usr/lib64/chromium/chromium flags=(complain) {
+  #include <abstractions/base>
+
+  /usr/lib64/chromium/chromium mr,
+
+}
