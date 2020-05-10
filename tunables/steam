@@ -1,0 +1,8 @@
+# Steam specific paths
+
+# This file can be used to specify custom paths to Steam directories.
+# By default only standard path is allowed, but this allows the profiles
+# know that there can be Steam content in other places too.
+
+@{steamapps}={@{HOME}/.local/share/Steam/steamapps}
+#@{steamapps}={@{HOME}/.local/share/Steam/steamapps,@{HOME}/Files/Steam/steamapps}
