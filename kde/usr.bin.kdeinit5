@@ -7,6 +7,7 @@
 /usr/bin/kdeinit5 flags=(complain) {
   #include <abstractions/audio>
   #include <abstractions/base>
+  #include <abstractions/fish>
   #include <abstractions/freedesktop.org>
   #include <abstractions/nameservice>
   #include <abstractions/openssl>
@@ -48,7 +49,6 @@
   /usr/bin/uname ix,
   /usr/bin/* Pix,
   /usr/share/*/bin/* Pix,
-  /usr/bin/fish mrix,
   /usr/bin/kcminit mrix,
   /usr/lib/** Pix,
   /usr/lib64/libreoffice/program/soffice Px,

@@ -7,6 +7,7 @@
 profile /usr/bin/systemd-cat {
   #include <abstractions/base>
   #include <abstractions/bash>
+  #include <abstractions/fish>
   #include <abstractions/nameservice>
 
   capability net_admin,
@@ -21,7 +22,6 @@ profile /usr/bin/systemd-cat {
   owner /proc/*/environ r,
   owner /proc/*/sched r,
   owner /proc/*/stat r,
-  owner /usr/bin/fish mr,
   /usr/bin/cat ix,
 
 }

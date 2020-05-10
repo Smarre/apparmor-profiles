@@ -5,6 +5,7 @@
   #include <abstractions/authentication>
   #include <abstractions/base>
   #include <abstractions/bash>
+  #include <abstractions/fish>
   #include <abstractions/nameservice>
   #include <abstractions/sddm>
   #include <abstractions/wutmp>
@@ -15,22 +16,15 @@
   signal receive set=usr2 peer=/usr/lib64/libexec/kscreenlocker_greet,
 
   /etc/environment r,
-  /etc/fish/** r,
-  /etc/fish/*/ r,
   /etc/locale.conf r,
   /proc/*/sched r,
   /proc/cmdline r,
   /proc/sys/crypto/fips_enabled r,
   /proc/sys/kernel/osrelease r,
   /sbin/unix_chkpwd mrix,
-  /usr/bin/fish mr,
   /usr/bin/systemd-cat mrix,
   /usr/lib64/libexec/kcheckpass mr,
-  /usr/local/bin/auto_kinit.fish Px,
-  /usr/local/bin/auto_kinit.fish r,
-  /usr/share/fish/* r,
-  /usr/share/fish/** r,
-  owner /home/*/.config/fish/fishd.* r,
+  /usr/local/bin/auto_kinit.fish rPx,
   owner /proc/*/stat r,
 
 }

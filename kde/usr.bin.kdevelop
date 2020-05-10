@@ -1,14 +1,14 @@
-# Last Modified: Mon Apr 27 06:05:32 2020
+# Profile for KDevelop.
+
 #include <tunables/global>
 
 /usr/bin/kdevelop flags=(complain) {
   #include <abstractions/base>
   #include <abstractions/bash>
+  #include <abstractions/fish>
   #include <abstractions/freedesktop.org>
   #include <abstractions/nameservice>
-  #include <abstractions/qt5>
   #include <abstractions/smar_kde>
-  #include <abstractions/drkonqi>
 
   capability sys_ptrace,
 
