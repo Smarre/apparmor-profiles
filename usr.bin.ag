@@ -1,0 +1,20 @@
+# Profile for the silver searcher
+
+#include <tunables/global>
+
+/usr/bin/ag flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/consoles>
+
+  # TODO: Probably some basic denies could be added, like /dev paths.
+
+  # Allow grepping from anywhere.
+  /** r,
+
+  /bin/bash ix,
+  /usr/bin/ag mr,
+
+  # When grepping git repo, ag uses git to speed up its operation.
+  /usr/lib/git/git ix,
+}
