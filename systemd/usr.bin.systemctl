@@ -1,0 +1,47 @@
+# Profile for systemd’s main control app.
+
+#include <tunables/global>
+
+/usr/bin/systemctl flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/cli>
+  #include <abstractions/dbus-session-strict>
+  #include <abstractions/sddm>
+  #include <abstractions/wutmp>
+
+  capability sys_ptrace,
+  capability sys_resource,
+
+  signal send set=cont,
+  signal send set=term,
+
+  ptrace read,
+
+  /usr/bin/less mrix,
+  /usr/bin/systemctl mr,
+  /usr/bin/systemd-tty-ask-password-agent Px,
+
+  @{PROC}/@{uid}/cgroup r,
+  @{PROC}/@{uid}/cmdline r,
+  @{PROC}/@{uid}/sched r,
+  @{PROC}/cmdline r,
+
+  /sys/fs/cgroup/unified/** r,
+
+  /usr/lib/systemd/systemd-sysv-install Px,
+
+  owner /dev/tty* rw,
+  owner @{PROC}/@{uid}/comm r,
+  owner @{PROC}/@{uid}/environ r,
+  owner @{PROC}/@{uid}/fd/ r,
+  owner @{PROC}/sys/kernel/random/boot_id r,
+
+  owner /run/log/journal/ r,
+  owner /run/log/journal/** r,
+  owner /run/log/journal/*/ r,
+  owner /sys/fs/cgroup/unified/ r,
+  owner /sys/kernel/kexec_loaded r,
+
+  owner @{HOME}/.lesshst r,
+
+}
