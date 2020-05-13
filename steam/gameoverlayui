@@ -9,45 +9,51 @@ profile gameoverlayui @{HOME}/.local/share/Steam/ubuntu12_32/gameoverlayui flags
   #include <abstractions/user-tmp>
   #include <abstractions/sddm>
 
-  # Not sure how safe this one is..
-  owner /tmp/miles_image_* m,
-
   / r,
-  /home/ r,
-  @{HOME}/.local/share/Steam/linux32/steamerrorreporter Px -> steamerrorreporter,
-  @{HOME}/.local/share/Steam/ubuntu12_32/gameoverlayui mr,
+
   /proc/version r,
   /sys/devices/system/cpu/cpufreq/policy*/* r,
+
   /usr/share/fonts/** rk,
+
   owner /dev/shm/ValveIPCSHM_* rw,
   owner /dev/shm/u*-Shm_* rw,
   owner /dev/shm/u*-ValveIPCSharedObj-Steam rwk,
-  owner /home/*/ r,
-  owner /home/*/.Xauthority r,
-  owner /home/*/.cache/fontconfig/* r,
-  owner /home/*/.fonts.conf r,
-  owner /home/*/.fonts/ r,
-  owner /home/*/.local/share/Steam/ r,
-  owner /home/*/.local/share/Steam/** rk,
-  owner /home/*/.local/share/Steam/** w,
-  owner /home/*/.local/share/Steam/config/ r,
-  owner /home/*/.local/share/Steam/friends/* r,
-  owner /home/*/.local/share/Steam/public/steamui_english.txt r,
-  owner /home/*/.local/share/Steam/public/steamui_finnish.txt r,
-  owner /home/*/.local/share/Steam/resource/* r,
-  owner /home/*/.local/share/Steam/resource/steamscheme.res r,
-  owner /home/*/.local/share/Steam/resource/styles/gameoverlay.styles r,
-  owner /home/*/.local/share/Steam/resource/styles/steam.styles r,
-  owner /home/*/.local/share/Steam/ubuntu12_32/ r,
-  owner /home/*/.local/share/Steam/ubuntu12_32/* mr,
-  owner /home/*/.local/share/Steam/ubuntu12_32/gameoverlayrenderer.so r,
-  owner /home/*/.local/share/Steam/ubuntu12_32/libtier0_s.so mr,
-  owner /home/*/.steam/registry.vdf rk,
-  owner /home/*/.steam/steam.pipe r,
+
+  owner @{PROC}/@{uid}/cmdline r,
+  owner @{PROC}/@{uid}/environ r,
+  owner @{PROC}/@{uid}/task/ r,
+
+  /home/ r,
+
+  owner @{HOME}/ r,
+  owner @{HOME}/.Xauthority r,
+  owner @{HOME}/.cache/fontconfig/* r,
+  owner @{HOME}/.fonts.conf r,
+  owner @{HOME}/.fonts/ r,
+
+  owner @{HOME}/.local/share/Steam/linux32/steamerrorreporter Px -> steamerrorreporter,
+  owner @{HOME}/.local/share/Steam/ubuntu12_32/gameoverlayui mr,
+  owner @{HOME}/.local/share/Steam/ r,
+  owner @{HOME}/.local/share/Steam/** rk,
+  owner @{HOME}/.local/share/Steam/** w,
+  owner @{HOME}/.local/share/Steam/config/ r,
+  owner @{HOME}/.local/share/Steam/friends/* r,
+  owner @{HOME}/.local/share/Steam/public/steamui_english.txt r,
+  owner @{HOME}/.local/share/Steam/public/steamui_finnish.txt r,
+  owner @{HOME}/.local/share/Steam/resource/* r,
+  owner @{HOME}/.local/share/Steam/resource/steamscheme.res r,
+  owner @{HOME}/.local/share/Steam/resource/styles/gameoverlay.styles r,
+  owner @{HOME}/.local/share/Steam/resource/styles/steam.styles r,
+  owner @{HOME}/.local/share/Steam/ubuntu12_32/ r,
+  owner @{HOME}/.local/share/Steam/ubuntu12_32/* mr,
+  owner @{HOME}/.local/share/Steam/ubuntu12_32/gameoverlayrenderer.so r,
+  owner @{HOME}/.local/share/Steam/ubuntu12_32/libtier0_s.so mr,
+  owner @{HOME}/.steam/registry.vdf rk,
+  owner @{HOME}/.steam/steam.pipe r,
   owner @{HOME}/.local/share/Steam/ubuntu12_32/steam-runtime/lib/** mr,
   owner @{HOME}/.local/share/Steam/ubuntu12_32/steam-runtime/usr/lib/** mr,
-  owner /proc/*/cmdline r,
-  owner /proc/*/environ r,
-  owner /proc/*/task/ r,
 
+  # Not sure how safe this one is..
+  owner /tmp/miles_image_* m,
 }
