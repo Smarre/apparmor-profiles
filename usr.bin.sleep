@@ -1,0 +1,13 @@
+# Profile for sleep.
+
+#include <tunables/global>
+
+/usr/bin/sleep flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+
+  /usr/bin/sleep mr,
+
+  owner /dev/tty* rw,
+
+}

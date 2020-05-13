@@ -1,0 +1,113 @@
+# Profile for KDE file browser.
+
+#include <tunables/global>
+
+/usr/bin/dolphin flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/nameservice>
+  #include <abstractions/smar_kde>
+
+  audit capability sys_ptrace,
+
+  signal send set=kill peer=/usr/bin/dolphin//baloo_filemetadata_temp_extractor,
+  signal send set=term peer=/usr/bin/kdeinit5,
+
+  # TODO: why?
+  signal send set=term peer=unconfined,
+
+  ptrace read peer=/usr/bin/dolphin//null-/usr/bin/dolphin,
+
+  # Allow reading files anywhere.
+  / r,
+  /** r,
+
+  # TODO: I actually think this shouldn’t be a child profile...
+  /usr/bin/baloo_filemetadata_temp_extractor mrCx -> baloo_filemetadata_temp_extractor,
+
+  /usr/bin/bluedevil-sendfile mrCx,
+  /usr/bin/dolphin mr,
+  /usr/bin/dolphin mrix,
+  /usr/bin/kbuildsycoca4 mrix,
+  /usr/bin/kbuildsycoca5 mrPx,
+  /usr/bin/ldd Cx,
+  /usr/bin/net mrCx,
+  /usr/bin/testparm mrix,
+
+  /etc/xdg/menus/*/ r,
+
+  # One can modify all files one owns.
+  owner /** rwk,
+
+  owner /run/user/*/dolphin*.slave-socket rw,
+  owner @{HOME}/.config/baloofileinformationrc r,
+  owner @{HOME}/.config/dolphinrc w,
+  owner @{HOME}/.config/dolphinrc.* rw,
+  owner @{HOME}/.config/dolphinrc.lock wk,
+  owner @{HOME}/.config/menus/ r,
+  owner @{HOME}/.config/menus/*/ r,
+
+  profile baloo_filemetadata_temp_extractor /usr/bin/baloo_filemetadata_temp_extractor flags=(complain) {
+    #include <abstractions/base>
+    #include <abstractions/consoles>
+    #include <abstractions/qt5>
+
+    deny network inet6 stream,
+
+    signal receive set=kill peer=/usr/bin/dolphin,
+
+    # Guess this needs to be able to read everything too.
+    /** r,
+
+    /usr/bin/baloo_filemetadata_temp_extractor mr,
+    /usr/share/icu/** r,
+
+  }
+
+  profile /usr/bin/bluedevil-sendfile flags=(complain) {
+    #include <abstractions/base>
+    #include <abstractions/consoles>
+    #include <abstractions/nameservice>
+    #include <abstractions/smar_kde>
+
+    /dev/rfkill r,
+    /proc/cpuinfo r,
+    /proc/sys/crypto/fips_enabled r,
+    /proc/sys/kernel/core_pattern r,
+    /usr/bin/bluedevil-sendfile mr,
+
+    owner @{HOME}/.ICEauthority r,
+    owner @{HOME}/.cache/fontconfig/* r,
+    owner @{HOME}/.fonts.conf r,
+    owner @{HOME}/.fonts/ r,
+    owner @{HOME}/.local/share/baloo/index r,
+  }
+
+  profile /usr/bin/ldd flags=(complain) {
+    #include <abstractions/base>
+    #include <abstractions/bash>
+    #include <abstractions/consoles>
+
+    /lib/ld-2.26.so mrix,
+    /lib64/ld-2.26.so mrix,
+
+    /bin/bash rix,
+    /usr/bin/ldd r,
+
+    /{usr/,}lib{,32,64}/** mr,
+
+    owner @{HOME}/.local/share/baloo/index r,
+  }
+
+  profile /usr/bin/net flags=(complain) {
+    #include <abstractions/base>
+    #include <abstractions/consoles>
+    #include <abstractions/samba>
+
+    network inet dgram,
+    network netlink raw,
+
+    /proc/sys/crypto/fips_enabled r,
+    /usr/bin/net mr,
+
+  }
+}

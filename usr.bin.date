@@ -1,0 +1,15 @@
+# Profile for date.
+
+#include <tunables/global>
+
+/usr/bin/date flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+
+  /usr/bin/date mr,
+
+  # TODO: maybe this should be better...
+  owner /** w,
+
+  owner /dev/tty* r,
+}

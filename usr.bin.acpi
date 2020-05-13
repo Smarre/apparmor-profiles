@@ -1,0 +1,15 @@
+# Profile for acpi cli tool.
+
+#include <tunables/global>
+
+/usr/bin/acpi flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+
+  /usr/bin/acpi mr,
+
+  owner /dev/tty* rw,
+
+  owner /sys/class/power_supply/ r,
+
+}
