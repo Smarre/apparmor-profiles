@@ -1,0 +1,25 @@
+# Profile for pinentry.
+
+#include <tunables/global>
+
+/usr/bin/pinentry flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/consoles>
+
+  /bin/bash rix,
+  /usr/bin/grep mrix,
+  /usr/bin/pinentry r,
+  /usr/bin/pinentry-gnome3 mrix,
+  /usr/bin/sed mrix,
+  /usr/bin/xprop mrix,
+
+  @{PROC}/filesystems r,
+  @{PROC}/sys/crypto/fips_enabled r,
+
+  owner @{PROC}/@{uid}/status r,
+
+  owner @{HOME}/.Xauthority r,
+
+
+}

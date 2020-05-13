@@ -1,0 +1,20 @@
+# Profile for clang C compiler + utilities
+
+#include <tunables/global>
+
+# NOTE: this matches to about every chang binary. This profile is still so tiny
+# that I see no problems from that. If this is getting bloated, things should be
+# splitted.
+
+profile clang /usr/bin/clang* flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/sddm>
+
+  /proc/cpuinfo r,
+  /usr/bin/clang-* mr,
+  /usr/bin/clang-[0-9]*.[0-9]*.[0-9]* mrix,
+  /usr/bin/clang-tidy-* mr,
+  /usr/bin/ld.bfd Px,
+
+}

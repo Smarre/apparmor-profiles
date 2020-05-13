@@ -1,0 +1,10 @@
+# Profile for Matrix client made with Qt.
+
+#include <tunables/global>
+
+/usr/bin/nheko flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/smar_kde>
+
+  /usr/bin/nheko mr,
+}

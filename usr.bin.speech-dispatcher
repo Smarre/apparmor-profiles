@@ -1,0 +1,9 @@
+# Profile for speech dispatcher.
+
+#include <tunables/global>
+
+/usr/bin/speech-dispatcher flags=(complain) {
+  #include <abstractions/base>
+
+  /usr/bin/speech-dispatcher mr,
+}

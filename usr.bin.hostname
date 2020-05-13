@@ -1,0 +1,19 @@
+# Profile for hostname.
+
+#include <tunables/global>
+
+/usr/bin/hostname flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+  #include <abstractions/nameservice>
+
+  capability sys_admin,
+
+  /usr/bin/hostname mr,
+
+  owner /dev/tty* rw,
+
+  # TODO. this is wrong...
+  owner /mnt/misc/worker/root_*/.mount/etc/HOSTNAME w,
+
+}
