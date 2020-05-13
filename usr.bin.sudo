@@ -1,0 +1,36 @@
+# Profile for sudo authorization granter.
+
+#include <tunables/global>
+
+# WARNING: This profile is meant to be a fallback, when no other profiles are suitable.
+# Almost always sudo should be inherited instead.
+
+/usr/bin/sudo flags=(complain) {
+  #include <abstractions/authentication>
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+  #include <abstractions/nameservice>
+  #include <abstractions/wutmp>
+
+  capability audit_write,
+  capability setgid,
+  capability setuid,
+  capability sys_resource,
+
+  # TODO: first audit, then change to Pix.
+  /usr/bin/* PUx,
+  /usr/bin/uname ix,
+  /usr/lib/build/build Px,
+  /usr/bin/sudo mr,
+
+  /etc/sudoers r,
+
+  owner @{PROC}/@{uid}/fd/ r,
+  owner @{PROC}/@{uid}/stat r,
+
+  owner /etc/environment r,
+  owner /etc/security/limits.d/ r,
+
+  owner /usr/lib/sudo/sudoers.so mr,
+
+}
