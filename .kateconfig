@@ -1,1 +1,2 @@
-kate-wildcard(abstractions/*): syntax AppArmor Security Profile;
+kate: syntax AppArmor Security Profile;
+kate-wildcard(scripts/*): syntax: Bash;

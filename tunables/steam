@@ -6,8 +6,8 @@
 
 @{steamdir}=@{HOME}/.steam
 
-@{mainsteamlocaldir}=@{HOME}/.local/share/Steam
-@{steamlocaldir}=@{mainsteamlocaldir}
-#@{steamlocaldir}+=@{HOME}/Files/Steam
+@{steamlocaldir}=@{HOME}/.local/share/Steam
+@{steamlocaldirpaths}=@{steamlocaldir}
+#@{steamlocaldirpaths}+=@{HOME}/Files/Steam
 
-@{steamapps}=@{steamlocaldir}/steamapps
+@{steamapps}=@{steamlocaldirpaths}/steamapps

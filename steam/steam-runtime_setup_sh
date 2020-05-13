@@ -1,7 +1,9 @@
+# Profile for Steam’s runtime setup
 
 #include <tunables/global>
+#include <tunables/steam>
 
-profile setup_sh @{HOME}/.local/share/Steam/ubuntu12_32/steam-runtime/setup.sh {
+profile setup_sh @{steamlocaldir}/ubuntu12_32/steam-runtime/setup.sh {
   #include <abstractions/X>
   #include <abstractions/base>
   #include <abstractions/bash>
@@ -9,18 +11,7 @@ profile setup_sh @{HOME}/.local/share/Steam/ubuntu12_32/steam-runtime/setup.sh {
   #include <abstractions/nameservice>
   #include <abstractions/vulkan>
 
-  /bin/bash ix,
-  /bin/bash r,
-  /etc/magic r,
-  @{HOME}/.local/share/Steam/ubuntu12_32/steam-runtime/setup.sh r,
-  /lib/ r,
-  /lib64/ r,
-  /proc/cpuinfo r,
-  /proc/filesystems r,
-  /sbin/ldconfig mrix,
-  /sys/devices/** r,
-  /tmp/source_engine_2849099857.lock wk,
-
+  /bin/bash rix,
   /usr/bin/basename mrix,
   /usr/bin/cut mrix,
   /usr/bin/file mrix,
@@ -37,6 +28,19 @@ profile setup_sh @{HOME}/.local/share/Steam/ubuntu12_32/steam-runtime/setup.sh {
   /usr/bin/touch mrix,
   /usr/bin/tr mrix,
   /usr/bin/uname mrix,
+  /sbin/ldconfig mrix,
+
+  @{PROC}/cpuinfo r,
+  @{PROC}/filesystems r,
+  /sys/devices/** r,
+
+  /tmp/source_engine_2849099857.lock wk,
+
+  /etc/magic r,
+
+  /lib/ r,
+  /lib64/ r,
+
   /usr/lib/ r,
   /usr/lib64/ r,
   /usr/local/lib/ r,
@@ -46,16 +50,18 @@ profile setup_sh @{HOME}/.local/share/Steam/ubuntu12_32/steam-runtime/setup.sh {
   /usr/share/libdrm/* r,
   /usr/share/misc/magic r,
   /usr/share/misc/magic.mgc r,
-  owner "/**/steamapps/common/*/**" mr,
-  owner /**/steamapps/common/** r,
+
+  owner @{PROC}/@{uid}/cmdline r,
+
+  # TODO: these are a bit too much?
+  owner @{steamapps}/common/*/** mr,
+  owner @{steamapps}/common/** r,
+
   owner @{HOME}/.Xauthority r,
   owner @{HOME}/.cache/mesa_shader_cache/** r,
   owner @{HOME}/.cache/mesa_shader_cache/index rw,
-  owner @{HOME}/.local/share/Steam/ r,
-  owner @{HOME}/.local/share/Steam/ubuntu12_32/steam-runtime/ r,
-  owner @{HOME}/.local/share/Steam/ubuntu12_32/steam-runtime/** r,
-  owner @{HOME}/.local/share/Steam/ubuntu12_32/steam-runtime/** w,
-  owner @{HOME}/.local/share/Steam/ubuntu12_32/steam-runtime/*/ r,
-  owner /proc/*/cmdline r,
+  owner @{steamlocaldir}/ r,
+  owner @{steamlocaldir}/ubuntu12_32/steam-runtime/ rw,
+  owner @{steamlocaldir}/ubuntu12_32/steam-runtime/** rw,
 }
 

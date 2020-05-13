@@ -1,7 +1,9 @@
-# Last Modified: Wed Apr  8 15:49:38 2020
-#include <tunables/global>
+# Profile for Steam’s web helper, whatever that really is...
 
-profile steamwebhelper_sh @{HOME}/.local/share/Steam/ubuntu12_64/steamwebhelper.sh flags=(complain) {
+#include <tunables/global>
+#include <tunables/steam>
+
+profile steamwebhelper_sh @{steamlocaldir}/ubuntu12_64/steamwebhelper{,.sh} flags=(complain) {
   #include <abstractions/X>
   #include <abstractions/audio>
   #include <abstractions/base>
@@ -14,59 +16,59 @@ profile steamwebhelper_sh @{HOME}/.local/share/Steam/ubuntu12_64/steamwebhelper.
   #include <abstractions/user-tmp>
   #include <abstractions/vulkan>
 
-  ptrace trace peer=/home/smar/.local/share/Steam/ubuntu12_64/steamwebhelper.sh,
+  # Not sure if necessary.
+  ptrace trace peer=steamwebhelper_sh,
 
-  /bin/bash ix,
-  /bin/bash r,
+  /bin/bash rix,
+  /usr/bin/dirname mrix,
+  /usr/bin/rm mrix,
+
   /dev/ r,
   /dev/hidraw* rw,
-  /proc/ r,
-  /proc/*/stat r,
-  /proc/sys/fs/inotify/max_user_watches r,
-  /proc/vmstat r,
-  /selinux/ r,
+  @{PROC}/ r,
+  @{PROC}/@{uid}/stat r,
+  @{PROC}/sys/fs/inotify/max_user_watches r,
+  @{PROC}/vmstat r,
+
   /sys/bus/pci/devices/ r,
   /sys/devices/** r,
   /sys/devices/system/cpu/cpufreq/** r,
-  /usr/bin/dirname mrix,
-  /usr/bin/rm mrix,
+
+  /selinux/ r,
+
   /usr/share/drirc.d/ r,
   /usr/share/drirc.d/* r,
   /usr/share/libdrm/* r,
-  @{HOME}/.local/share/Steam/ubuntu12_64/steamwebhelper mrix,
-  @{HOME}/.local/share/Steam/ubuntu12_64/steamwebhelper.sh r,
+
+  # TODO: better rule
   owner /dev/shm/* rwk,
-  owner @{HOME}/.cache/mesa_shader_cache/** k,
-  owner @{HOME}/.local/share/Steam/clientui/fonts/clientui.uifont k,
-  owner /proc/*/fd/ r,
-  owner /proc/*/oom_score_adj w,
-  owner /proc/*/status r,
-  owner /proc/*/task/ r,
-  owner /proc/*/task/** r,
+
+  owner @{PROC}/@{uid}/fd/ r,
+  owner @{PROC}/@{uid}/oom_score_adj w,
+  owner @{PROC}/@{uid}/status r,
+  owner @{PROC}/@{uid}/task/ r,
+  owner @{PROC}/@{uid}/task/** r,
+
   owner @{HOME}/.Xauthority r,
-  owner @{HOME}/.cache/mesa_shader_cache/** r,
-  owner @{HOME}/.cache/mesa_shader_cache/** w,
+  owner @{HOME}/.cache/mesa_shader_cache/** rwk,
   owner @{HOME}/.cache/mesa_shader_cache/index rw,
   owner @{HOME}/.config/cef_user_data/Dictionaries/* rw,
   owner @{HOME}/.config/ibus/bus/* r,
-  owner @{HOME}/.local/share/Steam/** m,
-  owner @{HOME}/.local/share/Steam/** r,
-  owner @{HOME}/.local/share/Steam/config/htmlcache/* r,
-  owner @{HOME}/.local/share/Steam/config/htmlcache/* w,
-  owner @{HOME}/.local/share/Steam/config/htmlcache/** k,
-  owner @{HOME}/.local/share/Steam/config/htmlcache/** r,
-  owner @{HOME}/.local/share/Steam/config/htmlcache/** w,
-  owner @{HOME}/.local/share/Steam/config/htmlcache/**/ rw,
-  owner @{HOME}/.local/share/Steam/config/htmlcache/*/ w,
-  owner @{HOME}/.local/share/Steam/config/htmlcache/blob_storage/ w,
-  owner @{HOME}/.local/share/Steam/config/widevine/linux-x64/manifest.json r,
-  owner @{HOME}/.local/share/Steam/logs/cef_log.txt w,
-  owner @{HOME}/.local/share/Steam/ubuntu12_32/** mr,
-  owner @{HOME}/.local/share/Steam/ubuntu12_64/* mr,
-  owner @{HOME}/.local/share/Steam/ubuntu12_64/locales/*.pak r,
-  owner @{HOME}/.local/share/Steam/ubuntu12_64/steam-runtime-heavy/* mr,
+
+  # TODO: maybe this rule should be more strict?
+  owner @{steamlocaldir}/** rm,
+
+  owner @{steamlocaldir}/clientui/fonts/clientui.uifont k,
+  owner @{steamlocaldir}/config/htmlcache/** rwk,
+  owner @{steamlocaldir}/config/widevine/linux-x64/manifest.json r,
+  owner @{steamlocaldir}/logs/cef_log.txt w,
+  owner @{steamlocaldir}/ubuntu12_32/** mr,
+  owner @{steamlocaldir}/ubuntu12_64/* mr,
+  owner @{steamlocaldir}/ubuntu12_64/steamwebhelper mrix,
+  owner @{steamlocaldir}/ubuntu12_64/steamwebhelper.sh r,
+  owner @{steamlocaldir}/ubuntu12_64/locales/*.pak r,
+  owner @{steamlocaldir}/ubuntu12_64/steam-runtime-heavy/* mr,
   owner @{HOME}/.pki/nssdb/* rwk,
   owner @{HOME}/.pki/nssdb/pkcs11.txt rw,
   owner @{HOME}/.steam/steam.pipe r,
-
 }

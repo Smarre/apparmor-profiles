@@ -1,7 +1,10 @@
-# Last Modified: Fri Apr 17 07:27:05 2020
+# Profile for Steam’s game overlay (UI that can be drawn over games)
+
 #include <tunables/global>
 
-profile gameoverlayui @{HOME}/.local/share/Steam/ubuntu12_32/gameoverlayui flags=(complain) {
+#include <tunables/steam>
+
+profile gameoverlayui @{steamlocaldir}/ubuntu12_32/gameoverlayui {
   #include <abstractions/audio>
   #include <abstractions/base>
   #include <abstractions/dbus-session-strict>
@@ -32,27 +35,28 @@ profile gameoverlayui @{HOME}/.local/share/Steam/ubuntu12_32/gameoverlayui flags
   owner @{HOME}/.fonts.conf r,
   owner @{HOME}/.fonts/ r,
 
-  owner @{HOME}/.local/share/Steam/linux32/steamerrorreporter Px -> steamerrorreporter,
-  owner @{HOME}/.local/share/Steam/ubuntu12_32/gameoverlayui mr,
-  owner @{HOME}/.local/share/Steam/ r,
-  owner @{HOME}/.local/share/Steam/** rk,
-  owner @{HOME}/.local/share/Steam/** w,
-  owner @{HOME}/.local/share/Steam/config/ r,
-  owner @{HOME}/.local/share/Steam/friends/* r,
-  owner @{HOME}/.local/share/Steam/public/steamui_english.txt r,
-  owner @{HOME}/.local/share/Steam/public/steamui_finnish.txt r,
-  owner @{HOME}/.local/share/Steam/resource/* r,
-  owner @{HOME}/.local/share/Steam/resource/steamscheme.res r,
-  owner @{HOME}/.local/share/Steam/resource/styles/gameoverlay.styles r,
-  owner @{HOME}/.local/share/Steam/resource/styles/steam.styles r,
-  owner @{HOME}/.local/share/Steam/ubuntu12_32/ r,
-  owner @{HOME}/.local/share/Steam/ubuntu12_32/* mr,
-  owner @{HOME}/.local/share/Steam/ubuntu12_32/gameoverlayrenderer.so r,
-  owner @{HOME}/.local/share/Steam/ubuntu12_32/libtier0_s.so mr,
-  owner @{HOME}/.steam/registry.vdf rk,
-  owner @{HOME}/.steam/steam.pipe r,
-  owner @{HOME}/.local/share/Steam/ubuntu12_32/steam-runtime/lib/** mr,
-  owner @{HOME}/.local/share/Steam/ubuntu12_32/steam-runtime/usr/lib/** mr,
+  owner @{steamdir}/registry.vdf rk,
+  owner @{steamdir}/steam.pipe r,
+
+  owner @{steamlocaldir}/ r,
+  owner @{steamlocaldir}/** rwk,
+
+  owner @{steamlocaldir}/linux32/steamerrorreporter Px -> steamerrorreporter,
+  owner @{steamlocaldir}/ubuntu12_32/gameoverlayui mr,
+  owner @{steamlocaldir}/config/ r,
+  owner @{steamlocaldir}/friends/* r,
+  owner @{steamlocaldir}/public/steamui_english.txt r,
+  owner @{steamlocaldir}/public/steamui_finnish.txt r,
+  owner @{steamlocaldir}/resource/* r,
+  owner @{steamlocaldir}/resource/steamscheme.res r,
+  owner @{steamlocaldir}/resource/styles/gameoverlay.styles r,
+  owner @{steamlocaldir}/resource/styles/steam.styles r,
+  owner @{steamlocaldir}/ubuntu12_32/ r,
+  owner @{steamlocaldir}/ubuntu12_32/* mr,
+  owner @{steamlocaldir}/ubuntu12_32/gameoverlayrenderer.so r,
+  owner @{steamlocaldir}/ubuntu12_32/libtier0_s.so mr,
+  owner @{steamlocaldir}/ubuntu12_32/steam-runtime/lib/** mr,
+  owner @{steamlocaldir}/ubuntu12_32/steam-runtime/usr/lib/** mr,
 
   # Not sure how safe this one is..
   owner /tmp/miles_image_* m,

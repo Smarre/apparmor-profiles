@@ -1,14 +1,16 @@
+# Profile for Steam’s game launcher script
 
 #include <tunables/global>
+#include <tunables/steam>
 
-profile run_sh @{HOME}/.local/share/Steam/ubuntu12_32/steam-runtime/run.sh {
+profile run_sh @{steamlocaldir}/ubuntu12_32/steam-runtime/run.sh {
   #include <abstractions/base>
   #include <abstractions/bash>
   #include <abstractions/consoles>
   #include <abstractions/user-tmp>
 
   /bin/bash rix,
-  @{HOME}/.local/share/Steam/ubuntu12_32/steam-runtime/run.sh r,
+  @{steamlocaldir}/ubuntu12_32/steam-runtime/run.sh r,
   /lib/ r,
   /lib64/ r,
   /sbin/ldconfig mrix,

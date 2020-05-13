@@ -1,6 +1,7 @@
 # Profile for main steam script.
 
 #include <tunables/global>
+#include <tunables/steam>
 
 /usr/bin/steam {
   #include <abstractions/audio>
@@ -11,35 +12,40 @@
   #include <abstractions/freedesktop.org>
   #include <abstractions/gnome>
   #include <abstractions/nameservice>
+  #include <abstractions/sddm>
   #include <abstractions/user-tmp>
 
   capability setuid,
 
   /bin/bash mrix,
-  /dev/ptmx rw,
-  /proc/filesystems r,
-  /usr/bin/* mrix,
+
+  audit /usr/bin/* mrix,
   /usr/bin/id Cx,
   /usr/bin/ln Cx,
   /usr/bin/systemctl Cx,
+
+  /dev/ptmx rw,
+  @{PROC}/filesystems r,
+
   /usr/share/zenity/zenity.ui r,
-  @{HOME}/.local/share/Steam/steam.sh Px -> steam_sh,
-  owner /home/*/.local/share/sddm/xorg-session.log w,
-  owner /proc/*/fd/ r,
-  owner /proc/*/stat r,
+
+  owner @{PROC}/@{uid}/fd/ r,
+  owner @{PROC}/@{uid}/stat r,
+
   owner @{HOME}/.ICEauthority r,
   owner @{HOME}/.Xauthority r,
   owner @{HOME}/.config/gtk-3.0/* r,
   owner @{HOME}/.config/user-dirs.dirs r,
-  owner @{HOME}/.local/share/Steam/* w,
-  owner @{HOME}/.local/share/Steam/bootstrap.tar.xz w,
-  owner @{HOME}/.local/share/Steam/linux32/steamerrorreporter w,
-  owner @{HOME}/.local/share/Steam/steam.sh r,
-  owner @{HOME}/.local/share/Steam/ubuntu12_32/* w,
-  owner @{HOME}/.local/share/Steam/ubuntu12_32/** w,
-  owner @{HOME}/.steam/starting w,
   owner @{HOME}/{Desktop,Työpöytä}/steam.desktop w,
 
+  owner @{steamdir}/starting w,
+
+  owner @{steamlocaldir}/* w,
+  owner @{steamlocaldir}/steam.sh Px -> steam_sh,
+  owner @{steamlocaldir}/linux32/steamerrorreporter w,
+  owner @{steamlocaldir}/steam.sh r,
+  owner @{steamlocaldir}/ubuntu12_32/* w,
+  owner @{steamlocaldir}/ubuntu12_32/** w,
 
   profile /usr/bin/id {
     #include <abstractions/base>
@@ -47,15 +53,13 @@
     #include <abstractions/consoles>
 
     /usr/bin/id mr,
-
   }
 
   profile /usr/bin/ln {
     #include <abstractions/base>
 
     /usr/bin/ln mr,
-    @{HOME}/.steam/steam w,
-
+    @{steamdir}/steam w,
   }
 
   profile /usr/bin/systemctl {
@@ -65,11 +69,11 @@
 
     ptrace read peer=unconfined,
 
-    /proc/*/cgroup r,
-    /proc/*/sched r,
-    /proc/cmdline r,
     /usr/bin/systemctl mr,
-    owner /proc/*/stat r,
 
+    @{PROC}/@{uid}/cgroup r,
+    @{PROC}/@{uid}/sched r,
+    @{PROC}/cmdline r,
+    owner @{PROC}/@{uid}/stat r,
   }
 }
