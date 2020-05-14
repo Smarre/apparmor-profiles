@@ -1,0 +1,14 @@
+# Profile for mouse on TTY (Linux’s default console)
+
+#include <tunables/global>
+
+/usr/sbin/gpm {
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+
+  capability sys_tty_config,
+
+  /usr/sbin/gpm mr,
+  /dev/tty* r,
+  /dev/input/mice rw,
+}
