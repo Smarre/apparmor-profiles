@@ -1,0 +1,3 @@
+# If you have custom locations for profiles, you can add them here.
+
+#   @{HOME}/Projects/apparmor-profiles/** r,
