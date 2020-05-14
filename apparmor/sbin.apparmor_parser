@@ -1,0 +1,32 @@
+# Last Modified: Mon Apr 27 06:58:35 2020
+#include <tunables/global>
+
+/sbin/apparmor_parser flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+
+  capability dac_read_search,
+  capability mac_admin,
+
+  /home/*/Projektit/random/apparmor-profiles/* r,
+  /home/*/Projektit/random/apparmor-profiles/** r,
+  /sbin/apparmor_parser mr,
+  owner /dev/tty* rw,
+  owner /etc/apparmor-extended/ r,
+  owner /etc/apparmor.d/** r,
+  owner /etc/apparmor/* r,
+  owner /proc/*/mounts r,
+  owner /proc/sys/kernel/osrelease r,
+  owner /sys/devices/system/cpu/ r,
+  owner /sys/devices/system/cpu/online r,
+  owner /sys/kernel/security/apparmor/ r,
+  owner /sys/kernel/security/apparmor/** r,
+  owner /sys/kernel/security/apparmor/** w,
+  owner /sys/kernel/security/apparmor/**/ r,
+  owner /usr/share/apparmor/**/ r,
+  owner /usr/share/apparmor/extra-profiles/* r,
+  owner /var/lib/apparmor/** r,
+  owner /var/lib/apparmor/** w,
+  owner /var/lib/apparmor/*/ r,
+
+}
