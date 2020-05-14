@@ -1,0 +1,26 @@
+# Profile for agetty.
+
+#include <tunables/global>
+
+/usr/sbin/agetty flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/nameservice>
+  #include <abstractions/wutmp>
+
+  capability chown,
+  capability dac_override,
+  capability fsetid,
+  capability sys_admin,
+  capability sys_tty_config,
+
+  /bin/login Px,
+  /usr/sbin/agetty mr,
+
+  /dev/tty* rw,
+
+  owner /run/agetty.reload rw,
+  owner /run/issue r,
+
+  owner /etc/issue.d/ r,
+
+}

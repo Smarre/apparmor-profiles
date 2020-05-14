@@ -1,0 +1,12 @@
+# Profile for gettext.
+
+#include <tunables/global>
+
+/usr/bin/gettext flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+  #include <abstractions/user-tmp>
+
+  /usr/bin/gettext mr,
+
+}

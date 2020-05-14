@@ -1,0 +1,33 @@
+# Profile for htop.
+
+#include <tunables/global>
+
+/usr/bin/htop flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/consoles>
+  #include <abstractions/nameservice>
+
+  capability net_admin,
+  capability sys_ptrace,
+
+  ptrace read,
+
+  /usr/bin/htop mr,
+
+  /dev/tty* w,
+
+  @{PROC}/ r,
+  @{PROC}/@{uid}/cmdline r,
+  @{PROC}/@{uid}/stat r,
+  @{PROC}/@{uid}/statm r,
+  @{PROC}/@{uid}/task/ r,
+  @{PROC}/@{uid}/task/** r,
+  @{PROC}/loadavg r,
+  @{PROC}/sys/kernel/pid_max r,
+  @{PROC}/tty/drivers r,
+  @{PROC}/uptime r,
+
+  owner @{HOME}/.config/htop/htoprc r,
+
+}

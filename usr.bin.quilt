@@ -1,0 +1,60 @@
+# Profile for quilt.
+
+#include <tunables/global>
+
+/usr/bin/quilt flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/consoles>
+  #include <abstractions/extended>
+  #include <abstractions/nameservice>
+  #include <abstractions/user-tmp>
+
+  /bin/bash mrix,
+
+  /usr/bin/bzip2 mrix,
+  /usr/bin/cat mrix,
+  /usr/bin/chmod mrix,
+  /usr/bin/column mrix,
+  /usr/bin/file mrix,
+  /usr/bin/gawk mrix,
+  /usr/bin/getopt mrix,
+  /usr/bin/grep mrix,
+  /usr/bin/head mrix,
+  /usr/bin/ln mrix,
+  /usr/bin/md5sum mrix,
+  /usr/bin/mkdir mrix,
+  /usr/bin/mktemp mrix,
+  /usr/bin/patch mrix,
+  /usr/bin/quilt r,
+  /usr/bin/rm mrix,
+  /usr/bin/rpmbuild mrix,
+  /usr/bin/sed mrix,
+  /usr/bin/sort mrix,
+  /usr/bin/tail mrix,
+  /usr/bin/tar mrix,
+  /usr/bin/touch mrix,
+  /usr/bin/tr mrix,
+
+  @{PROC}/filesystems r,
+  /sys/devices/system/cpu/online r,
+
+  /etc/magic r,
+  /etc/popt.d/ r,
+  /etc/popt.d/pesign.popt r,
+  /etc/quilt.quiltrc r,
+  /etc/rpm/ r,
+  /etc/rpm/* r,
+
+  /usr/lib/getconf/getconf mrix,
+  /usr/share/misc/magic.mgc r,
+  /usr/share/quilt/** r,
+  /usr/share/quilt/scripts/* mrix,
+
+  # TODO: why?
+  owner /** rw,
+  owner /**/ r,
+
+  owner /usr/share/quilt/* r,
+
+}

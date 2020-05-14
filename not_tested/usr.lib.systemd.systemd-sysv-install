@@ -1,0 +1,16 @@
+# Profile for systemd-sysv-install.
+
+#include <tunables/global>
+
+# WARNING: not tested.
+
+/usr/lib/systemd/systemd-sysv-install flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/consoles>
+
+  /bin/bash ix,
+  /usr/lib/systemd/systemd-sysv-install r,
+  owner /bin/bash mr,
+
+}

@@ -1,0 +1,43 @@
+# Profile for “osc vc”.
+
+#include <tunables/global>
+
+/usr/lib/build/vc flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/consoles>
+  #include <abstractions/nameservice>
+
+  /bin/bash mrix,
+
+  /usr/bin/cat mrix,
+  /usr/bin/chmod mrix,
+  /usr/bin/chown mrix,
+  /usr/bin/date mrix,
+  /usr/bin/md5sum mrix,
+  /usr/bin/mktemp mrix,
+  /usr/bin/mv mrix,
+  /usr/bin/rm mrix,
+  /usr/bin/stat mrix,
+  /usr/bin/vim-nox11 mrix,
+  /usr/bin/which mrix,
+
+  @{PROC}/filesystems r,
+
+  /etc/vimrc r,
+
+  /usr/lib/build/vc r,
+  /usr/share/vim/** r,
+
+  # TODO: why?
+  owner /** w,
+
+  # Allow writing changes files anywhere.
+  owner /**/ r,
+  owner /**.changes rw,
+  owner /**.changes.vctmp.* rw,
+
+  owner @{HOME}/.viminfo rw,
+  owner @{HOME}/.viminfo.tmp rw,
+
+}
