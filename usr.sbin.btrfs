@@ -1,0 +1,22 @@
+# Profile for BTRFS’s user space control/configuration tool.
+
+#include <tunables/global>
+
+/usr/sbin/btrfs flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+  #include <abstractions/user-tmp>
+
+  capability sys_admin,
+
+  # BTRFS needs to read about all files on disk.
+  / r,
+  /** r,
+
+  /usr/sbin/btrfs mr,
+
+  /var/lib/btrfs/scrub.status.* k,
+
+  # TODO: not sure why this...
+  owner /** rw,
+}
