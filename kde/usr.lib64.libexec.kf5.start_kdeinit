@@ -1,0 +1,12 @@
+# Profile for start_kdeinit.
+
+#include <tunables/global>
+
+# NOTE: This profile probably should be inherited, but this works as fallback.
+
+/usr/lib64/libexec/kf5/start_kdeinit flags=(complain) {
+  #include <abstractions/base>
+
+  /usr/lib64/libexec/kf5/start_kdeinit mr,
+
+}
