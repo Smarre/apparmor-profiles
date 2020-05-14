@@ -7,4 +7,7 @@
 
   /usr/share/fish/** r,
 
+  owner /run/user/[0-9]*/fishd.*.notifier rw,
+
   owner @{HOME}/.config/fish/** r,
+  owner @{HOME}/.local/share/fish/fish_history rwk,

@@ -20,8 +20,12 @@
   # TODO: first audit, then change to Pix.
   /usr/bin/* PUx,
   /usr/bin/uname ix,
-  /usr/lib/build/build Px,
   /usr/bin/sudo mr,
+
+  # TODO: first audit, then change to Pix.
+  /usr/sbin/* PUx,
+
+  /usr/lib/build/build Px,
 
   /etc/sudoers r,
 

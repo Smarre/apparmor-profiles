@@ -41,15 +41,19 @@
   # TODO: why this exists?
   /** r,
 
+  /bin/* Pix,
   /bin/bash ix,
-  /dev/snd/controlC* mrw,
-  /home/smar/Varasto/Sek/Backup/keepass/keepass.fish Px,
-  /opt/TeamSpeak3-Client-linux_amd64/ts3client_runscript.sh Px,
-  /tmp/crontab.* mrw,
-  /usr/bin/uname ix,
   /usr/bin/* Pix,
-  /usr/share/*/bin/* Pix,
+  /usr/bin/uname ix,
   /usr/bin/kcminit mrix,
+  /usr/sbin/aa-logprof PUx,
+  /usr/sbin/aa-remove-unknown PUx,
+  /usr/sbin/aa-status PUx,
+
+  /dev/snd/controlC* mrw,
+
+  /tmp/crontab.* mrw,
+
   /usr/lib/** Pix,
   /usr/lib64/libreoffice/program/soffice Px,
   /usr/lib64/chromium/chromium Px,
@@ -67,28 +71,36 @@
   /usr/lib64/libexec/org_kde_powerdevil Px,
   /usr/lib64/libexec/polkit-kde-authentication-agent-1 mrix,
   /usr/lib64/mesa-demos/xdemos/* rPix,
-  /usr/sbin/aa-logprof PUx,
-  /usr/sbin/aa-remove-unknown PUx,
-  /usr/sbin/aa-status PUx,
+
+  /usr/share/*/bin/* Pix,
   /usr/share/kf5/** r,
   /usr/share/plasma/** mr,
+
   /var/cache/man/** mrk,
   /var/spool/cron/tabs/* mrw,
   /var/spool/mail/* mrw,
+
   /{usr/,}lib{,32,64}/** mrk,
 
   @{HOME}/ r,
+
+  # TODO: why this?
   @{HOME}/** rwk,
 
+  # TODO: why this?
   owner /** rwk,
-  owner /proc/*/mounts r,
+
+  owner @{PROC}/@{uid}/mounts r,
   owner /run/user/*/gvfs/ r,
   owner /run/user/*/orcexec.* mr,
+
   owner /var/cache/zypp/packages/** mrl,
 
   owner @{HOME}/.cache/*/qmlcache/* mr,
   owner @{HOME}/#* mrw,
   owner @{HOME}/.cache/mesa_shader_cache/** mrwk,
   owner @{HOME}/.gnupg/* mrl,
+
+  #include <local/usr.bin.kdeinit5>
 
 }
