@@ -1,0 +1,16 @@
+# Profile for bazaar version control client.
+
+#include <tunables/global>
+
+/usr/bin/bzr flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/python>
+
+  /usr/bin/bzr r,
+  /usr/bin/python2.7 mrix,
+
+  @{PROC}/sys/crypto/fips_enabled r,
+
+  owner @{HOME}/.bzr.log w,
+
+}

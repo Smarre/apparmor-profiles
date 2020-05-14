@@ -1,0 +1,12 @@
+# Profile for envsubst.
+
+#include <tunables/global>
+
+# NOTE: This profile probably should be inherited.
+
+/usr/bin/envsubst flags=(complain) {
+  #include <abstractions/base>
+
+  /usr/bin/envsubst mr,
+
+}

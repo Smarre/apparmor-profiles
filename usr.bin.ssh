@@ -1,0 +1,24 @@
+# Profile for ssh client.
+
+#include <tunables/global>
+
+/usr/bin/ssh flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+  #include <abstractions/nameservice>
+  #include <abstractions/openssl>
+  #include <abstractions/user-tmp>
+
+  signal receive set=hup peer=/usr/bin/fish,
+
+  /usr/bin/ssh mr,
+
+  /etc/ssh/* r,
+
+  /var/lib/sss/pubconf/* r,
+
+  owner @{PROC}/@{uid}/fd/ r,
+
+  owner @{HOME}/.ssh/* r,
+  owner @{HOME}/.ssh/known_hosts rw,
+}

@@ -1,0 +1,12 @@
+# Profile for bfd linker.
+
+#include <tunables/global>
+
+/usr/bin/ld.bfd flags=(complain) {
+  #include <abstractions/base>
+
+  /usr/bin/ld.bfd mr,
+
+  # TODO: why?
+  owner /** rw,
+}

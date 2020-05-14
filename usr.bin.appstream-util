@@ -1,0 +1,16 @@
+# Profile for appstream-util.
+
+#include <tunables/global>
+
+/usr/bin/appstream-util flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+  #include <abstractions/freedesktop.org>
+  #include <abstractions/nameservice>
+
+  /usr/bin/appstream-util mr,
+
+  owner /var/cache/app-info/icons/** w,
+  owner /var/cache/app-info/xmls/* rw,
+  owner /var/cache/zypp/raw/** r,
+}
