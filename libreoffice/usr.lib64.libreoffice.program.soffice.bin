@@ -15,8 +15,9 @@
   #include <abstractions/smar_kde>
   #include <abstractions/user-tmp>
 
+  / r,
   /** r,
-  /**/ r,
+
   /bin/bash mrix,
   /sys/fs/cgroup/cpu,cpuacct/* r,
   /sys/fs/cgroup/cpu,cpuacct/cpu.cfs_quota_us r,
@@ -49,4 +50,5 @@
   owner @{HOME}/.local/lib/python*/** r,
   owner @{HOME}/.recently-used rwk,
 
+  #include <local/libreoffice-soffice.bin>
 }

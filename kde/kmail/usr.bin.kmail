@@ -14,6 +14,9 @@
   capability sys_chroot,
 
   signal receive set=hup peer=/usr/bin/kdeinit5,
+  signal send set=term peer=/usr/bin/kdeinit5,
+
+  # TODO: why?
   signal send set=term peer=unconfined,
 
   ptrace read peer=unconfined,
@@ -140,6 +143,7 @@
   owner @{HOME}/.local/share/user-places.xbel* rw,
   owner @{HOME}/.pki/nssdb/* rwk,
 
+  #include <local/usr.bin.kmail>
 
   profile /usr/bin/kleopatra flags=(complain) {
     #include <abstractions/base>

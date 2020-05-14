@@ -19,10 +19,25 @@
 
   /bin/bash mrix,
 
-  audit /usr/bin/* mrix,
+  #audit /usr/bin/* mrix,
+  audit /usr/bin/cp rix,
+  audit /usr/bin/rm rix,
+  audit /usr/bin/mkdir rix,
+
+  # Invoked by bash
+  /usr/bin/dirname rix,
+
+  /usr/bin/env rm,
   /usr/bin/id Cx,
   /usr/bin/ln Cx,
+  /usr/bin/readlink rix,
+  /usr/bin/which rix,
+  /usr/bin/steam r,
+  /usr/bin/steamtricks rix,
   /usr/bin/systemctl Cx,
+  /usr/bin/tar rix,
+  /usr/bin/tee rix,
+  /usr/bin/zenity rix,
 
   /dev/ptmx rw,
   @{PROC}/filesystems r,
@@ -39,6 +54,7 @@
   owner @{HOME}/{Desktop,Työpöytä}/steam.desktop w,
 
   owner @{steamdir}/starting w,
+  owner @{steamdir}/steam w,
 
   owner @{steamlocaldir}/* w,
   owner @{steamlocaldir}/steam.sh Px -> steam_sh,
@@ -46,6 +62,8 @@
   owner @{steamlocaldir}/steam.sh r,
   owner @{steamlocaldir}/ubuntu12_32/* w,
   owner @{steamlocaldir}/ubuntu12_32/** w,
+
+  owner @{steamlocaldirpaths}/ r,
 
   profile /usr/bin/id {
     #include <abstractions/base>

@@ -116,8 +116,6 @@ profile steam_sh @{steamlocaldir}/steam.sh {
   owner @{steamlocaldir}/ubuntu12_32/* mr,
   owner @{steamlocaldir}/ubuntu12_32/steam-runtime/** mr,
 
-  owner @{steamlocaldir}/.steam_exec_test.sh Cx -> steam_exec_test,
-
   owner @{steamlocaldir}/ubuntu12_32/gameoverlayui px -> gameoverlayui,
 
   owner @{steamlocaldir}/linux32/steamerrorreporter mrix,
@@ -131,6 +129,8 @@ profile steam_sh @{steamlocaldir}/steam.sh {
   owner @{steamlocaldir}/ubuntu12_64/gldriverquery mrix,
   owner @{steamlocaldir}/ubuntu12_64/steamwebhelper.sh px -> steamwebhelper_sh,
   owner @{steamlocaldir}/ubuntu12_64/vulkandriverquery mrix,
+
+  owner @{steamlocaldirpaths}/.steam_exec_test.sh rwCx -> steam_exec_test,
 
   owner @{steamdir}/registry.vdf k,
   owner @{steamdir}/ r,
