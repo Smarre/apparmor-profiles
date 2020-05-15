@@ -1,3 +1,5 @@
+# Profile for ktnef.
+
 #include <tunables/global>
 
 /usr/bin/ktnef flags=(complain) {
@@ -6,13 +8,17 @@
   #include <abstractions/qt5>
   #include <abstractions/smar_kde>
 
-  /etc/xdg/ui/ui_standards.rc r,
   /proc/sys/kernel/core_pattern r,
+
+  /etc/xdg/ui/ui_standards.rc r,
+
   /usr/bin/ktnef mr,
   /usr/share/icu/** r,
   /usr/share/qt5/resources/* r,
   /usr/share/qt5/translations/qtwebengine_locales/*.pak r,
+
   owner /dev/shm/.org.chromium.Chromium.* ra,
+
   owner @{HOME}/.ICEauthority r,
   owner @{HOME}/.cache/fontconfig/* r,
   owner @{HOME}/.config/.* rwk,
