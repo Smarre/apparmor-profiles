@@ -84,12 +84,15 @@
 
   }
 
+  # type=AVC msg=audit(1589518189.257:990): apparmor="DENIED" operation="getattr" info="Failed name lookup - disconnected path" error=-13 profile="/usr/bin/akonadiserver///usr/bin/mysqlcheck" name="apparmor/.null" pid=23824 comm="mysqlcheck" requested_mask="r" denied_mask="r" fsuid=1000 ouid=0
+  # NOTE: This *probably* is harmless. As that path is something mysqlcheck doesn’t need to access. Though no idea why it’s present somewhere...
   profile /usr/bin/mysqlcheck {
     #include <abstractions/base>
     #include <abstractions/mysql>
     #include <abstractions/nameservice>
     #include <abstractions/openssl>
     #include <abstractions/consoles>
+    #include <abstractions/sddm>
 
     /proc/sys/crypto/fips_enabled r,
     /usr/bin/mysqlcheck mr,

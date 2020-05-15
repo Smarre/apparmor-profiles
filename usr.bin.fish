@@ -30,6 +30,9 @@
 
   signal send,
 
+  signal receive set=hup peer=/bin/login,
+  signal receive set=term peer=/bin/login,
+
   ptrace read,
 
   / r,

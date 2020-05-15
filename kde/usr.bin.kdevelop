@@ -19,22 +19,24 @@
 
   ptrace read,
 
+  # Files from about anywhere can be read.
   /** r,
-  /bin/bash ix,
+
   /bin/bash mrix,
-  /dev/ptmx rw,
   /usr/bin/basename mrix,
   /usr/bin/bzr Px,
   /usr/bin/cat mrix,
-  /usr/bin/clang-* Px,
+  /usr/bin/clang-* Px -> clang,
   /usr/bin/cmake Px,
   /usr/bin/dirname mrix,
   /usr/bin/fish mrix,
   /usr/bin/hostname mrix,
   /usr/bin/kdevelop mr,
   /usr/bin/kdevelop mrix,
+
   # NOTE: this ! causes apparmor to mistakenly sometimes say that ! doesn’t need to be escaped.
   "/usr/bin/kdevelop!" mrix,
+
   /usr/bin/make Px,
   /usr/bin/mktemp mrix,
   /usr/bin/net mrix,
@@ -51,26 +53,38 @@
   /usr/bin/uname mrix,
   /usr/bin/wc mrix,
   /usr/bin/which mrix,
+
+  /dev/ptmx rw,
+
   /usr/lib/git/git Px,
   /usr/lib/utempter/utempter Px,
+
+  # User can have project files anywhere.
   owner /** rw,
-  owner /home/*/**.lock rk,
-  owner /home/*/**/.* rk,
-  owner /home/*/.cache/kdevelop/qmlcache/*.jsc mr,
-  owner /home/*/.cache/kdevelop/qmlcache/*.qmlc mr,
-  owner /home/*/.config/.* rk,
-  owner /home/*/.config/kdeveloprc w,
-  owner /home/*/.config/kdeveloprc.* rk,
-  owner /home/*/.config/kdeveloprc.* rw,
-  owner /home/*/.config/session/.* rk,
-  owner /home/*/.config/session/kdevelop_*.lock rk,
-  owner /home/*/.local/share/fish/fish_history rk,
-  owner /home/*/.local/share/kdevelop/QML/OfflineStorage/Databases/*.sqlite rk,
-  owner /home/*/.local/share/kdevelop/qthelpcollection.qhc rk,
-  owner /home/*/.local/share/kdevelop/sessions/*/.* rwk,
-  owner /home/*/.local/share/kdevelop/sessions/*/lock rwk,
-  owner /home/*/.local/share/kdevelop/sessions/*/lock.rmlock rk,
-  owner /home/*/.local/share/kdevelop/sessions/*/sessionrc.lock rk,
-  owner /home/*/Projektit/random/apparmor-profiles/.* rk,
+
+  # TODO: why?
+  owner @{HOME}/**.lock rk,
+
+  # TODO: why?
+  owner @{HOME}/**/.* rk,
+
+  owner @{HOME}/.cache/kdevelop/qmlcache/*.jsc mr,
+  owner @{HOME}/.cache/kdevelop/qmlcache/*.qmlc mr,
+  owner @{HOME}/.config/.* rk,
+  owner @{HOME}/.config/kdeveloprc w,
+  owner @{HOME}/.config/kdeveloprc.* rk,
+  owner @{HOME}/.config/kdeveloprc.* rw,
+  owner @{HOME}/.config/session/.* rk,
+  owner @{HOME}/.config/session/kdevelop_*.lock rk,
+
+  owner @{HOME}/.local/share/kdevelop/QML/OfflineStorage/Databases/*.sqlite rk,
+  owner @{HOME}/.local/share/kdevelop/qthelpcollection.qhc rk,
+  owner @{HOME}/.local/share/kdevelop/sessions/*/.* rwk,
+  owner @{HOME}/.local/share/kdevelop/sessions/*/lock rwk,
+  owner @{HOME}/.local/share/kdevelop/sessions/*/lock.rmlock rk,
+  owner @{HOME}/.local/share/kdevelop/sessions/*/sessionrc.lock rk,
+
+  # TODO: why?
+  owner @{HOME}/Projektit/random/apparmor-profiles/.* rk,
 
 }

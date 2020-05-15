@@ -15,6 +15,7 @@
   capability setuid,
   capability sys_admin,
   capability sys_nice,
+  capability sys_tty_config,
   capability sys_rawio,
 
   signal receive set=term peer=/usr/bin/sddm,

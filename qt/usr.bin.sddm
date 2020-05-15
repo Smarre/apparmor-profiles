@@ -88,9 +88,9 @@
   owner /etc/sysconfig/displaymanager r,
 
   owner @{HOME}/.Xauthority rwl,
-  owner @{HOME}/.Xauthority-c w,
-  owner @{HOME}/.Xauthority-l wl,
-  owner @{HOME}/.Xauthority-n w,
+  owner @{HOME}/.Xauthority-c rw,
+  owner @{HOME}/.Xauthority-l rwl,
+  owner @{HOME}/.Xauthority-n rw,
   owner @{HOME}/.local/share/sddm/xorg-session.log w,
 
   owner /usr/include/stdc-predef.h r,

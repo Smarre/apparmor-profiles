@@ -15,6 +15,7 @@ profile firefox-launcher /usr/lib{,64}/firefox/firefox.sh {
 
   /{usr/,}bin/basename rix,
   /{usr/,}bin/bash rix,
+  /usr/bin/expr rix,
   /{usr/,}bin/grep rix,
   /etc/magic r,
   /usr/bin/file rix,

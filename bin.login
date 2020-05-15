@@ -8,7 +8,6 @@
   #include <abstractions/bash>
   #include <abstractions/cli>
   #include <abstractions/extended>
-  #include <abstractions/fish>
   #include <abstractions/nameservice>
   #include <abstractions/wutmp>
 
@@ -25,11 +24,16 @@
   capability sys_ptrace,
   capability sys_tty_config,
 
+  signal send set=term peer=/usr/bin/fish,
+  signal send set=hup peer=/usr/bin/fish,
+
   /bin/login mr,
 
   /usr/bin/acpi ix,
   /usr/bin/date ix,
-  /usr/bin/fish ix,
+
+  # Need to redirect own profile since console login otherise causes all commands to be under /bin/login...
+  /usr/bin/fish Pix,
   /usr/bin/hostname ix,
   /usr/bin/sed ix,
   /usr/bin/svn Pix,
