@@ -1,0 +1,16 @@
+# Profile for lib-ld.so.
+
+#include <tunables/global>
+
+# WARNING: This profile should always be included, and this profile only acts as a fallback.
+# If you see something using this profile, something is really wrong.
+
+profile lib-ld.so /lib{,64}/ld-[0-9]*.[0-9]*.so {
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+
+  /lib{,64}/ld-[0-9]*.[0-9]*.so rm,
+
+  # TODO: maybe this could be more specific.
+  /** rm,
+}
