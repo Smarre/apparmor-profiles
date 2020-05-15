@@ -1,0 +1,13 @@
+# Profile for fsck.ext3.
+
+#include <tunables/global>
+
+# WARNING: most likely not complete.
+
+/usr/sbin/fsck.ext3 flags=(complain) {
+  #include <abstractions/base>
+
+  /usr/sbin/fsck.ext3 mr,
+  owner /etc/blkid.conf r,
+
+}

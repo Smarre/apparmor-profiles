@@ -1,0 +1,24 @@
+# Profile for dumpcap.
+
+#include <tunables/global>
+
+/usr/bin/dumpcap {
+  #include <abstractions/base>
+  #include <abstractions/user-tmp>
+
+  capability net_admin,
+  capability net_raw,
+
+  signal receive set=int peer=/usr/bin/wireshark,
+  signal receive set=term peer=/usr/bin/wireshark,
+
+  # TODO: why?
+  /**/ r,
+
+  /usr/bin/dumpcap mr,
+
+  @{PROC}/@{uid}/net/dev r,
+
+  /var/lib/GeoIP/* r,
+
+}
