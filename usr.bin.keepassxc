@@ -2,7 +2,7 @@
 
 #include <tunables/global>
 
-/usr/bin/keepassxc flags=(complain) {
+/usr/bin/keepassxc {
   #include <abstractions/base>
   #include <abstractions/nameservice>
   #include <abstractions/smar_kde>

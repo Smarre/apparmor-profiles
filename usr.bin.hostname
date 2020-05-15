@@ -2,7 +2,7 @@
 
 #include <tunables/global>
 
-/usr/bin/hostname flags=(complain) {
+/usr/bin/hostname {
   #include <abstractions/base>
   #include <abstractions/consoles>
   #include <abstractions/nameservice>

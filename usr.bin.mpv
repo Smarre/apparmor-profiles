@@ -1,6 +1,8 @@
+# Profile for comprehensive command line music player.
+
 #include <tunables/global>
 
-/usr/bin/mpv flags=(complain) {
+/usr/bin/mpv {
   #include <abstractions/X>
   #include <abstractions/base>
   #include <abstractions/consoles>

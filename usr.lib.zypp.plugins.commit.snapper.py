@@ -1,4 +1,5 @@
-# Last Modified: Mon Apr 27 06:05:32 2020
+# Profile for zypper’s snapper plugin.
+
 #include <tunables/global>
 
 /usr/lib/zypp/plugins/commit/snapper.py flags=(complain) {

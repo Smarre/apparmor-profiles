@@ -2,9 +2,9 @@
 
 #include <tunables/global>
 
-# runservices should be inherited; this profile is only a fallaback option.
+# WARNING: runservices should be inherited; this profile is only a fallaback option.
 
-/usr/lib/build/runservices flags=(complain) {
+/usr/lib/build/runservices {
   #include <abstractions/base>
   #include <abstractions/bash>
   #include <abstractions/consoles>
@@ -14,17 +14,23 @@
   capability dac_override,
   capability sys_chroot,
 
+  # TODO: why?
   /** r,
+
   /bin/bash ix,
-  /home/*/.osc_build/*/bin/bash mr,
-  /home/*/.osc_build/*/lib64/* mr,
-  /home/*/.osc_build/*/usr/bin/* mr,
-  /home/*/.osc_build/*/usr/bin/* mrix,
-  /home/*/.osc_build/*/usr/lib64/** mr,
-  /home/*/.osc_build/*/usr/lib/obs/service/* mrix,
+
+  @{HOME}/.osc_build/*/bin/bash mr,
+  @{HOME}/.osc_build/*/lib64/* mr,
+  @{HOME}/.osc_build/*/usr/bin/* mr,
+  @{HOME}/.osc_build/*/usr/bin/* mrix,
+  @{HOME}/.osc_build/*/usr/lib64/** mr,
+  @{HOME}/.osc_build/*/usr/lib/obs/service/* mrix,
+
   /usr/bin/perl ix,
   /usr/bin/python2.7 ix,
   /usr/bin/python3.6 ix,
+
+  # TODO: why?
   owner /** rw,
 
 }

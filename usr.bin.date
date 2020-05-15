@@ -2,7 +2,7 @@
 
 #include <tunables/global>
 
-/usr/bin/date flags=(complain) {
+/usr/bin/date {
   #include <abstractions/base>
   #include <abstractions/consoles>
 

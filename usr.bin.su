@@ -1,3 +1,5 @@
+# Profile for su access granter.
+
 #include <tunables/global>
 
 /usr/bin/su flags=(complain) {
@@ -22,11 +24,11 @@
 
   owner /etc/environment r,
   owner /etc/security/limits.d/ r,
-  owner /proc/*/loginuid r,
+  owner @{PROC}/@{uid}/loginuid r,
 
   # This also is in extended, but see todo there.
-  owner /proc/filesystems r,
+  owner @{PROC}/filesystems r,
 
-  owner /proc/sys/kernel/ngroups_max r,
+  owner @{PROC}/sys/kernel/ngroups_max r,
 
 }

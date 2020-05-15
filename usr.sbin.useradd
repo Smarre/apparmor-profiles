@@ -1,13 +1,18 @@
+# Profile for useradd.
+
 # vim:syntax=apparmor
 # ------------------------------------------------------------------
 #
 #    Copyright (C) 2002-2005 Novell/SUSE
+#    Copyright (C) 2020 Samu Voutilainen
 #
 #    This program is free software; you can redistribute it and/or
 #    modify it under the terms of version 2 of the GNU General Public
 #    License published by the Free Software Foundation.
 #
 # ------------------------------------------------------------------
+
+# Extended from apparmor-profiles.
 
 #include <tunables/global>
 
@@ -28,6 +33,14 @@
   capability sys_resource,
 
   /{usr/,}bin/bash mixr,
+  /usr/sbin/adduser rmix,
+  /usr/sbin/nscd rPix,
+  /{,usr/}sbin/pam_tally2 Cx -> pam_tally2,
+  /usr/sbin/useradd{,.local} rmix,
+
+  @{PROC}/@{pid}/mounts r,
+  @{PROC}/filesystems r,
+
   /etc/.pwd.lock rwk,
   /etc/default/useradd r,
   /etc/group* rwl,
@@ -42,19 +55,16 @@
   /etc/subuid.* rwl,
   /etc/subgid{,-,+} rw,
   /etc/subgid.* rwl,
+
+  # See userdel.
   @{HOMEDIRS}**  rw,
-  @{PROC}/@{pid}/mounts r,
-  @{PROC}/filesystems r,
   /usr/lib*/pwdutils/*so* mr,
-  /usr/sbin/adduser rmix,
-  /usr/sbin/nscd rPix,
-  /{,usr/}sbin/pam_tally2 Cx -> pam_tally2,
-  /usr/sbin/useradd{,.local} rmix,
+
   /var/log/faillog rw,
   /{,var/}run/nscd.pid rw,
   /var/spool/mail/* rw,
-  owner /etc/skel/ r,
 
+  owner /etc/skel/ r,
 
   profile pam_tally2 {
     #include <abstractions/base>

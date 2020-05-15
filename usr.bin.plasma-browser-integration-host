@@ -1,7 +1,8 @@
-# Last Modified: Sun Apr 26 10:01:33 2020
+# Profile for plasma-browser-integration-host.
+
 #include <tunables/global>
 
-/usr/bin/plasma-browser-integration-host flags=(complain) {
+/usr/bin/plasma-browser-integration-host {
   #include <abstractions/extended>
   #include <abstractions/qt5>
   #include <abstractions/smar_kde>

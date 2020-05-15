@@ -1,14 +1,18 @@
-# Show and filter entries in audit log.
+# Profile for ausearch, show and filter entries in audit log.
+
 #include <tunables/global>
 
-/usr/sbin/ausearch flags=(complain) {
+/usr/sbin/ausearch {
   #include <abstractions/base>
   #include <abstractions/consoles>
   #include <abstractions/nameservice>
 
   /usr/sbin/ausearch mr,
+
   owner /dev/tty[0-9]* rw,
+
   owner /etc/audit/auditd.conf r,
+
   owner /var/log/audit/ r,
   owner /var/log/audit/* r,
 

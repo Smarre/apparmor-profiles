@@ -1,4 +1,5 @@
-# Last Modified: Thu Apr  2 15:44:42 2020
+# Profile for sensors-detect.
+
 #include <tunables/global>
 
 /usr/sbin/sensors-detect flags=(complain) {

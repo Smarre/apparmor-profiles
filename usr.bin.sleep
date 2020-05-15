@@ -2,7 +2,7 @@
 
 #include <tunables/global>
 
-/usr/bin/sleep flags=(complain) {
+/usr/bin/sleep {
   #include <abstractions/base>
   #include <abstractions/consoles>
 

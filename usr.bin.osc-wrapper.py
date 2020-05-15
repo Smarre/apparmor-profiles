@@ -1,6 +1,8 @@
+# Profile for osc wrapper python script.
+
 #include <tunables/global>
 
-/usr/bin/osc-wrapper.py flags=(complain) {
+/usr/bin/osc-wrapper.py {
   #include <abstractions/base>
   #include <abstractions/bash>
   #include <abstractions/consoles>

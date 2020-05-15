@@ -2,7 +2,7 @@
 
 #include <tunables/global>
 
-/usr/sbin/ifup flags=(complain) {
+/usr/sbin/ifup {
   #include <abstractions/bash>
   #include <abstractions/cli>
   #include <abstractions/consoles>
@@ -15,5 +15,4 @@
   /usr/sbin/ifup r,
   /usr/sbin/wicked Px,
   owner /etc/sysconfig/network/config r,
-
 }

@@ -1,4 +1,5 @@
-# Last Modified: Sun Apr 26 10:35:31 2020
+# Profile for X keyboard map setter.
+
 #include <tunables/global>
 
 /usr/bin/setxkbmap flags=(complain) {
@@ -7,6 +8,7 @@
   #include <abstractions/sddm>
 
   /usr/bin/setxkbmap mr,
+
   owner @{HOME}/.Xauthority r,
 
 }

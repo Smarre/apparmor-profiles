@@ -1,4 +1,5 @@
-# Last Modified: Thu Apr  2 16:51:27 2020
+# Profile for nvme cli control interface.
+
 #include <tunables/global>
 
 /usr/sbin/nvme flags=(complain) {

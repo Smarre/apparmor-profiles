@@ -1,4 +1,5 @@
-# Last Modified: Sun Apr 19 11:45:31 2020
+# Profile for zypper’s btrfs defrag plugin.
+
 #include <tunables/global>
 
 /usr/lib/zypp/plugins/commit/btrfs-defrag-plugin.sh flags=(complain) {

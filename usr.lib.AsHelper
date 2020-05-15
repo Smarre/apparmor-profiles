@@ -1,7 +1,8 @@
-# Last Modified: Thu Apr  2 11:29:27 2020
+# Profile for Appstream’s AsHelper.
+
 #include <tunables/global>
 
-/usr/lib/AsHelper flags=(complain) {
+/usr/lib/AsHelper {
   #include <abstractions/base>
   #include <abstractions/consoles>
   #include <abstractions/freedesktop.org>
@@ -12,14 +13,20 @@
   /bin/bash mrix,
   /usr/bin/appstream-util Px,
   /usr/bin/python3.6 ix,
+
   /usr/lib/AsHelper r,
-  owner /etc/rpm/ r,
-  owner /etc/rpm/macros.* r,
-  owner /proc/filesystems r,
-  owner /proc/sys/crypto/fips_enabled r,
+
   owner /usr/bin/appstream-util mr,
   owner /usr/bin/python3.6 r,
+
+  owner /proc/filesystems r,
+  owner /proc/sys/crypto/fips_enabled r,
+
+  owner /etc/rpm/ r,
+  owner /etc/rpm/macros.* r,
+
   owner /usr/lib/ r,
+
   owner /var/cache/app-info/icons/** w,
   owner /var/cache/app-info/xmls/* rw,
   owner /var/cache/zypp/raw/** r,

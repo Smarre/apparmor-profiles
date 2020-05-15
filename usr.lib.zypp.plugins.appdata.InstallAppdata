@@ -1,4 +1,5 @@
-# Last Modified: Tue Apr 21 18:00:33 2020
+# Profile for zypper’s InstallAppdata plugin.
+
 #include <tunables/global>
 
 /usr/lib/zypp/plugins/appdata/InstallAppdata flags=(complain) {
@@ -11,12 +12,17 @@
   /usr/bin/appstream-util Px,
   /usr/bin/appstreamcli Cx,
   /usr/bin/python[0-9].[0-9] ix,
+
   /usr/lib/AsHelper Px,
   /usr/lib/zypp/plugins/appdata/InstallAppdata r,
-  owner /proc/filesystems r,
-  owner /proc/sys/crypto/fips_enabled r,
+
+
   owner /usr/bin/appstream-util mr,
   owner /usr/bin/python[0-9].[0-9] r,
+
+  owner /proc/filesystems r,
+  owner /proc/sys/crypto/fips_enabled r,
+
   owner /var/cache/app-info/**/ w,
   owner /var/cache/app-info/icons/ r,
   owner /var/cache/app-info/xmls/ r,
@@ -28,8 +34,10 @@
     #include <abstractions/nameservice>
 
     /usr/bin/appstreamcli mr,
+
     owner /etc/appstream.conf r,
     owner /etc/os-release r,
+
     owner /var/cache/app-info/** rw,
     owner /var/cache/app-info/xmls/* r,
 

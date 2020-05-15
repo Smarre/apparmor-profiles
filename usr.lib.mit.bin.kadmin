@@ -2,7 +2,7 @@
 
 #include <tunables/global>
 
-/usr/lib/mit/bin/kadmin flags=(complain) {
+profile /usr/{,lib/mit/}bin/kadmin flags=(complain) {
   #include <abstractions/base>
   #include <abstractions/bash>
   #include <abstractions/consoles>
@@ -13,7 +13,9 @@
   /etc/inputrc.keys r,
   /usr/lib/mit/bin/kadmin mr,
   /var/lib/sss/pubconf/kdcinfo.* r,
+
   #owner /** rwk,
+
   owner /home/*/.inputrc r,
 
 }

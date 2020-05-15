@@ -2,7 +2,7 @@
 
 #include <tunables/global>
 
-/usr/lib/mit/bin/kinit flags=(complain) {
+profile /usr/{,lib/mit/}bin/kinit {
   #include <abstractions/base>
   #include <abstractions/kerberosclient>
   #include <abstractions/nameservice>

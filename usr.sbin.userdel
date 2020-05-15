@@ -1,4 +1,5 @@
-# Last Modified: Wed Aug 28 09:36:48 2019
+# Profile for userdel.
+
 #include <tunables/global>
 
 # vim:syntax=apparmor
@@ -37,6 +38,16 @@
 
   /{usr/,}bin/cat rmix,
   /{usr/,}bin/bash rmix,
+  /usr/bin/crontab rmix,
+  /usr/bin/id mrix,
+  /usr/bin/systemctl mrix,
+  /usr/sbin/userdel rmix,
+  /usr/sbin/userdel-post.local rmix,
+  /usr/sbin/userdel-pre.local rmix,
+  /usr/sbin/nscd Px,
+
+  @{PROC}/@{pid}/mounts r,
+  @{PROC}/@{uid}/task/ r,
 
   /dev/log w,
   /etc/.pwd.lock rwk,
@@ -48,30 +59,28 @@
   /etc/passwd* rwl,
   /etc/shadow* rwl,
   /etc/pwdutils/logging r,
+
+  # TODO: wtf?
   @{HOMEDIRS}**  rwl,
-  @{PROC}/@{pid}/mounts r,
-  /usr/bin/crontab rmix,
+
+  # TODO: wtf
   /usr/lib*/pwdutils/*.so.* mr,
-  /usr/sbin/userdel rmix,
-  /usr/sbin/userdel-post.local rmix,
-  /usr/sbin/userdel-pre.local rmix,
+
   # XXX
   /{,var/}run/nscd.pid r,
-  /proc/*/task/ r,
-  /usr/bin/id mrix,
-  /usr/bin/systemctl mrix,
-  /usr/sbin/nscd Px,
   /var/spool/mail/* wl,
+
+  owner @{PROC}/ r,
+  owner @{PROC}/@{uid}/environ r,
+  owner @{PROC}/@{uid}/sched r,
+  owner @{PROC}/@{uid}/stat r,
+  owner @{PROC}/cmdline r,
+
   owner /etc/subgid{,-,+} rw,
   owner /etc/subgid.* w,
   owner /etc/subgid.lock l,
   owner /etc/subuid{,-,+} rw,
   owner /etc/subuid.* w,
   owner /etc/subuid.lock l,
-  owner /proc/ r,
-  owner /proc/*/environ r,
-  owner /proc/*/sched r,
-  owner /proc/*/stat r,
-  owner /proc/cmdline r,
 
 }

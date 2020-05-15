@@ -2,7 +2,7 @@
 
 #include <tunables/global>
 
-/usr/bin/appstream-util flags=(complain) {
+/usr/bin/appstream-util {
   #include <abstractions/base>
   #include <abstractions/consoles>
   #include <abstractions/freedesktop.org>

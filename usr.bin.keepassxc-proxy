@@ -2,7 +2,7 @@
 
 #include <tunables/global>
 
-/usr/bin/keepassxc-proxy flags=(complain) {
+/usr/bin/keepassxc-proxy {
   #include <abstractions/base>
   #include <abstractions/kerberosclient>
   #include <abstractions/user-tmp>

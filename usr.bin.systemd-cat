@@ -14,14 +14,17 @@ profile /usr/bin/systemd-cat {
   capability sys_module,
   capability sys_ptrace,
 
+  # TODO: why?
   ptrace read peer=unconfined,
 
+  # TODO: why?
   /** r,
+
+  /usr/bin/cat ix,
   /usr/bin/systemd-cat mr,
   /usr/local/bin/auto_kinit.fish Px,
-  owner /proc/*/environ r,
-  owner /proc/*/sched r,
-  owner /proc/*/stat r,
-  /usr/bin/cat ix,
 
+  owner @{PROC}/@{uid}/environ r,
+  owner @{PROC}/@{uid}/sched r,
+  owner @{PROC}/@{uid}/stat r,
 }
