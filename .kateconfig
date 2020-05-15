@@ -1,2 +1,3 @@
+kate: indent-width 2;
 kate: syntax AppArmor Security Profile;
 kate-wildcard(scripts/*): syntax: Bash;
