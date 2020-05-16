@@ -13,7 +13,6 @@
   /etc/xdg/ui/ui_standards.rc r,
 
   /usr/bin/ktnef mr,
-  /usr/share/icu/** r,
   /usr/share/qt5/resources/* r,
   /usr/share/qt5/translations/qtwebengine_locales/*.pak r,
 
@@ -22,7 +21,6 @@
   owner @{HOME}/.ICEauthority r,
   owner @{HOME}/.cache/fontconfig/* r,
   owner @{HOME}/.config/.* rwk,
-  owner @{HOME}/.config/ibus/bus/* r,
   owner @{HOME}/.config/ktnefrc rw,
   owner @{HOME}/.config/ktnefrc.* rw,
   owner @{HOME}/.config/ktnefrc.lock wk,

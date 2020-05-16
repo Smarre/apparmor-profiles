@@ -7,22 +7,26 @@
   #include <abstractions/qt5>
   #include <abstractions/smar_kde>
 
+  /usr/bin/korganizer mr,
+
+  /proc/sys/kernel/core_pattern r,
+
   /etc/xdg/menus/ r,
   /etc/xdg/menus/applications-merged/ r,
   /etc/xdg/ui/ui_standards.rc r,
-  /proc/sys/kernel/core_pattern r,
-  /usr/bin/korganizer mr,
+
   /usr/lib64/grantlee/** mr,
+
   /usr/share/akonadi/** r,
   /usr/share/emoticons/Breeze/* r,
-  /usr/share/icu/** r,
-  /usr/share/kservices5/* r,
-  /usr/share/kservices5/*/ r,
   /usr/share/mime/ r,
   /usr/share/qt5/resources/* r,
   /usr/share/qt5/translations/qtwebengine_locales/*.pak r,
-  owner "@{HOME}/.local/share/kmail2/QtWebEngine/Default/Visited Links" rw,
+
   owner /dev/shm/.org.chromium.Chromium.* ra,
+
+  owner "@{HOME}/.local/share/kmail2/QtWebEngine/Default/Visited Links" rw,
+
   owner @{HOME}/.ICEauthority r,
   owner @{HOME}/.Xauthority r,
   owner @{HOME}/.cache/fontconfig/* r,
@@ -56,7 +60,6 @@
   owner @{HOME}/.fonts/ r,
   owner @{HOME}/.local/share/mime/ r,
   owner @{HOME}/.local/share/mime/*/ r,
-  owner @{HOME}/.local/share/mime/generic-icons r,
   owner @{HOME}/.local/share/mime/mime.cache r,
   owner @{HOME}/.local/share/mime/packages/ r,
   owner @{HOME}/.local/share/mime/types r,

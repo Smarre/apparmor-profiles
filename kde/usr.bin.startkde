@@ -34,17 +34,21 @@
   /usr/bin/xprop mrix,
   /usr/bin/xrdb mrix,
   /usr/bin/xsetroot mrix,
+
   /usr/lib64/libexec/kf5/start_kdeinit ix,
   /usr/lib64/libexec/kf5/start_kdeinit_wrapper ix,
   /usr/share/plasma/look-and-feel/** mr,
+
+  owner @{PROC}/@{uid}/oom_score_adj w,
+
+  # TODO: why?
   owner @{HOME}/#* mrw,
+
   owner @{HOME}/.cache/qtshadercache/* rw,
   owner @{HOME}/.config/plasma-workspace/env/ r,
   owner @{HOME}/.config/startupconfig r,
   owner @{HOME}/.config/startupconfigfiles r,
   owner @{HOME}/.config/startupconfigkeys rw,
-  owner @{PROC}/@{uid}/oom_score_adj w,
-
 
   profile /usr/bin/kwrapper5 flags=(complain) {
     #include <abstractions/base>

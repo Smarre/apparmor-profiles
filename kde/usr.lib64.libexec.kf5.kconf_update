@@ -1,15 +1,13 @@
 # Last Modified: Sun Apr 26 10:35:32 2020
 #include <tunables/global>
 
-/usr/lib64/libexec/kf5/kconf_update flags=(complain) {
+/usr/lib64/libexec/kf5/kconf_update {
   #include <abstractions/base>
   #include <abstractions/smar_kde>
 
   /usr/lib64/libexec/kf5/kconf_update mr,
   /usr/share/kconf_update/ r,
   /usr/share/kconf_update/* r,
-  owner /home/*/.config/kconf_updaterc r,
-  owner /home/*/.config/kdeglobals r,
-  owner /home/*/.local/share/sddm/xorg-session.log w,
 
+  owner @{HOME}/.config/kconf_updaterc r,
 }

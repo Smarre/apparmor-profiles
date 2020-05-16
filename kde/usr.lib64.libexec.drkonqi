@@ -21,13 +21,12 @@ profile drkonqi /usr/lib64/libexec/drkonqi flags=(complain) {
   /usr/bin/gdb mrix,
   /usr/lib64/libexec/drkonqi mr,
   /usr/share/drkonqi/** r,
-  /usr/share/drkonqi/**/ r,
-  /usr/share/kservices5/*/ r,
   /usr/share/mime/ r,
-  owner /home/*/.config/drkonqirc r,
-  owner /home/*/.config/menus/ r,
-  owner /home/*/.config/menus/applications-merged/ r,
-  owner /home/*/.local/share/sddm/xorg-session.log w,
-  owner /proc/*/fd/ r,
+
+  owner @{PROC}/@{uid}/fd/ r,
+
+  owner @{HOME}/.config/drkonqirc r,
+  owner @{HOME}/.config/menus/ r,
+  owner @{HOME}/.config/menus/applications-merged/ r,
 
 }

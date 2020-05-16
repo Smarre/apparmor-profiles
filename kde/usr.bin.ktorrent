@@ -11,31 +11,35 @@
   signal send set=term peer=/usr/bin/kdeinit5,
 
   /bin/ r,
+  /usr/bin/ktorrent mr,
+  /usr/bin/net mrix,
+  /usr/bin/testparm mrix,
+
   /dev/disk/by-label/ r,
-  /etc/exports r,
-  /etc/fstab r,
-  /etc/xdg/accept-languages.codes r,
-  /etc/xdg/menus/ r,
-  /etc/xdg/menus/applications-merged/ r,
-  /etc/xdg/ui/ui_standards.rc r,
   /proc/filesystems r,
   /proc/sys/crypto/fips_enabled r,
   /run/udev/data/* r,
   /sys/bus/ r,
   /sys/bus/usb/devices/ r,
   /sys/class/ r,
-  /usr/bin/ktorrent mr,
-  /usr/bin/net mrix,
-  /usr/bin/testparm mrix,
-  /usr/share/kservices5/* r,
-  /usr/share/kservices5/*/ r,
+
+  /etc/exports r,
+  /etc/fstab r,
+  /etc/xdg/accept-languages.codes r,
+  /etc/xdg/menus/ r,
+  /etc/xdg/menus/applications-merged/ r,
+  /etc/xdg/ui/ui_standards.rc r,
+
   /usr/share/kxmlgui5/ktorrent/* r,
   /usr/share/mime/ r,
+
+  # TODO: why?
   owner /** rwk,
-  owner /home/*/.config/ktorrentrc r,
-  owner /home/*/.local/share/ktorrent/ r,
-  owner /home/*/.local/share/ktorrent/* rw,
-  owner /home/*/.local/share/ktorrent/** rw,
-  owner /proc/*/mounts r,
+
+  owner @{PROC}/@{uid}/mounts r,
+
+  owner @{HOME}/.config/ktorrentrc rw,
+  owner @{HOME}/.local/share/ktorrent/ rw,
+  owner @{HOME}/.local/share/ktorrent/** rw,
 
 }

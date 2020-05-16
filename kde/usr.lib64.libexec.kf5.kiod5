@@ -1,12 +1,11 @@
 # Last Modified: Fri Apr 24 07:56:28 2020
 #include <tunables/global>
 
-/usr/lib64/libexec/kf5/kiod5 flags=(complain) {
+/usr/lib64/libexec/kf5/kiod5 {
   #include <abstractions/base>
   #include <abstractions/smar_kde>
 
   /usr/lib64/libexec/kf5/kiod5 mr,
-  owner /home/*/.config/kdeglobals r,
-  owner /home/*/.config/kwalletrc r,
 
+  owner @{HOME}/.config/kwalletrc r,
 }

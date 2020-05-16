@@ -6,12 +6,14 @@
   #include <abstractions/consoles>
   #include <abstractions/nameservice>
 
-  /proc/sys/crypto/fips_enabled r,
   /usr/bin/dirmngr mrix,
   /usr/bin/gpgsm mr,
-  owner /home/*/.gnupg/* r,
-  owner /home/*/.gnupg/* wl,
-  owner /proc/*/fd/ r,
+
+  /proc/sys/crypto/fips_enabled r,
+
+  owner @{HOME}/.gnupg/* r,
+  owner @{HOME}/.gnupg/* wl,
+  owner @{PROC}/@{uid}/fd/ r,
   owner /run/user/*/gnupg/S.dirmngr w,
 
 }

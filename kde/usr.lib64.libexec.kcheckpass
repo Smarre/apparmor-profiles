@@ -15,16 +15,19 @@
   signal receive set=usr1 peer=/usr/lib64/libexec/kscreenlocker_greet,
   signal receive set=usr2 peer=/usr/lib64/libexec/kscreenlocker_greet,
 
-  /etc/environment r,
-  /etc/locale.conf r,
   /proc/*/sched r,
   /proc/cmdline r,
   /proc/sys/crypto/fips_enabled r,
   /proc/sys/kernel/osrelease r,
+
+  /etc/environment r,
+  /etc/locale.conf r,
+
   /sbin/unix_chkpwd mrix,
   /usr/bin/systemd-cat mrix,
   /usr/lib64/libexec/kcheckpass mr,
   /usr/local/bin/auto_kinit.fish rPx,
+
   owner /proc/*/stat r,
 
 }

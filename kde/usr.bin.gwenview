@@ -2,7 +2,7 @@
 
 #include <tunables/global>
 
-/usr/bin/gwenview flags=(complain) {
+/usr/bin/gwenview {
   #include <abstractions/base>
   #include <abstractions/nameservice>
   #include <abstractions/openssl>

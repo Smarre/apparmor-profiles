@@ -5,6 +5,8 @@
   #include <abstractions/base>
   #include <abstractions/consoles>
 
+  /usr/bin/scdaemon mr,
+
   /dev/bus/usb/ r,
   /run/udev/data/* r,
   /sys/bus/ r,
@@ -17,9 +19,9 @@
   /sys/devices/pci*/*/*/usb*/*/*/* r,
   /sys/devices/pci*/*/*/usb*/*/* r,
   /sys/devices/pci*/*/*/usb*/* r,
-  /usr/bin/scdaemon mr,
-  owner /home/*/.gnupg/scdaemon.conf r,
-  owner /proc/*/task/*/comm rw,
+
+  owner @{HOME}/.gnupg/scdaemon.conf r,
+  owner @{PROC}/@{uid}/task/*/comm rw,
   owner /run/user/*/gnupg/S.scdaemon w,
 
 }

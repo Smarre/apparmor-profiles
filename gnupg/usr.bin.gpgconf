@@ -7,15 +7,18 @@
   #include <abstractions/nameservice>
 
   /etc/gnupg/* r,
+
   /proc/sys/crypto/fips_enabled r,
+
   /usr/bin/dirmngr Px,
   /usr/bin/gpg-agent Px,
   /usr/bin/gpg2 Px,
   /usr/bin/gpgconf mr,
   /usr/bin/gpgsm Px,
   /usr/bin/scdaemon Px,
-  owner /home/*/.gnupg/* r,
-  owner /proc/*/fd/ r,
+
+  owner @{HOME}/.gnupg/* r,
+  owner @{PROC}/@{uid}/fd/ r,
   owner /run/user/[0-9]*/gnupg/ w,
 
 }

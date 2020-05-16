@@ -5,6 +5,7 @@
   #include <abstractions/base>
   #include <abstractions/consoles>
   #include <abstractions/dbus-session-strict>
+  #include <abstractions/drkonqi>
   #include <abstractions/kde>
   #include <abstractions/nameservice>
   #include <abstractions/openssl>
@@ -15,20 +16,21 @@
   deny capability setuid,
 
   /proc/sys/kernel/core_pattern r,
+
   /usr/lib64/libexec/kdeconnectd mr,
   /usr/share/icu/** r,
   /usr/share/plasma/look-and-feel/** r,
-  owner /home/*/.cache/icon-cache.kcache rw,
-  owner /home/*/.local/share/sddm/xorg-session.log w,
-  owner /root/.config/kdeconnect/ w,
-  owner /run/user/0/kcrash_* w,
+
   owner /usr/share/color-schemes/* r,
   owner @{HOME}/.ICEauthority r,
   owner @{HOME}/.Xauthority r,
+  owner @{HOME}/.cache/icon-cache.kcache rw,
   owner @{HOME}/.config/ibus/bus/* r,
   owner @{HOME}/.config/kcminputrc r,
+  owner @{HOME}/.config/kdeconnect/ w,
   owner @{HOME}/.config/kdeconnect/* r,
   owner @{HOME}/.config/kdeglobals r,
   owner @{HOME}/.local/share/mime/generic-icons r,
+  owner @{HOME}/.local/share/sddm/xorg-session.log w,
 
 }

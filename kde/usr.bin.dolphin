@@ -39,6 +39,7 @@
   owner /** rwk,
 
   owner /run/user/*/dolphin*.slave-socket rw,
+
   owner @{HOME}/.config/baloofileinformationrc r,
   owner @{HOME}/.config/dolphinrc w,
   owner @{HOME}/.config/dolphinrc.* rw,

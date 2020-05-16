@@ -2,7 +2,7 @@
 
 #include <tunables/global>
 
-/usr/bin/kwrite flags=(complain) {
+/usr/bin/kwrite {
   #include <abstractions/audio>
   #include <abstractions/base>
   #include <abstractions/nameservice>
@@ -21,15 +21,17 @@
 
   /usr/bin/baloo_filemetadata_temp_extractor mrix,
   /usr/bin/diff mrix,
-  /usr/bin/keditfiletype5 Cx,
-  /usr/bin/keditfiletype5 mrw,
+  /usr/bin/keditfiletype5 mrwCx,
   /usr/bin/kwrite mr,
   /usr/bin/net mrix,
   /usr/bin/testparm mrix,
+
   /usr/lib64/libexec/kf5/kioexec mrix,
+
   /usr/share/org.kde.syntax-highlighting/syntax/* r,
   /usr/share/qt5/** r,
   /usr/share/qt5/resources/* r,
+
   owner "@{HOME}/.local/share/kmail2/QtWebEngine/Default/Visited Links" rw,
 
   # Owner can modify files anywhere.
@@ -62,13 +64,16 @@
     #include <abstractions/nameservice>
     #include <abstractions/smar_kde>
 
-    /etc/xdg/filetypesrc r,
-    /etc/xdg/menus/ r,
-    /etc/xdg/menus/*/ r,
+    /usr/bin/keditfiletype5 mr,
+
     /proc/cpuinfo r,
     /proc/sys/crypto/fips_enabled r,
     /proc/sys/kernel/core_pattern r,
-    /usr/bin/keditfiletype5 mr,
+
+    /etc/xdg/filetypesrc r,
+    /etc/xdg/menus/ r,
+    /etc/xdg/menus/*/ r,
+
     owner @{HOME}/.ICEauthority r,
     owner @{HOME}/.cache/fontconfig/* r,
     owner @{HOME}/.cache/ksycoca5_* r,

@@ -2,7 +2,7 @@
 
 #include <tunables/global>
 
-/usr/bin/kdiff3 flags=(complain) {
+/usr/bin/kdiff3 {
   #include <abstractions/audio>
   #include <abstractions/base>
   #include <abstractions/cups-client>

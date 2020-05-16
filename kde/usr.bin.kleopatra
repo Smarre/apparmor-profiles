@@ -1,12 +1,25 @@
 # Last Modified: Tue Apr 14 07:38:37 2020
 #include <tunables/global>
 
-/usr/bin/kleopatra flags=(complain) {
+/usr/bin/kleopatra {
   #include <abstractions/base>
   #include <abstractions/nameservice>
   #include <abstractions/smar_kde>
 
   signal send set=term peer=/usr/bin/kdeinit5,
+
+  /usr/bin/gpg2 Px,
+  /usr/bin/gpgconf Px,
+  /usr/bin/gpgsm Px,
+  /usr/bin/kleopatra mr,
+  /usr/bin/net Cx,
+  /usr/bin/testparm mrix,
+
+  /dev/shm/ r,
+  /run/udev/data/* r,
+  /sys/bus/ r,
+  /sys/bus/usb/devices/ r,
+  /sys/class/ r,
 
   /etc/exports r,
   /etc/fstab r,
@@ -20,35 +33,26 @@
 
   /usr/share/sounds/* r,
 
-  /dev/shm/ r,
-  /run/udev/data/* r,
-  /sys/bus/ r,
-  /sys/bus/usb/devices/ r,
-  /sys/class/ r,
-
-  /usr/bin/gpg2 Px,
-  /usr/bin/gpgconf Px,
-  /usr/bin/gpgsm Px,
-  /usr/bin/kleopatra mr,
-  /usr/bin/net Cx,
-  /usr/bin/testparm mrix,
-  owner /home/*/ r,
-  owner /home/*/** rwk,
-  owner /home/*/.config/.* rwk,
-  owner /home/*/.config/kleopatrarc rw,
-  owner /home/*/.config/kleopatrarc.* rw,
-  owner /home/*/.config/kleopatrarc.lock wk,
-  owner /home/*/.config/knfsshare r,
-  owner /home/*/.config/menus/ r,
-  owner /home/*/.config/menus/applications-merged/ r,
-  owner /home/*/.gnupg/ r,
-  owner /home/*/.gnupg/S.uiserver w,
-  owner /home/*/.local/share/user-places.xbel r,
-  owner /proc/*/fd/ r,
-  owner /proc/*/mounts r,
+  owner @{PROC}/@{uid}/fd/ r,
+  owner @{PROC}/@{uid}/mounts r,
   owner /run/user/[0-9]*/kleopatra*.slave-socket rw,
   owner /run/user/[0-9]*/gvfs/ r,
 
+  owner @{HOME}/ r,
+
+  # TODO: why?
+  owner @{HOME}/** rwk,
+
+  owner @{HOME}/.config/.* rwk,
+  owner @{HOME}/.config/kleopatrarc rw,
+  owner @{HOME}/.config/kleopatrarc.* rw,
+  owner @{HOME}/.config/kleopatrarc.lock wk,
+  owner @{HOME}/.config/knfsshare r,
+  owner @{HOME}/.config/menus/ r,
+  owner @{HOME}/.config/menus/applications-merged/ r,
+  owner @{HOME}/.gnupg/ r,
+  owner @{HOME}/.gnupg/S.uiserver w,
+  owner @{HOME}/.local/share/user-places.xbel r,
 
   profile /usr/bin/net flags=(complain) {
     #include <abstractions/base>

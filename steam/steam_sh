@@ -146,6 +146,7 @@ profile steam_sh @{steamlocaldir}/steam.sh {
 
   owner @{HOME}/.cache/icon-cache.kcache rw,
   owner @{HOME}/.cache/ksycoca5_* r,
+  owner @{HOME}/.cache/mesa_shader_cache/*/*.tmp k,
   owner @{HOME}/.cache/radv_builtin_shaders64 r,
 
   # This can be changed to read-only to disallow steam to write autolaunch file.
@@ -157,7 +158,12 @@ profile steam_sh @{steamlocaldir}/steam.sh {
   owner @{HOME}/.config/menus/applications-merged/ r,
 
   owner @{HOME}/.local/share/RecentDocuments/ r,
-  owner @{HOME}/.local/share/RecentDocuments/* w,
+
+  # Not sure why this wants to write here, but eh...
+  # type=AVC msg=audit(1589604231.618:21366): apparmor="DENIED" operation="file_lock" profile="steam_sh" name="/home/user/.local/share/RecentDocuments/unnamed.desktop.lock" pid=31219 comm="kde-open5" requested_mask="k" denied_mask="k" fsuid=1000 ouid=1000
+  # type=AVC msg=audit(1589604231.626:21367): apparmor="DENIED" operation="open" profile="steam_sh" name="/home/user/.local/share/RecentDocuments/unnamed.desktop.J31219" pid=31219 comm="kde-open5" requested_mask="r" denied_mask="r" fsuid=1000 ouid=1000
+  owner @{HOME}/.local/share/RecentDocuments/* rwk,
+
   owner @{HOME}/.local/share/RecentDocuments/.* k,
   owner @{HOME}/.local/share/RecentDocuments/watch.desktop.* r,
   owner @{HOME}/.local/share/RecentDocuments/watch.desktop.lock wk,

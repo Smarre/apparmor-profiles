@@ -7,18 +7,21 @@
   #include <abstractions/user-tmp>
   #include <abstractions/consoles>
 
-  /proc/sys/crypto/fips_enabled r,
   /usr/bin/gpg-agent mr,
   /usr/bin/pinentry Px,
   /usr/bin/scdaemon Px,
-  owner /home/*/.gnupg/* r,
-  owner /home/*/.gnupg/*/ w,
-  owner /home/*/.gnupg/private-keys-v1.d/* r,
-  owner /home/*/.local/share/sddm/xorg-session.log w,
-  owner /proc/*/fd/ r,
-  owner /run/user/*/gnupg/** w,
 
+  /proc/sys/crypto/fips_enabled r,
 
   # This script is for some reason run at startup...
   /etc/X11/xinit/xinitrc Px,
+
+  owner @{PROC}/@{uid}/fd/ r,
+  owner /run/user/*/gnupg/** w,
+
+  owner @{HOME}/.gnupg/* r,
+  owner @{HOME}/.gnupg/*/ w,
+  owner @{HOME}/.gnupg/private-keys-v1.d/* r,
+  owner @{HOME}/.local/share/sddm/xorg-session.log w,
+
 }
