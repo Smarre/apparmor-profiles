@@ -56,7 +56,7 @@
   /usr/bin/mkdir mrix,
   /usr/bin/mknod mrix,
   /usr/bin/mktemp mrix,
-  /usr/bin/mount Ux,
+  /usr/bin/mount mrix,
   /usr/bin/mv mrix,
   /usr/bin/perl ix,
   /usr/bin/readlink mrix,
