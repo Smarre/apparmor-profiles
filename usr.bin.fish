@@ -41,13 +41,13 @@
   /** rwk,
 
   # TODO: first audit, then convert to inherited.
-  /bin/* PUx,
+  audit /bin/* PUx,
   /bin/ps mr,
 
   /bin/bash mrix,
 
   # TODO: first audit, then convert to inherited.
-  /sbin/* PUx,
+  audit /sbin/* PUx,
   /sbin/apparmor_parser mr,
 
   /usr/bin/* Pix,
@@ -75,7 +75,7 @@
   /usr/bin/which mrix,
 
   # TODO: first audit, then convert to inherited.
-  /usr/sbin/* PUx,
+  audit /usr/sbin/* PUx,
   /usr/sbin/ausearch mr,
   /usr/sbin/nvme mr,
 

@@ -15,5 +15,5 @@
 
   # TODO: probably no sense having unconfined here.
   # Start with audit, to see what actually gets launched.
-  /usr/bin/* PUx,
+  audit /usr/bin/* PUx,
 }

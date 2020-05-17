@@ -18,12 +18,12 @@
   capability sys_resource,
 
   # TODO: first audit, then change to Pix.
-  /usr/bin/* PUx,
+  audit /usr/bin/* PUx,
   /usr/bin/uname ix,
   /usr/bin/sudo mr,
 
   # TODO: first audit, then change to Pix.
-  /usr/sbin/* PUx,
+  audit /usr/sbin/* PUx,
 
   /usr/lib/build/build Px,
 
