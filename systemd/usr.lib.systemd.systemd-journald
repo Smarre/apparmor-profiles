@@ -1,0 +1,10 @@
+# Profile for systemd’s journal daemon.
+
+#include <tunables/global>
+
+/usr/lib/systemd/systemd-journald flags=(complain) {
+  #include <abstractions/base>
+
+  /usr/lib/systemd/systemd-journald mr,
+
+}

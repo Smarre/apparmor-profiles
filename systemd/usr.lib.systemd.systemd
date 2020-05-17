@@ -1,0 +1,13 @@
+# Profile for systemd’s main process (a.k.a. pid 1 a.k.a. init).
+
+#include <tunables/global>
+
+# WARNING: This profile is not done, and shouldn’t work without some initrd trickery.
+# Use only if you can develop this profile and fix your computer by hand when it breaks.
+
+/usr/lib/systemd/systemd flags=(complain) {
+  #include <abstractions/base>
+
+  /usr/lib/systemd/systemd mr,
+
+}
