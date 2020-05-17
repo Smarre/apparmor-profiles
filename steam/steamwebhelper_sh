@@ -3,7 +3,7 @@
 #include <tunables/global>
 #include <tunables/steam>
 
-profile steamwebhelper_sh @{steamlocaldir}/ubuntu12_64/steamwebhelper{,.sh} flags=(complain) {
+profile steamwebhelper_sh @{steamlocaldir}/ubuntu12_64/steamwebhelper{,.sh} {
   #include <abstractions/X>
   #include <abstractions/audio>
   #include <abstractions/base>
