@@ -1,7 +1,7 @@
 # Main LibreOffice binary, I suppose. — Or this one.
 #include <tunables/global>
 
-/usr/lib64/libreoffice/program/soffice.bin flags=(complain) {
+/usr/lib64/libreoffice/program/soffice.bin {
   #include <abstractions/audio>
   #include <abstractions/base>
   #include <abstractions/cups-client>

@@ -3,7 +3,7 @@
 
 # I find it strange the splash does everything, but I guess that is the splash’s function...
 
-/usr/lib64/libreoffice/program/oosplash flags=(complain) {
+/usr/lib64/libreoffice/program/oosplash {
   #include <abstractions/base>
   #include <abstractions/cups-client>
   #include <abstractions/enchant>

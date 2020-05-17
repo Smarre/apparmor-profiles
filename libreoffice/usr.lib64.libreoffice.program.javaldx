@@ -2,7 +2,7 @@
 
 #include <tunables/global>
 
-profile libreoffice_javaldx /usr/lib64/libreoffice/program/javaldx flags=(complain) {
+profile libreoffice_javaldx /usr/lib64/libreoffice/program/javaldx {
   #include <abstractions/base>
   #include <abstractions/nameservice>
   #include <abstractions/user-tmp>

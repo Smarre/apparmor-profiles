@@ -2,7 +2,7 @@
 
 #include <tunables/global>
 
-/usr/lib64/libreoffice/program/soffice flags=(complain) {
+/usr/lib64/libreoffice/program/soffice {
   #include <abstractions/base>
   #include <abstractions/bash>
   #include <abstractions/consoles>
