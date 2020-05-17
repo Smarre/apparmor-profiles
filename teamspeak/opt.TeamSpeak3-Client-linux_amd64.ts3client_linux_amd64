@@ -5,7 +5,7 @@
 # WARNING: This profile is not complete, and probably have some bad holes that should be blocked.
 # Most notably ptracing.
 
-profile teamspeak3_client /opt/TeamSpeak3-Client-linux_amd64/ts3client_linux_amd64 flags=(complain) {
+profile teamspeak3_client /opt/TeamSpeak3-Client-linux_amd64/ts3client_linux_amd64 {
   #include <abstractions/audio>
   #include <abstractions/base>
   #include <abstractions/nameservice>
