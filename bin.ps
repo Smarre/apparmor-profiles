@@ -1,4 +1,5 @@
-# Last Modified: Mon Apr 13 20:50:39 2020
+# Profile for process info tool.
+
 #include <tunables/global>
 
 /bin/ps flags=(complain) {
@@ -12,21 +13,25 @@
   ptrace read,
 
   /bin/ps mr,
-  /proc/ r,
-  /proc/*/cmdline r,
-  /proc/*/environ r,
-  /proc/*/stat r,
-  /proc/*/status r,
-  /proc/sys/kernel/osrelease r,
-  /proc/sys/kernel/pid_max r,
-  /proc/tty/drivers r,
-  /proc/uptime r,
-  owner /proc/*/auxv r,
-  owner /proc/*/wchan r,
-  owner /proc/filesystems r,
-  owner /proc/meminfo r,
-  owner /proc/stat r,
-  owner /proc/sys/crypto/fips_enabled r,
-  owner /sys/devices/system/cpu/online r,
+
+  @{PROC}/ r,
+  @{PROC}/@{uid}/attr/current r,
+  @{PROC}/@{uid}/cmdline r,
+  @{PROC}/@{uid}/environ r,
+  @{PROC}/@{uid}/stat r,
+  @{PROC}/@{uid}/status r,
+  @{PROC}/sys/kernel/osrelease r,
+  @{PROC}/sys/kernel/pid_max r,
+  @{PROC}/tty/drivers r,
+  @{PROC}/uptime r,
+
+  @{PROC}/@{uid}/auxv r,
+  @{PROC}/@{uid}/wchan r,
+  @{PROC}/filesystems r,
+  @{PROC}/meminfo r,
+  @{PROC}/stat r,
+  @{PROC}/sys/crypto/fips_enabled r,
+
+  /sys/devices/system/cpu/online r,
 
 }
