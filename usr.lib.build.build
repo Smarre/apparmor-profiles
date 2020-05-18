@@ -2,6 +2,9 @@
 
 #include <tunables/global>
 
+# TODO: check following
+#type=AVC msg=audit(1589701154.701:5765): apparmor="ALLOWED" operation="capable" profile="/usr/lib/build/build" pid=7426 comm="journalctl" capability=24  capname="sys_resource"
+
 /usr/lib/build/build flags=(complain) {
   #include <abstractions/base>
   #include <abstractions/bash>
