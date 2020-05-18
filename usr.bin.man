@@ -31,12 +31,12 @@
   capability setuid,
 
   /bin/bash ix,
-  /etc/manpath.config r,
+  /usr/bin/col mrix,
   /usr/bin/eqn mrix,
   /usr/bin/groff mrix,
   /usr/bin/grotty mrix,
   /usr/bin/less mrix,
-  /usr/bin/lessecho Cx,
+  /usr/bin/lessecho mrix,
   /usr/bin/locale mrix,
   /usr/bin/man mr,
   /usr/bin/neqn mrix,
@@ -44,25 +44,25 @@
   /usr/bin/preconv mrix,
   /usr/bin/tbl mrix,
   /usr/bin/troff mrix,
+
+  /dev/tty* rw,
+
+  /etc/manpath.config r,
+
   /usr/lib/locale/*/*/ r,
   /usr/lib/man-db/man Px,
+
   /usr/local/man/ r,
+
   /usr/share/fish/man/ r,
   /usr/share/fish/man/** r,
   /usr/share/groff/** r,
   /usr/share/man/ r,
   /var/cache/man/*/index.db rk,
   /var/cache/man/index.db rk,
-  owner /usr/bin/lessecho r,
+
   owner @{HOME}/.lesshsQ rw,
   owner @{HOME}/.lesshst rw,
-
-  profile /usr/bin/lessecho flags=(complain) {
-    #include <abstractions/base>
-
-    /usr/bin/lessecho mr,
-
-  }
 
   #include <local/man>
 }
