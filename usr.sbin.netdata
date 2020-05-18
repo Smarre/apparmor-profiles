@@ -14,39 +14,48 @@
   signal send set=term peer=/usr/sbin/netdata///usr/lib/netdata/plugins.d/tc-qos-helper.sh,
 
   /bin/bash mrix,
-  /dev/**/ r,
-  /etc/netdata/ r,
-  /etc/netdata/* r,
-  /etc/netdata/*/ r,
+  /usr/sbin/netdata mr,
 
   # TODO: why?
-  /proc/** r,
+  /dev/**/ r,
+
+  /etc/netdata/ r,
+  /etc/netdata/** r,
+
+  # TODO: why?
+  @{PROC}/@{uid}* r,
 
   /sys/class/power_supply/ r,
+
+  # TODO: why?
   /sys/devices/** r,
   /sys/devices/system/**/ r,
   /sys/devices/system/cpu/cpu*/** r,
   /sys/devices/system/cpu/cpufreq/policy*/scaling_cur_freq r,
   /sys/fs/** r,
   /sys/kernel/** r,
+
   /usr/lib/netdata/plugins.d/*.plugin Cx,
   /usr/lib/netdata/plugins.d/*.sh Cx,
-  /usr/sbin/netdata mr,
+
   /usr/share/netdata/*/ r,
-  owner /etc/netdata/claim.d/ rw,
-  owner /proc/*/mountinfo r,
-  owner /proc/*/oom_score_adj r,
-  owner /proc/*/task/*/comm rw,
+
+  owner @{PROC}/@{uid}/mountinfo r,
+  owner @{PROC}/@{uid}/oom_score_adj r,
+  owner @{PROC}/@{uid}/task/*/comm rw,
   owner /run/netdata/netdata.pid w,
+
+  owner /etc/netdata/claim.d/ rw,
+
   owner /var/cache/netdata/ r,
   owner /var/cache/netdata/** w,
   owner /var/cache/netdata/*/ rw,
+
   owner /var/lib/netdata/ r,
   owner /var/lib/netdata/* r,
   owner /var/lib/netdata/registry/* r,
   owner /var/log/netdata/ r,
   owner /var/log/netdata/* w,
-
 
   profile /usr/lib/netdata/plugins.d/apps.plugin flags=(complain) {
     #include <abstractions/base>
@@ -57,30 +66,29 @@
     ptrace read peer=/usr/sbin/netdata,
     ptrace read peer=/usr/sbin/netdata///usr/lib/netdata/plugins.d/*.plugin,
     ptrace read peer=/usr/sbin/netdata///usr/lib/netdata/plugins.d/cgroup-name.sh,
-    ptrace read peer=/usr/sbin/netdata///usr/lib/netdata/plugins.d/node.d.plugin//null-/usr/bin/node//null-/usr/bin/node12,
     ptrace read peer=/usr/sbin/netdata///usr/lib/netdata/plugins.d/tc-qos-helper.sh,
+
+    # TODO: why?
     ptrace read peer=unconfined,
 
-    /proc/ r,
-    /proc/*/cmdline r,
-    /proc/*/stat r,
-    /proc/sys/kernel/pid_max r,
-    /proc/uptime r,
-    /usr/lib/netdata/plugins.d/apps.plugin mr,
-    owner /proc/*/fd/ r,
-    owner /proc/*/io r,
-    owner /var/log/netdata/error.log a,
+    @{PROC}/ r,
+    @{PROC}/@{uid}/cmdline r,
+    @{PROC}/@{uid}/stat r,
+    @{PROC}/sys/kernel/pid_max r,
+    @{PROC}/uptime r,
 
+    /usr/lib/netdata/plugins.d/apps.plugin mr,
+
+    owner @{PROC}/@{uid}/fd/ r,
+    owner @{PROC}/@{uid}/io r,
+
+    owner /var/log/netdata/error.log a,
   }
 
   profile /usr/lib/netdata/plugins.d/cgroup-name.sh flags=(complain) {
     #include <abstractions/netdata_plugin>
 
-    /usr/bin/basename mrix,
-    /usr/bin/date mrix,
     /usr/lib/netdata/plugins.d/cgroup-name.sh r,
-    owner /var/log/netdata/error.log a,
-
   }
 
   profile /usr/lib/netdata/plugins.d/charts.d.plugin flags=(complain) {
@@ -88,21 +96,18 @@
     #include <abstractions/netdata_plugin>
     #include <abstractions/user-tmp>
 
-    signal receive set=term peer=/usr/sbin/netdata,
-
-    /proc/uptime r,
-    /usr/bin/basename mrix,
     /usr/bin/cat mrix,
-    /usr/bin/date mrix,
     /usr/bin/grep mrix,
     /usr/bin/mktemp mrix,
     /usr/bin/rm mrix,
     /usr/bin/sed mrix,
     /usr/bin/which mrix,
-    /usr/lib/netdata/plugins.d/charts.d.plugin r,
-    owner /proc/*/mountinfo r,
-    owner /var/log/netdata/error.log a,
 
+    @{PROC}/uptime r,
+
+    /usr/lib/netdata/plugins.d/charts.d.plugin r,
+
+    owner @{PROC}/@{uid}/mountinfo r,
   }
 
   profile /usr/lib/netdata/plugins.d/cups.plugin flags=(complain) {
@@ -113,9 +118,10 @@
     signal receive set=term peer=/usr/sbin/netdata,
 
     /usr/lib/netdata/plugins.d/cups.plugin mr,
-    owner /proc/*/mountinfo r,
-    owner /var/log/netdata/error.log a,
 
+    owner @{PROC}/@{uid}/mountinfo r,
+
+    owner /var/log/netdata/error.log a,
   }
 
   profile /usr/lib/netdata/plugins.d/fping.plugin flags=(complain) {
@@ -127,14 +133,9 @@
     network inet6 stream,
     network netlink raw,
 
-    signal receive set=term peer=/usr/sbin/netdata,
-
-    /usr/bin/basename mrix,
-    /usr/bin/date mrix,
     /usr/bin/which mrix,
-    /usr/lib/netdata/plugins.d/fping.plugin r,
-    owner /var/log/netdata/error.log a,
 
+    /usr/lib/netdata/plugins.d/fping.plugin r,
   }
 
   profile /usr/lib/netdata/plugins.d/freeipmi.plugin flags=(complain) {
@@ -147,21 +148,22 @@
     signal receive set=term peer=/usr/sbin/netdata,
 
     /usr/lib/netdata/plugins.d/freeipmi.plugin mr,
-    owner /var/log/netdata/error.log a,
 
+    owner /var/log/netdata/error.log a,
   }
 
   profile /usr/lib/netdata/plugins.d/ioping.plugin flags=(complain) {
     #include <abstractions/nameservice>
     #include <abstractions/netdata_plugin>
 
-    signal receive set=term peer=/usr/sbin/netdata,
-
-    /usr/bin/basename mrix,
-    /usr/bin/date mrix,
     /usr/lib/netdata/plugins.d/ioping.plugin r,
-    owner /var/log/netdata/error.log a,
+  }
 
+  profile /usr/lib/netdata/plugins.d/get-kubernetes-labels.sh flags=(complain) {
+    #include <abstractions/nameservice>
+    #include <abstractions/netdata_plugin>
+
+    /usr/lib/netdata/plugins.d/get-kubernetes-labels.sh r,
   }
 
   profile /usr/lib/netdata/plugins.d/nfacct.plugin flags=(complain) {
@@ -173,11 +175,13 @@
 
     signal receive set=term peer=/usr/sbin/netdata,
 
-    /sys/fs/btrfs/*/allocation/metadata/total_bytes r,
     /usr/lib/netdata/plugins.d/nfacct.plugin mr,
-    owner /proc/*/mountinfo r,
-    owner /var/log/netdata/error.log a,
 
+    /sys/fs/btrfs/*/allocation/metadata/total_bytes r,
+
+    owner @{PROC}/@{uid}/mountinfo r,
+
+    owner /var/log/netdata/error.log a,
   }
 
   profile /usr/lib/netdata/plugins.d/node.d.plugin flags=(complain) {
@@ -185,15 +189,13 @@
     #include <abstractions/netdata_plugin>
     #include <abstractions/openssl>
 
-    signal receive set=term peer=/usr/sbin/netdata,
-
-    /proc/meminfo r,
-    /sys/fs/cgroup/memory/memory.limit_in_bytes r,
     /usr/bin/node mrix,
-    /usr/bin/node12 mrix,
-    /usr/lib/netdata/plugins.d/node.d.plugin r,
-    owner /var/log/netdata/error.log a,
+    /usr/bin/node[0-9]* mrix,
 
+    @{PROC}/meminfo r,
+    /sys/fs/cgroup/memory/memory.limit_in_bytes r,
+
+    /usr/lib/netdata/plugins.d/node.d.plugin r,
   }
 
   profile /usr/lib/netdata/plugins.d/perf.plugin flags=(complain) {
@@ -205,8 +207,8 @@
     signal receive set=term peer=/usr/sbin/netdata,
 
     /usr/lib/netdata/plugins.d/perf.plugin mr,
-    owner /var/log/netdata/error.log a,
 
+    owner /var/log/netdata/error.log a,
   }
 
   profile /usr/lib/netdata/plugins.d/python.d.plugin flags=(complain) {
@@ -216,28 +218,21 @@
     network inet stream,
     network inet6 stream,
 
-    signal receive set=term peer=/usr/sbin/netdata,
+    /usr/bin/python[0-9]*.[0-9]* mrix,
+    /usr/bin/which mrix,
 
     /etc/netdata/python.d.conf r,
-    /usr/bin/python* mrix,
-    /usr/bin/which mrix,
-    /usr/lib/netdata/plugins.d/python.d.plugin r,
-    owner /usr/lib/netdata/python.d/** rw,
-    owner /var/log/netdata/error.log a,
 
+    /usr/lib/netdata/plugins.d/python.d.plugin r,
+
+    # TODO: no rewrite can be allowed...
+    owner /usr/lib/netdata/python.d/** r,
+    audit owner /usr/lib/netdata/python.d/** w,
   }
 
   profile /usr/lib/netdata/plugins.d/system-info.sh flags=(complain) {
     #include <abstractions/netdata_plugin>
 
-    /etc/os-release r,
-    /proc/ r,
-    /proc/** r,
-    /sys/** r,
-    /sys/devices/system/cpu/* r,
-    /sys/devices/system/cpu/** r,
-    /sys/devices/system/node/** r,
-    /sys/devices/virtual/dmi/id/* r,
     /usr/bin/cat mrix,
     /usr/bin/cut mrix,
     /usr/bin/grep mrix,
@@ -245,10 +240,23 @@
     /usr/bin/sed mrix,
     /usr/bin/systemd-detect-virt mrix,
     /usr/bin/uname mrix,
-    /usr/lib/netdata/plugins.d/system-info.sh r,
-    owner /proc/*/stat r,
-    owner /var/log/netdata/error.log a,
 
+    @{PROC}/ r,
+    @{PROC}/@{uid}* r,
+
+    # TODO: why?
+    /sys/** r,
+
+    /sys/devices/system/cpu/* r,
+    /sys/devices/system/cpu/** r,
+    /sys/devices/system/node/** r,
+    /sys/devices/virtual/dmi/id/* r,
+
+    /etc/os-release r,
+
+    /usr/lib/netdata/plugins.d/system-info.sh r,
+
+    owner @{PROC}/@{uid}/stat r,
   }
 
   profile /usr/lib/netdata/plugins.d/tc-qos-helper.sh flags=(complain) {
@@ -256,20 +264,19 @@
 
     network netlink raw,
 
-    signal receive set=term peer=/usr/sbin/netdata,
-
-    /proc/*/net/dev r,
-    /proc/*/net/psched r,
-    /proc/uptime r,
-    /run/fireqos/** r,
-    /usr/bin/basename mrix,
-    /usr/bin/date mrix,
     /usr/bin/which mrix,
-    /usr/lib/netdata/plugins.d/tc-qos-helper.sh r,
     /usr/sbin/tc mrix,
-    owner /proc/*/mountinfo r,
-    owner /var/cache/netdata/.netdata_bash_sleep_timer_fifo rw,
-    owner /var/log/netdata/error.log a,
 
+    @{PROC}/@{uid}/net/dev r,
+    @{PROC}/@{uid}/net/psched r,
+    @{PROC}/uptime r,
+
+    /run/fireqos/** r,
+
+    /usr/lib/netdata/plugins.d/tc-qos-helper.sh r,
+
+    owner @{PROC}/@{uid}/mountinfo r,
+
+    owner /var/cache/netdata/.netdata_bash_sleep_timer_fifo rw,
   }
 }
