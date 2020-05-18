@@ -14,34 +14,44 @@
 
   network packet dgram,
 
-  /etc/wicked/extensions/firewall Cx,
-  /etc/wicked/extensions/netconfig Cx,
   /usr/bin/kmod mrix,
   /usr/bin/udevadm Cx,
   /usr/sbin/wickedd mr,
+
+  /etc/wicked/extensions/firewall Cx -> wicked_ext_firewall,
+  /etc/wicked/extensions/netconfig Cx -> wicked_ext_netconfig,
+
   owner /bin/bash mr,
+  owner /usr/bin/udevadm mr,
+
   owner /dev/rfkill r,
+
+  owner @{PROC}/@{uid}/environ r,
+  owner @{PROC}/@{uid}/sched r,
+  owner @{PROC}/@{uid}/stat r,
+  owner @{PROC}/cmdline r,
+  owner @{PROC}/sys/net/** w,
+
+  owner /run/wicked/ r,
+  owner /run/wicked/** rw,
+
+  # TODO: more precise lines.
+  owner /sys/devices/** r,
+  owner /sys/module/** r,
+
   owner /etc/libnl/classid r,
   owner /etc/modprobe.d/ r,
   owner /etc/modprobe.d/* r,
   owner /etc/udev/udev.conf r,
   owner /etc/wicked/* r,
-  owner /etc/wicked/extensions/firewall r,
-  owner /etc/wicked/extensions/netconfig r,
-  owner /proc/*/environ r,
-  owner /proc/*/sched r,
-  owner /proc/*/stat r,
-  owner /proc/cmdline r,
-  owner /proc/sys/net/** w,
-  owner /run/wicked/ r,
-  owner /run/wicked/** rw,
-  owner /sys/devices/** r,
-  owner /sys/module/** r,
-  owner /usr/bin/udevadm mr,
+
+  # TODO: these two may not be necessary.
+  audit owner /etc/wicked/extensions/firewall r,
+  audit owner /etc/wicked/extensions/netconfig r,
+
   owner /usr/share/wicked/** r,
 
-
-  profile /etc/wicked/extensions/firewall flags=(complain) {
+  profile wicked_ext_firewall /etc/wicked/extensions/firewall flags=(complain) {
     #include <abstractions/base>
     #include <abstractions/bash>
     #include <abstractions/consoles>
@@ -51,29 +61,33 @@
 
     capability sys_ptrace,
 
+    # TODO: why?
     ptrace read peer=unconfined,
 
-    /bin/bash ix,
-    /etc/wicked/extensions/firewall r,
+    /bin/bash mrix,
+
     /usr/bin/ r,
     /usr/bin/firewall-cmd mrix,
     /usr/bin/python3.6 ix,
     /usr/bin/systemctl mrix,
     /usr/sbin/wicked mrix,
-    owner /bin/bash mr,
+
+    /etc/wicked/extensions/firewall r,
+
+    owner /usr/bin/python[0-9]*.[0-9]* mr,
+
+    owner @{PROC}/@{uid}/environ r,
+    owner @{PROC}/@{uid}/sched r,
+    owner @{PROC}/@{uid}/stat r,
+    owner @{PROC}/cmdline r,
+    owner @{PROC}/sys/crypto/fips_enabled r,
+
     owner /etc/libnl/classid r,
     owner /etc/wicked/client.xml r,
     owner /etc/wicked/common.xml r,
-    owner /proc/*/environ r,
-    owner /proc/*/sched r,
-    owner /proc/*/stat r,
-    owner /proc/cmdline r,
-    owner /proc/sys/crypto/fips_enabled r,
-    owner /usr/bin/python3.6 mr,
-
   }
 
-  profile /etc/wicked/extensions/netconfig flags=(complain) {
+  profile wicked_ext_netconfig /etc/wicked/extensions/netconfig flags=(complain) {
     #include <abstractions/base>
     #include <abstractions/bash>
     #include <abstractions/consoles>
@@ -83,15 +97,12 @@
     capability sys_admin,
     capability sys_ptrace,
 
+    # TODO: why?
     ptrace read peer=unconfined,
 
-    /bin/bash ix,
-    /etc/netconfig.d/dns-bind mrix,
-    /etc/netconfig.d/dns-dnsmasq mrix,
-    /etc/netconfig.d/dns-resolver mrix,
-    /etc/netconfig.d/nis mrix,
-    /etc/netconfig.d/ntp-runtime mrix,
-    /etc/wicked/extensions/netconfig r,
+
+    /bin/bash mrix,
+
     /sbin/netconfig mrix,
     /usr/bin/basename mrix,
     /usr/bin/cat mrix,
@@ -110,23 +121,31 @@
     /usr/bin/sed mrix,
     /usr/bin/systemctl mrix,
     /usr/bin/touch mrix,
-    owner /bin/bash mr,
-    owner /etc/sysconfig/network/config r,
-    owner /etc/sysconfig/network/scripts/functions.netconfig r,
-    owner /proc/*/environ r,
-    owner /proc/*/sched r,
-    owner /proc/*/stat r,
-    owner /proc/cmdline r,
-    owner /proc/uptime r,
+
+    /etc/netconfig.d/dns-bind mrix,
+    /etc/netconfig.d/dns-dnsmasq mrix,
+    /etc/netconfig.d/dns-resolver mrix,
+    /etc/netconfig.d/nis mrix,
+    /etc/netconfig.d/ntp-runtime mrix,
+    /etc/wicked/extensions/netconfig r,
+
+    /usr/lib/chrony/helper mrix,
+
+    owner @{PROC}/@{uid}/environ r,
+    owner @{PROC}/@{uid}/sched r,
+    owner @{PROC}/@{uid}/stat r,
+    owner @{PROC}/cmdline r,
+    owner @{PROC}/uptime r,
     owner /run/netconfig.pid rw,
-    owner /run/netconfig/ r,
-    owner /run/netconfig/ w,
+    owner /run/netconfig/ rw,
     owner /run/netconfig/** rw,
     owner /run/ntp/ rw,
     owner /run/ntp/* rw,
     owner /run/wicked/* r,
     owner /run/wicked/extension/generic/* r,
 
+    owner /etc/sysconfig/network/config r,
+    owner /etc/sysconfig/network/scripts/functions.netconfig r,
   }
 
   profile /usr/bin/udevadm flags=(complain) {
@@ -134,16 +153,21 @@
 
     capability sys_ptrace,
 
+    # TODO: why?
     ptrace read peer=unconfined,
 
     /usr/bin/udevadm mr,
-    owner /etc/udev/udev.conf r,
-    owner /proc/*/environ r,
-    owner /proc/*/sched r,
-    owner /proc/*/stat r,
-    owner /proc/cmdline r,
+
+    owner @{PROC}/@{uid}/environ r,
+    owner @{PROC}/@{uid}/sched r,
+    owner @{PROC}/@{uid}/stat r,
+    owner @{PROC}/cmdline r,
+
     owner /run/udev/data/* r,
+
+    # TODO: more precise.
     owner /sys/devices/** r,
 
+    owner /etc/udev/udev.conf r,
   }
 }
