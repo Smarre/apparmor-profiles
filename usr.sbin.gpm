@@ -7,8 +7,11 @@
   #include <abstractions/consoles>
 
   capability sys_tty_config,
+  capability sys_admin,
 
   /usr/sbin/gpm mr,
-  /dev/tty* r,
+  /dev/tty* rw,
   /dev/input/mice rw,
+  /dev/gpmctl rw,
+  /run/gpm.pid rw,
 }
