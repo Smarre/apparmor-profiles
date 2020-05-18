@@ -22,6 +22,8 @@
   /run/log/journal/ r,
   /run/log/journal/** r,
 
+  /dev/tty* rw,
+
   /etc/group r,
   /etc/machine-id r,
   /etc/nsswitch.conf r,
