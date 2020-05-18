@@ -1,0 +1,18 @@
+
+# Base for most Netdata plugins
+
+# Two indents since these are child profiles all.
+
+# TODO: maybe better have this in two parts, so everyone can have common include and ones needing bash stuff can have separate one.
+
+    #include <abstractions/base>
+    #include <abstractions/bash>
+    #include <abstractions/consoles>
+
+    signal receive set=term peer=/usr/sbin/netdata,
+
+    /bin/bash rix,
+    /usr/bin/basename mrix,
+    /usr/bin/date mrix,
+
+    owner /var/log/netdata/error.log a,
