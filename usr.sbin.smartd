@@ -13,11 +13,23 @@
 
   /usr/sbin/smartd mr,
 
-  /var/lib/smartmontools/* rw,
+  /dev/ r,
 
   # Pretty leniently try to allow access to all possible disk devices.
   # sda,vda,hda
   /dev/{sd,vd,hd}[a-z]* r,
   # nvme, sg
   /dev/{nvme,sg}[0-9]* r,
+
+  /proc/devices r,
+
+  # TODO: proper definition.
+  /sys/devices/** r,
+
+  /etc/smartd.conf r,
+  /etc/smart_drivedb.h r,
+
+  /usr/share/smartmontools/* r,
+
+  /var/lib/smartmontools/* rw,
 }
