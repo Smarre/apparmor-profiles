@@ -194,5 +194,5 @@ profile firefox /usr/lib{,64}/firefox{,-[0-9]*}/firefox{,*[^s][^h]} {
   # Site-specific additions and overrides. See local/README for details.
   # Local path is disabled, we only enable them for profiles we promote
   # out of extras.
-  ## include <local/usr.bin.firefox>
+  #include <local/usr.bin.firefox>
 }
