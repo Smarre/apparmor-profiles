@@ -97,5 +97,6 @@
   owner /var/lib/sddm/#* mrw,
   owner /var/lib/sddm/** rw,
   owner /var/lib/sddm/.cache/sddm-greeter/qmlcache/* mr,
+  owner /var/lib/sddm/.cache/mesa_shader_cache/*/*.tmp k,
 
 }
