@@ -13,7 +13,10 @@
   capability sys_admin,
   capability sys_tty_config,
 
-  /bin/login Px,
+  # U is just to ensure bootup things can work without locking user out in case of error.
+  # As an absolute fallback, one can boot using systemd with kernel param systemd.debug-shell=1.
+  /bin/login PUx,
+
   /usr/sbin/agetty mr,
 
   /dev/tty* rw,
