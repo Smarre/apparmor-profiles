@@ -2,12 +2,39 @@
 
 #include <tunables/global>
 
-# WARNING: This profile is not done, and shouldn’t work without some initrd trickery.
+# WARNING: This profile is not done, and doesn’t apply without initrd tricks.
 # Use only if you can develop this profile and fix your computer by hand when it breaks.
+
+# WARNING: This profile is applied even without initrd tricks when systemd user daemon is started.
 
 /usr/lib/systemd/systemd flags=(complain) {
   #include <abstractions/base>
 
+  # TODO: this is just to get this booting.
+  capability,
+  ptrace,
+  signal,
+
   /usr/lib/systemd/systemd mr,
 
+  /etc/systemd/user.conf r,
+
+  # TODO: this is just to get this booting.
+  /** r,
+  audit /usr/lib/systemd/** ux,
+  /sys/** rw,
+  /run/** rw,
+  /proc/** rw,
+  /etc/** r,
+  /usr/bin/* ux,
+  audit /bin/* ux,
+  /usr/sbin/* ux,
+  audit /sbin/* ux,
+  /usr/lib/** mrux,
+  /usr/lib/** mrux,
+
+  @{PROC}/@{uid}/stat r,
+
+  owner @{PROC}/1/cgroup r,
+  owner @{PROC}/sys/kernel/pid_max r,
 }
