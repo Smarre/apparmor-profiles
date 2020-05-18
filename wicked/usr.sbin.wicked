@@ -13,7 +13,7 @@
   /lib64/libdl-*.so mr,
   /lib64/libreadline.so.* mr,
   /lib64/libtinfo.so.* mr,
-  /usr/bin/kmod Px,
+  /usr/bin/kmod rPx,
   /usr/sbin/wicked mr,
   owner /bin/bash mr,
   owner /boot/sysctl.conf-* r,
