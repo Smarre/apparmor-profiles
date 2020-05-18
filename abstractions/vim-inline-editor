@@ -1,0 +1,5 @@
+# This abstraction contains necessary lines for use cases where vim is used as “inline” editor,
+# for example by “systemctl edit apparmor.service”.
+
+  /usr/bin/vim-nox11 mrux,
+  /usr/share/vim/** r,
