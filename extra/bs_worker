@@ -4,6 +4,7 @@
 # Many things seems to be requiring attach_disconnected...
 profile bs_worker flags=(complain, attach_disconnected) {
   #include <abstractions/base>
+  #include <abstractions/consoles>
 
   # Used by bsdtar
   capability sys_chroot,
@@ -96,6 +97,9 @@ profile bs_worker flags=(complain, attach_disconnected) {
   /etc/passwd r,
   /etc/group r,
   /etc/host.conf r,
+
+  # TODO: I have no idea why this wants to read this file, but it can’t be for good...
+  deny /etc/shadow r,
 
   /var/lib/sss/mc/initgroups r,
 
