@@ -21,7 +21,8 @@
   /usr/bin/ r,
   /usr/bin/keepassxc mr,
   /usr/share/keepassxc/** r,
-  owner @{HOME}/.config/KeePass{xc,XC}rc wr,
+  owner @{HOME}/.config/keepassxcrc rw,
+  owner @{HOME}/.config/KeePassXCrc rw,
   owner @{HOME}/.config/keepassxc/* rwk,
 
   # TODO: write these open.
