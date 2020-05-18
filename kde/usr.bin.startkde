@@ -29,6 +29,7 @@
   /usr/bin/mkdir mrix,
   /usr/bin/qdbus-qt5 Px,
   /usr/bin/startkde r,
+  /usr/bin/xmessage mrix,
   /usr/bin/tr mrix,
   /usr/bin/which mrix,
   /usr/bin/xprop mrix,
@@ -44,6 +45,7 @@
   # TODO: why?
   owner @{HOME}/#* mrw,
 
+  owner @{HOME}/.Xauthority r,
   owner @{HOME}/.cache/qtshadercache/* rw,
   owner @{HOME}/.config/plasma-workspace/env/ r,
   owner @{HOME}/.config/startupconfig r,
