@@ -7,6 +7,7 @@
   #include <abstractions/cli>
   #include <abstractions/dbus-session-strict>
   #include <abstractions/sddm>
+  #include <abstractions/vim-inline-editor>
   #include <abstractions/wutmp>
 
   capability sys_ptrace,
@@ -15,6 +16,7 @@
   signal send set=cont,
   signal send set=term,
 
+  # TODO: why?
   ptrace read,
 
   /usr/bin/less mrix,
@@ -27,6 +29,10 @@
   @{PROC}/cmdline r,
 
   /sys/fs/cgroup/unified/** r,
+
+  # Used by “systemctl edit name.service”.
+  /etc/systemd/system/** r,
+  /etc/systemd/system/*/override.conf w,
 
   /usr/lib/systemd/systemd-sysv-install Px,
 
