@@ -30,7 +30,7 @@ profile bs_worker flags=(complain, attach_disconnected) {
 
   /usr/bin/* Pix,
   /usr/bin/uname ix,
-  /usr/bin/fuser Cx -> bs_worker_fuser,
+  /usr/bin/fuser Px -> bs_worker_fuser,
   /bin/* Pix,
   /sbin/* Pix,
   /usr/sbin/* Pix,
