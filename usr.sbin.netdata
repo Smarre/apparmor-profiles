@@ -25,6 +25,11 @@
   # TODO: why?
   @{PROC}/@{uid}* r,
 
+  # TODO: PLUGIN[proc]
+  /proc/sys/net/netfilter/nf_conntrack_max r,
+  /proc/sys/net/ipv4/tcp_mem r,
+  /proc/sys/net/ipv4/tcp_max_orphans r,
+
   /sys/class/power_supply/ r,
 
   # TODO: why?
