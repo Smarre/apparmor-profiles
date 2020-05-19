@@ -2,7 +2,7 @@
 
 #include <tunables/global>
 
-/usr/lib/git/git flags=(complain) {
+profile /usr/lib/git/git flags=(complain) {
   #include <abstractions/base>
   #include <abstractions/bash>
   #include <abstractions/consoles>
@@ -41,13 +41,17 @@
   /usr/bin/uname mrix,
   /usr/bin/vim-nox11 mrix,
   /usr/bin/wc mrix,
+
   /usr/lib/git/git mrix,
   /usr/lib/git/git-mergetool mrix,
   /usr/lib/git/git-mergetool r,
   /usr/lib/git/git-rebase mrix,
   /usr/lib/git/git-rebase r,
   /usr/lib/git/git-remote-http Px,
+  /usr/lib/git/git-submodule Px,
   /usr/lib/git/git-stash mrix,
+
+  /usr/share/git-core/templates/** r,
 
   /etc/nsswitch.conf r,
   /etc/passwd r,
@@ -56,5 +60,29 @@
   /usr/share/vim/** r,
 
   owner /home/*/.gitconfig r,
+
+}
+
+# Git’s subcommands.
+
+profile /usr/lib/git/git-submodule flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/bash>
+
+  /bin/bash ix,
+
+  /usr/lib/git/git-submodule r,
+}
+
+profile /usr/lib/git/git-remote-http flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/nameservice>
+  #include <abstractions/openssl>
+
+  /usr/lib/git/git Px,
+  /usr/lib/git/git-remote-http mr,
+
+  # TODO: why?
+  owner /** r,
 
 }
