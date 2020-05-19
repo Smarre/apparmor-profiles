@@ -19,6 +19,7 @@
   /usr/bin/mv mrix,
   /usr/bin/rm mrix,
   /usr/bin/stat mrix,
+  /usr/bin/touch mrix,
   /usr/bin/vim-nox11 mrix,
   /usr/bin/which mrix,
 
