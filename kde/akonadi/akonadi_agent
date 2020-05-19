@@ -15,8 +15,17 @@ profile akonadi_agent /usr/bin/akonadi_*_agent {
 
   /usr/bin/akonadi_*_agent mrPx,
 
+  # KSmtp
+  /etc/ssl/openssl.cnf r,
+
   /usr/share/akonadi/plugins/serializer/ r,
   /usr/share/akonadi/plugins/serializer/* r,
+
+  # KSmtp
+  /usr/share/ssl/ r,
+
+  # maildispatcher
+  /var/lib/sss/pubconf/kdcinfo.* r,
 
   # A file like .J21024, .TJ3665.
   owner @{HOME}/.config/akonadi/.{J,T}* rwk,
@@ -30,6 +39,12 @@ profile akonadi_agent /usr/bin/akonadi_*_agent {
   owner @{HOME}/.config/emaildefaults r,
   owner @{HOME}/.config/emailidentities r,
   owner @{HOME}/.config/kmail2rc r,
+
+  # KSmtp
+  owner @{HOME}/.config/ksslcertificatemanager r,
+
+  owner @{HOME}/.config/kwalletrc r,
+  owner @{HOME}/.config/mailtransports r,
   owner @{HOME}/.config/specialmailcollectionsrc r,
 
   owner @{HOME}/.local/share/akonadi/search_db/** rw,

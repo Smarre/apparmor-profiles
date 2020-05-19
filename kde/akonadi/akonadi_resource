@@ -33,6 +33,8 @@ profile akonadi_resource /usr/bin/akonadi_*_resource {
 
   # A file like .J21024, .TJ3665.
   owner @{HOME}/.config/akonadi/.{J,T}* k,
+  # Like .MTJ574
+  owner @{HOME}/.config/akonadi/.MTJ* k,
 
   owner @{HOME}/.config/akonadi/agent_config_akonadi_*_resource_*.lock k,
   owner @{HOME}/.config/akonadi_*_resourcerc.* rw,
