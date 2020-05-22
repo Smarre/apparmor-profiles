@@ -1,0 +1,17 @@
+# Profile for fallbacking /usr/bin/* when no better choice is available.
+
+#include <tunables/global>
+
+profile non_essential_commands flags=(complain) {
+  #include <abstractions/cli>
+
+  /bin/* Px -> essential_commands,
+
+  /usr/bin/* mrPix,
+  /usr/bin/test rm,
+
+  # ld-2.26.so & co.
+  /lib{,64}/ld-[0-9]*.[0-9]*.so Pix -> lib-ld.so,
+
+  /dev/tty[0-9]* rw,
+}

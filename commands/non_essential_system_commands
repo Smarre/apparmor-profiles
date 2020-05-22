@@ -1,0 +1,13 @@
+# Profile for fallbacking /usr/sbin/* when no better choice is available.
+
+#include <tunables/global>
+
+profile non_essential_system_commands flags=(complain) {
+  #include <abstractions/cli>
+
+  /bin/* Px -> essential_commands,
+  /usr/sbin/* rPix,
+  /usr/bin/* Px -> non_essential_commands,
+  /sbin/* Px -> essential_system_commands,
+}
+
