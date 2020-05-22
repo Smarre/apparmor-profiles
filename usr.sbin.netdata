@@ -23,12 +23,27 @@
   /etc/netdata/** r,
 
   # TODO: why?
-  @{PROC}/@{uid}* r,
+  #@{PROC}/@{uid}* r,
 
   # TODO: PLUGIN[proc]
-  /proc/sys/net/netfilter/nf_conntrack_max r,
-  /proc/sys/net/ipv4/tcp_mem r,
-  /proc/sys/net/ipv4/tcp_max_orphans r,
+  @{PROC}/sys/net/netfilter/nf_conntrack_max r,
+  @{PROC}/sys/net/ipv4/tcp_mem r,
+  @{PROC}/sys/net/ipv4/tcp_max_orphans r,
+  @{PROC}/diskstats r,
+  @{PROC}/@{uid}/net/rpc/nfs r,
+  @{PROC}/@{uid}/net/stat/nf_conntrack r,
+  @{PROC}/@{uid}/net/* r,
+  /proc/devices r,
+  /proc/vmstat r,
+  /proc/softirqs r,
+  /proc/interrupts r,
+  /proc/pressure/io r,
+  /proc/pressure/cpu r,
+  /proc/pressure/memory r,
+  /proc/sys/kernel/random/entropy_avail r,
+  /proc/loadavg r,
+  /proc/uptime r,
+  /proc/schedstat r,
 
   /sys/class/power_supply/ r,
 
@@ -230,9 +245,10 @@
 
     /usr/lib/netdata/plugins.d/python.d.plugin r,
 
-    # TODO: no rewrite can be allowed...
     owner /usr/lib/netdata/python.d/** r,
-    audit owner /usr/lib/netdata/python.d/** w,
+
+    # Python speedup compilation files
+    owner /usr/lib/netdata/python.d/python_modules/pyyaml2/*.pyc w,
   }
 
   profile /usr/lib/netdata/plugins.d/system-info.sh flags=(complain) {
@@ -247,7 +263,19 @@
     /usr/bin/uname mrix,
 
     @{PROC}/ r,
-    @{PROC}/@{uid}* r,
+
+    /proc/1/sched r,
+
+    # system-detect- (probably virt)
+    /proc/cmdline r,
+
+    # lscpu
+    @{PROC}/bus/pci/devices r,
+    @{PROC}/proc/sys/kernel/osrelease r,
+
+    # TODO: wtf
+    #@{PROC}/@{uid}* r,
+
 
     # TODO: why?
     /sys/** r,

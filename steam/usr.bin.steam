@@ -19,10 +19,9 @@
 
   /bin/bash mrix,
 
-  #audit /usr/bin/* mrix,
-  audit /usr/bin/cp rix,
-  audit /usr/bin/rm rix,
-  audit /usr/bin/mkdir rix,
+  /usr/bin/cp rix,
+  /usr/bin/rm rix,
+  /usr/bin/mkdir rix,
 
   # Invoked by bash
   /usr/bin/dirname rix,

@@ -2,7 +2,7 @@
 
 #include <tunables/global>
 
-/usr/sbin/aa-unconfined flags=(complain) {
+profile aa-unconfined /usr/sbin/{,aa-}unconfined flags=(complain) {
   #include <abstractions/base>
   #include <abstractions/bash>
   #include <abstractions/consoles>

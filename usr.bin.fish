@@ -40,17 +40,17 @@
   # I guess I must allow about everything to read-writable.
   /** rwk,
 
-  # TODO: first audit, then convert to inherited.
-  audit /bin/* PUx,
+  # TODO: audit to see if there is stuff I want to directly handle here.
+  audit /bin/* PUx -> essential_commands,
   /bin/ps mr,
 
   /bin/bash mrix,
 
-  # TODO: first audit, then convert to inherited.
-  audit /sbin/* PUx,
+  # TODO: audit to see if there is stuff I want to directly handle here.
+  audit /sbin/* Px -> essential_system_commands,
   /sbin/apparmor_parser mr,
 
-  /usr/bin/* Pix,
+  /usr/bin/* Px -> non_essential_commands,
   /usr/bin/acpi mrix,
   /usr/bin/ag ix,
   /usr/bin/date ix,
@@ -74,10 +74,10 @@
   /usr/bin/vim-nox11 mrix,
   /usr/bin/which mrix,
 
-  # TODO: first audit, then convert to inherited.
-  audit /usr/sbin/* PUx,
-  /usr/sbin/ausearch mr,
-  /usr/sbin/nvme mr,
+  # TODO: audit to see if there is stuff I want to directly handle here.
+  audit /usr/sbin/* Px -> non_essential_system_commands,
+  /usr/sbin/ausearch mrPx,
+  /usr/sbin/nvme mrPx,
 
   /etc/X11/xdm/sys.xsession Px,
   /etc/fish/* r,
@@ -91,7 +91,6 @@
   /opt/TeamSpeak3-Client-linux_amd64/ts3client_runscript.sh mrix,
   /opt/TeamSpeak3-Client-linux_amd64/update Px,
   /opt/TeamSpeak3-Client-linux_amd64/update mr,
-
 
   /usr/lib{,64}/mesa-demos/* Pix,
   /usr/lib/dracut/skipcpio mrix,
@@ -111,7 +110,9 @@
   /var/adm/update-scripts/posttrans** ix,
   /var/cache/man/** rk,
 
+  # TODO: why?
   owner /** rl,
+
   owner @{HOME}/.config/fish/* rk,
   owner @{HOME}/.config/fish/** r,
   owner @{HOME}/.local/share/fish/* rwk,

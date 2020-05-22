@@ -1,7 +1,8 @@
-# Last Modified: Tue Apr 28 07:31:01 2020
+# Profile for a bit automatic AppArmor profile generator.
+
 #include <tunables/global>
 
-/usr/sbin/aa-autodep flags=(complain) {
+profile aa-autodep /usr/sbin/{,aa-}autodep flags=(complain) {
   #include <abstractions/base>
   #include <abstractions/bash>
   #include <abstractions/consoles>

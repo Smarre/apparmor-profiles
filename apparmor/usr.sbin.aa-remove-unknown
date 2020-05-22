@@ -2,7 +2,7 @@
 
 #include <tunables/global>
 
-/usr/sbin/aa-remove-unknown flags=(complain) {
+profile aa-remove-unknown /usr/sbin/aa-remove-unknown flags=(complain) {
   #include <abstractions/base>
   #include <abstractions/bash>
   #include <abstractions/consoles>

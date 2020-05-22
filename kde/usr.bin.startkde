@@ -12,6 +12,11 @@
 
   signal send set=usr1 peer=/usr/bin/kdeinit5,
 
+  # TODO: why?
+  #type=AVC msg=audit(1589948361.332:329520): apparmor="ALLOWED" operation="signal" profile="/usr/bin/startkde" pid=7696 comm="start_kdeinit" requested_mask="send" denied_mask="send" signal=usr1 peer="unconfined"
+  signal send set=usr1 peer=unconfined,
+
+
   /bin/bash rix,
   /usr/bin/cat mrix,
   /usr/bin/dbus-update-activation-environment mrix,

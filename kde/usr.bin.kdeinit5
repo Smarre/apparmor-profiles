@@ -41,18 +41,24 @@
   # TODO: why this exists?
   /** r,
 
+  # TODO: use essential_commands
   /bin/* Pix,
+
   /bin/bash ix,
-  /usr/bin/* Pix,
+
+  # TODO: use non_essential_commands
+  audit /usr/bin/* Pix,
+
   /usr/bin/uname ix,
   /usr/bin/kcminit mrix,
-  /usr/sbin/aa-logprof PUx,
-  /usr/sbin/aa-remove-unknown PUx,
-  /usr/sbin/aa-status PUx,
+
+  /usr/sbin/* Px -> non_essential_system_commands,
 
   /dev/snd/controlC* mrw,
 
   /tmp/crontab.* mrw,
+
+  /lib64/ld-[0-9]*.[0-9]*.so Px -> lib-ld.so,
 
   /usr/lib/** Pix,
   /usr/lib64/libreoffice/program/soffice Px,
@@ -72,7 +78,9 @@
   /usr/lib64/libexec/polkit-kde-authentication-agent-1 mrix,
   /usr/lib64/mesa-demos/xdemos/* rPix,
 
+  # TODO: why?
   /usr/share/*/bin/* Pix,
+
   /usr/share/kf5/** r,
   /usr/share/plasma/** mr,
 

@@ -9,6 +9,7 @@
 
 /usr/lib/systemd/systemd flags=(complain) {
   #include <abstractions/base>
+  #include <abstractions/consoles>
 
   # TODO: this is just to get this booting.
   capability,
@@ -19,22 +20,45 @@
 
   /etc/systemd/user.conf r,
 
-  # TODO: this is just to get this booting.
+  ## TODO: this is just to get this booting.
+
   /** r,
-  audit /usr/lib/systemd/** ux,
+
   /sys/** rw,
   /run/** rw,
   /proc/** rw,
   /etc/** r,
   /usr/bin/* ux,
+
   audit /bin/* ux,
+
   /usr/sbin/* ux,
+
   audit /sbin/* ux,
-  /usr/lib/** mrux,
-  /usr/lib/** mrux,
+
+  #/usr/lib/** mrux,
+
+  # Not sure about this one.
+  /usr/lib/gvfs/gvfsd mrix,
+
+  ## TODO: this is just to get this booting ends.
+
+  # TODO: this should be removed, and there should be more fine grained controls.
+  #audit /usr/lib/systemd/** ux,
+  /usr/lib/systemd/user-environment-generators/* Cx -> user_environment_generators,
+
+  #type=AVC msg=audit(1590041241.462:2278): apparmor="AUDIT" operation="exec" info="ux fallback" profile="/usr/lib/systemd/systemd" name="/usr/lib/systemd/user-environment-generators/60-flatpak" pid=18387 comm="systemd" requested_mask="x" fsuid=1000 ouid=0 target="unconfined"
 
   @{PROC}/@{uid}/stat r,
 
   owner @{PROC}/1/cgroup r,
   owner @{PROC}/sys/kernel/pid_max r,
+
+  # I have at least one native generator and one bash script.
+  profile user_environment_generators flags=(complain) {
+    #include <abstractions/base>
+    #include <abstractions/bash>
+
+    /usr/lib/systemd/user-environment-generators/* r,
+  }
 }

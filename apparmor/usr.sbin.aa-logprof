@@ -2,7 +2,7 @@
 
 #include <tunables/global>
 
-/usr/sbin/aa-logprof flags=(complain) {
+profile aa-logprof /usr/sbin/{,aa-}logprof flags=(complain) {
   #include <abstractions/base>
   #include <abstractions/bash>
   #include <abstractions/consoles>
