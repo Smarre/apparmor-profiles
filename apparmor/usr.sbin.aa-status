@@ -1,0 +1,11 @@
+# Last Modified: Thu May 21 09:26:26 2020
+#include <tunables/global>
+
+/usr/sbin/aa-status flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/python>
+
+  /usr/bin/python3.6 ix,
+  /usr/sbin/aa-status r,
+
+}
