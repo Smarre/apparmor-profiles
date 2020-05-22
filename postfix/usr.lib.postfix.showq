@@ -1,9 +1,11 @@
-# Last Modified: Sat Nov  9 21:03:49 2019
+# Profile for postfix’s showq.
+
 #include <tunables/global>
 
 # ------------------------------------------------------------------
 #
 #    Copyright (C) 2002-2006 Novell/SUSE
+#    Copyright (C) 2020 Samu Voutilainen
 #
 #    This program is free software; you can redistribute it and/or
 #    modify it under the terms of version 2 of the GNU General Public
@@ -12,12 +14,13 @@
 # ------------------------------------------------------------------
 
 
-profile /usr/lib/postfix/{,bin}/showq {
+profile /usr/lib/postfix/{bin/,}showq {
   #include <abstractions/base>
   #include <abstractions/nameservice>
   #include <abstractions/postfix-common>
 
-  /usr/lib/postfix/{,bin}/showq mrix,
+  /usr/lib/postfix/{bin/,}showq mrix,
+
   /{var/spool/postfix/,}active/ r,
   /{var/spool/postfix/,}active/[0-9A-F]/ r,
   /{var/spool/postfix/,}active/[0-9A-F]/[0-9A-F]/ r,
@@ -41,6 +44,7 @@ profile /usr/lib/postfix/{,bin}/showq {
   /{var/spool/postfix/,}maildrop/ r,
   /{var/spool/postfix/,}maildrop/[0-9A-F]/ r,
   /{var/spool/postfix/,}pid/unix.showq rwk,
+
   owner /var/spool/postfix/active/* r,
   owner /var/spool/postfix/defer/** r,
   owner /var/spool/postfix/deferred/** r,

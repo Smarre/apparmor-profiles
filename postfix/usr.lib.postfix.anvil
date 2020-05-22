@@ -1,6 +1,7 @@
 # ------------------------------------------------------------------
 #
 #    Copyright (C) 2002-2006 Novell/SUSE
+#    Copyright (C) 2020 Samu Voutilainen
 #
 #    This program is free software; you can redistribute it and/or
 #    modify it under the terms of version 2 of the GNU General Public
@@ -8,9 +9,11 @@
 #
 # ------------------------------------------------------------------
 
+# NOTE: the {/var/spool/postfix/,} conditions are for /var/spool/postfix to work properly.
+
 #include <tunables/global>
 
-profile /usr/lib/postfix/{,bin}/anvil {
+profile /usr/lib/postfix/{,bin/}anvil {
   #include <abstractions/base>
   #include <abstractions/nameservice>
   #include <abstractions/postfix-common>

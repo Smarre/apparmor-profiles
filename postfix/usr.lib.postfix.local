@@ -1,9 +1,11 @@
-# Last Modified: Wed Apr  8 15:41:09 2020
+# Profile for postfix’s local.
+
 #include <tunables/global>
 
 # ------------------------------------------------------------------
 #
 #    Copyright (C) 2002-2006 Novell/SUSE
+#    Copyright (C) 2020 Samu Voutilainen
 #
 #    This program is free software; you can redistribute it and/or
 #    modify it under the terms of version 2 of the GNU General Public
@@ -12,33 +14,57 @@
 # ------------------------------------------------------------------
 
 
-profile /usr/lib/postfix/{,bin}/local {
+profile /usr/lib/postfix/{,bin/}local {
   #include <abstractions/base>
   #include <abstractions/bash>
   #include <abstractions/nameservice>
   #include <abstractions/postfix-common>
   #include <abstractions/user-mail>
 
-  signal receive set=term peer=/usr/lib/postfix/bin/master,
+  signal receive set=term peer=postfix-master,
+
+  /{usr/,}bin/bash mrix,
+  /{usr/,}bin/date mrix,
+
+  # TODO: add a comment what neds this.
+  /usr/bin/doveconf mrix,
+
+  /usr/bin/mlmmj-recieve Px,
+  /usr/bin/procmail Px,
 
   /dev/tty rw,
+
+  # TODO: add a comment what needs this.
+  /etc/dovecot/conf.d/ r,
+  /etc/dovecot/conf.d/* r,
+  /etc/dovecot/dovecot.conf r,
+
   /etc/postfix/lists.db r,
   /etc/postfix/virtual.db r,
   /etc/{postfix/,}aliases.db rk,
-  /usr/bin/mlmmj-recieve Px,
-  /usr/bin/procmail Px,
+
+  # TODO: add a comment what needs this.
+  /usr/lib/dovecot/dovecot-lda Px,
+
   /usr/lib/mailman/mail/mailman Px,
-  /usr/lib/postfix/{,bin}/local mrix,
+  /usr/lib/postfix/{,bin/}local mrix,
+
   /var/lib/mailman/data/aliases.db r,
   /var/mailman/mail/wrapper Px,
-  /{usr/,}bin/bash mrix,
-  /{usr/,}bin/date mrix,
+
   /{var/spool/postfix/,}active/[0-9A-F]/ rw,
   /{var/spool/postfix/,}active/[0-9A-F]/[0-9A-F]/ rw,
   /{var/spool/postfix/,}active/[0-9A-F]/[0-9A-F]/* rw,
   /{var/spool/postfix/,}pid/unix.local rwk,
   /{var/spool/postfix/,}private/{bounce,defer,flush,lmtp,rewrite} rw,
   /{var/spool/postfix/,}public/{cleanup,flush} rw,
+
+  # mdbox mailboxes under /home.
+  # TODO: probably some tunables is required for this.
+  owner @{HOME}/mdbox/* rwk,
+  owner @{HOME}/mdbox/mailboxes/** rwk,
+  owner @{HOME}/mdbox/storage/* rwk,
+
   owner /var/spool/postfix/active/* rwk,
   owner /var/{,spool/}mail/* k,
 

@@ -1,9 +1,11 @@
-# Last Modified: Sat Mar 21 10:36:24 2020
+# Profile for postfix’s smtp
+
 #include <tunables/global>
 
 # ------------------------------------------------------------------
 #
 #    Copyright (C) 2002-2006 Novell/SUSE
+#    Copyright (C) 2020 Samu Voutilainen
 #
 #    This program is free software; you can redistribute it and/or
 #    modify it under the terms of version 2 of the GNU General Public
@@ -12,7 +14,7 @@
 # ------------------------------------------------------------------
 
 
-profile /usr/lib/postfix/{,bin}/smtp {
+profile /usr/lib/postfix/{bin/,}smtp {
   #include <abstractions/base>
   #include <abstractions/nameservice>
   #include <abstractions/openssl>
@@ -27,8 +29,11 @@ profile /usr/lib/postfix/{,bin}/smtp {
   /etc/postfix/sasl_passwd.db r,
   /etc/postfix/virtual.db r,
   /etc/postfix/{ssl/,}*.pem r,
-  /usr/lib/postfix/{,bin}/smtp mrix,
+
+  /usr/lib/postfix/{bin/,}smtp mrix,
+
   /usr/share/ssl/certs/ca-bundle.crt r,
+
   /{var/spool/postfix/,}active/[0-9A-F]/ rwl,
   /{var/spool/postfix/,}active/[0-9A-F]/[0-9A-F]/ rwl,
   /{var/spool/postfix/,}active/[0-9A-F]/[0-9A-F]/* rwl,
@@ -42,7 +47,10 @@ profile /usr/lib/postfix/{,bin}/smtp {
   /{var/spool/postfix/,}private/tlsmgr w,
   /{var/spool/postfix/,}private/trace w,
   /{var/spool/postfix/,}public/flush w,
+
   owner /var/spool/postfix/active/* k,
   owner /var/spool/postfix/active/* rw,
 
+  # If for example you have SSL certs for SMTP, add them to local file.
+  include <local/usr.lib.postfix.smtp>
 }

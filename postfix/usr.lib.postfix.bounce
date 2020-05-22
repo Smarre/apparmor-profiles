@@ -1,9 +1,11 @@
-# Last Modified: Sat Mar 21 10:36:24 2020
+# Profile for postfix’s bounce.
+
 #include <tunables/global>
 
 # ------------------------------------------------------------------
 #
 #    Copyright (C) 2002-2006 Novell/SUSE
+#    Copyright (C) 2020 Samu Voutilainen
 #
 #    This program is free software; you can redistribute it and/or
 #    modify it under the terms of version 2 of the GNU General Public
@@ -12,7 +14,7 @@
 # ------------------------------------------------------------------
 
 
-/usr/lib/postfix/bin/bounce {
+/usr/lib/postfix/{,bin/}bounce {
   #include <abstractions/base>
   #include <abstractions/nameservice>
   #include <abstractions/postfix-common>
@@ -35,6 +37,10 @@
   /{var/spool/postfix/,}incoming/[0-9A-F]/ rwl,
   /{var/spool/postfix/,}incoming/[0-9A-F]/[0-9A-F]/ rwl,
   /{var/spool/postfix/,}incoming/[0-9A-F]/[0-9A-F]/* rwl,
+
+  # TODO: if other pids needed, they need to be explicitly written.
+  audit /{var/spool/postfix/,}pid/* rwk,
+
   /{var/spool/postfix/,}pid/unix.bounce rw,
   /{var/spool/postfix/,}pid/unix.defer rwk,
   /{var/spool/postfix/,}pid/unix.trace rw,
@@ -42,8 +48,14 @@
   /{var/spool/postfix/,}trace/[0-9A-F]/ rwl,
   /{var/spool/postfix/,}trace/[0-9A-F]/[0-9A-F]/ rwl,
   /{var/spool/postfix/,}trace/[0-9A-F]/[0-9A-F]/* rwl,
+
   @{PROC}/net/if_inet6 r,
-  owner /var/spool/postfix/active/* rwk,
-  owner /var/spool/postfix/defer/** rwk,
+
+  owner /{var/spool/postfix/,}active/* rwk,
+  owner /{var/spool/postfix/,}bounce/* rwk,
+  owner /{var/spool/postfix/,}defer/** rwk,
+
+  # For chroot.
+  /{var/spool/postfix/,}usr/share/zoneinfo/** r,
 
 }
